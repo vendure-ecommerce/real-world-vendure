@@ -1,0 +1,15 @@
+@import "../../reviews-ui";
+
+.summary {
+    display: flex;
+}
+
+.image-preview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px;
+    margin-right: 6px;
+    background-color: $color-grey-200;
+}
+

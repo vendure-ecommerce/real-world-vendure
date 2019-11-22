@@ -1,0 +1,18 @@
+@import "../../reviews-ui";
+
+.filter-controls {
+    margin-bottom: 12px;
+}
+
+.product-info {
+    display: flex;
+    align-items: center;
+}
+
+.product-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 20vw;
+    margin-left: 6px;
+}

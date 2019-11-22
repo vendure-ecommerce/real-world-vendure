@@ -1,0 +1,41 @@
+@import "../../reviews-ui";
+
+:host {
+    display: block;
+    margin-bottom: 6px;
+}
+
+.bar-container {
+    display: flex;
+    align-items: center;
+}
+
+.bar {
+    background-color: $color-grey-200;
+    width: 100px;
+    margin: 0 6px;
+}
+.fill {
+    background-color: $color-star-rating;
+    text-align: right;
+    height: 12px;
+}
+.frequency {
+    color: $color-grey-600;
+    font-size: 12px;
+    min-width: 16px;
+    line-height: 12px;
+}
+.filter-button {
+    margin-left: 6px;
+    border-radius: 3px;
+    line-height: 16px;
+    &[disabled] {
+        opacity: 0.5;
+        cursor: default;
+    }
+    &.active {
+        background-color: $color-primary-500;
+        color: white;
+    }
+}

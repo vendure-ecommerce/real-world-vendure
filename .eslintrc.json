@@ -20,7 +20,8 @@
       {
         "singleQuote": true,
         "tabWidth": 4,
-        "trailingComma": "all"
+        "trailingComma": "all",
+        "printWidth": 110
       }
     ],
     "@typescript-eslint/no-use-before-define": "off",

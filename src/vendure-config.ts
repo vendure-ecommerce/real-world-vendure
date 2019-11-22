@@ -1,14 +1,11 @@
-import {
-    examplePaymentHandler,
-    DefaultSearchPlugin,
-    VendureConfig,
-} from '@vendure/core';
+import { examplePaymentHandler, DefaultSearchPlugin, VendureConfig } from '@vendure/core';
 import { defaultEmailHandlers, EmailPlugin } from '@vendure/email-plugin';
 import { AssetServerPlugin } from '@vendure/asset-server-plugin';
 import { AdminUiPlugin } from '@vendure/admin-ui-plugin';
 import path from 'path';
 
 import { BraintreePlugin } from './plugins/braintree/braintree-plugin';
+import { ReviewsPlugin } from './plugins/reviews/reviews-plugin';
 
 export const config: VendureConfig = {
     authOptions: {
@@ -46,11 +43,14 @@ export const config: VendureConfig = {
                 fromAddress: '"example" <noreply@example.com>',
                 verifyEmailAddressUrl: 'http://localhost:8080/verify',
                 passwordResetUrl: 'http://localhost:8080/password-reset',
-                changeEmailAddressUrl:
-                    'http://localhost:8080/verify-email-address-change',
+                changeEmailAddressUrl: 'http://localhost:8080/verify-email-address-change',
             },
         }),
-        AdminUiPlugin.init({ port: 3002 }),
+        AdminUiPlugin.init({
+            port: 3002,
+            extensions: [ReviewsPlugin.uiExtensions],
+        }),
         BraintreePlugin,
+        ReviewsPlugin,
     ],
 };

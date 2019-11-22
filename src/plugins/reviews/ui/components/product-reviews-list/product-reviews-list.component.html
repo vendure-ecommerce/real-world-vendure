@@ -1,0 +1,52 @@
+<vdr-action-bar>
+    <vdr-ab-left>
+        <div class="summary">
+            <div class="image-preview" *ngIf="product$ | async as product">
+                <img [src]="product.featuredAsset?.preview + '?preset=tiny'">
+                <kb-star-rating [rating]="product.customFields.reviewRating"></kb-star-rating>
+            </div>
+            <kb-review-histogram [binData]="histogramBinData$ | async"
+                                 (filterChange)="applyRatingFilters($event)"></kb-review-histogram>
+        </div>
+    </vdr-ab-left>
+    <vdr-ab-right>
+    </vdr-ab-right>
+</vdr-action-bar>
+<vdr-data-table
+    [items]="items$ | async"
+    [itemsPerPage]="itemsPerPage$ | async"
+    [totalItems]="totalItems$ | async"
+    [currentPage]="currentPage$ | async"
+    (pageChange)="setPageNumber($event)"
+    (itemsPerPageChange)="setItemsPerPage($event)"
+>
+    <vdr-dt-column>Submitted</vdr-dt-column>
+    <vdr-dt-column>Author</vdr-dt-column>
+    <vdr-dt-column>Rating</vdr-dt-column>
+    <vdr-dt-column>Summary</vdr-dt-column>
+    <vdr-dt-column>Status</vdr-dt-column>
+    <vdr-dt-column></vdr-dt-column>
+    <ng-template let-review="item">
+        <td class="left align-middle">
+            {{ review.createdAt | date:'mediumDate' }}
+        </td>
+        <td class="left align-middle">{{ review.authorName }}</td>
+        <td class="left align-middle">
+
+            <kb-star-rating [rating]="review.rating"></kb-star-rating>
+        </td>
+        <td class="left align-middle">{{ review.summary }}</td>
+        <td class="left align-middle">
+            <kb-review-state-label [state]="review.state"></kb-review-state-label>
+        </td>
+
+        <td class="right align-middle">
+
+            <vdr-table-row-action
+                iconShape="edit"
+                [label]="'common.edit' | translate"
+                [linkTo]="['/extensions', 'product-reviews', review.id]"
+            ></vdr-table-row-action>
+        </td>
+    </ng-template>
+</vdr-data-table>

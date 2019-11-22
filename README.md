@@ -7,9 +7,15 @@ This repo demonstrates a real-world Vendure server. It was generated with [`@ven
 ### [eslint](https://eslint.org/) & [Prettier](https://prettier.io/)
 These are tools for finding and fixing common code issues and formatting your code in a standard way. Run `yarn lint:fix` to lint and format your code.
 
+### [jest](https://jestjs.io/) & [ts-jest](https://github.com/kulshekhar/ts-jest)
+Jest is a testing framework used in the plugin end-to-end tests. Ts-jest allows Jest to work directly with TypeScript files without requiring a compilation step.
+
+### [graphql-code-generator](https://graphql-code-generator.com/)
+This is used to generate TypeScript types based on the Vendure server's GraphQL APIs. It is used to automatically generate correct types for plugin resolvers and plugin e2e tests. This ensures that whenever a schema is changed or a CustomField added, new typings can be generated to make sure your resolvers and tests are correct.
+
 ## Plugins
 
-### Braintree Plugin
+### Braintree Payments Plugin
 
 This is a working implementation for the Braintree payment provider. It demonstrates how a typical `PaymentMethodHandler` is used. The basic pattern will be similar for other modern payment processors such as Stripe or PayPal. See the [Braintree plugin readme](./src/plugins/braintree/README.md) for more information.
 
@@ -26,7 +32,7 @@ yarn start
 ```
 
 will start the Vendure server and [worker](https://www.vendure.io/docs/developer-guide/vendure-worker/) processes from
-the `src` directory.
+the `src` directory. Note - the first time you run this the custom UI extensionsof the reviews plugin will be compiled which may take a few minutes. Subsequent runs will be much faster (providing the UI extensions of the reviews plugin do not change).
 
 ## Build
 

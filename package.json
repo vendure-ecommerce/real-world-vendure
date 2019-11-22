@@ -7,10 +7,12 @@
     "run:worker": "ts-node ./src/index-worker.ts",
     "start": "concurrently yarn:run:*",
     "build": "tsc",
+    "generate-types": "graphql-codegen --config ./codegen.json",
     "migration:generate": "ts-node migration generate",
     "migration:run": "ts-node migration run",
     "migration:revert": "ts-node migration revert",
-    "lint:fix": "eslint ./src/**/*.ts --fix"
+    "lint:fix": "eslint ./src/**/*.ts --fix",
+    "e2e:reviews": "jest --config src/plugins/reviews/e2e/config/jest-config.js"
   },
   "dependencies": {
     "@vendure/admin-ui-plugin": "0.6.1",
@@ -21,14 +23,23 @@
     "sqlite3": "4.1.0"
   },
   "devDependencies": {
+    "@graphql-codegen/add": "^1.8.3",
+    "@graphql-codegen/cli": "^1.8.3",
+    "@graphql-codegen/typescript": "1.8.3",
+    "@graphql-codegen/typescript-compatibility": "^1.8.3",
+    "@graphql-codegen/typescript-operations": "^1.8.3",
     "@types/braintree": "^2.20.0",
+    "@types/jest": "^24.0.23",
     "@typescript-eslint/eslint-plugin": "^2.8.0",
     "@typescript-eslint/parser": "^2.8.0",
+    "@vendure/testing": "^0.6.1",
     "concurrently": "5.0.0",
     "eslint": "^6.6.0",
     "eslint-config-prettier": "^6.7.0",
     "eslint-plugin-prettier": "^3.1.1",
+    "jest": "^24.9.0",
     "prettier": "^1.19.1",
+    "ts-jest": "^24.2.0",
     "ts-node": "8.5.2"
   }
 }

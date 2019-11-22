@@ -1,0 +1,103 @@
+<vdr-action-bar>
+    <vdr-ab-left>
+        <div class="review-info">
+            <vdr-entity-info [entity]="entity$ | async"></vdr-entity-info>
+            <kb-review-state-label [state]="reviewState$ | async"></kb-review-state-label>
+        </div>
+    </vdr-ab-left>
+    <vdr-ab-right>
+        <ng-container *ngIf="(reviewState$ | async) === 'new'; else updateButton">
+            <button
+                *vdrIfPermissions="'UpdateCatalog'"
+                class="btn btn-success"
+                (click)="approve()"
+                [disabled]="detailForm.invalid"
+            >
+                <clr-icon shape="check"></clr-icon>
+                Approve
+            </button>
+            <button
+                *vdrIfPermissions="'UpdateCatalog'"
+                class="btn btn-warning"
+                (click)="reject()"
+                [disabled]="detailForm.invalid"
+            >
+                <clr-icon shape="times"></clr-icon>
+                Reject
+            </button>
+        </ng-container>
+        <ng-template #updateButton>
+            <button
+                *vdrIfPermissions="'UpdateCatalog'"
+                class="btn btn-primary"
+                (click)="save()"
+                [disabled]="detailForm.invalid || detailForm.pristine"
+            >
+                {{ 'common.update' | translate }}
+            </button>
+        </ng-template>
+    </vdr-ab-right>
+</vdr-action-bar>
+
+<div class="clr-row">
+    <div class="clr-col">
+        <form class="form" [formGroup]="detailForm">
+            <section class="form-block">
+                <vdr-form-field label="Summary" for="summary">
+                    <input
+                        id="summary"
+                        type="text"
+                        formControlName="summary"
+                        [readonly]="!('UpdateCatalog' | hasPermission)"
+                    />
+                </vdr-form-field>
+                <vdr-form-field label="Rating" for="rating">
+                    <kb-star-rating [rating]="detailForm.get('rating')?.value"></kb-star-rating>
+                </vdr-form-field>
+                <vdr-form-field label="Body" for="body">
+                    <textarea
+                        clrTextarea
+                        id="body"
+                        formControlName="body"
+                        [readonly]="!('UpdateCatalog' | hasPermission)"
+                    ></textarea>
+                </vdr-form-field>
+                <vdr-form-field label="Author name" for="authorName">
+                    <input
+                        id="authorName"
+                        type="text"
+                        formControlName="authorName"
+                        [readonly]="!('UpdateCatalog' | hasPermission)"
+                    />
+                </vdr-form-field>
+                <vdr-form-field label="Author location" for="authorLocation">
+                    <input
+
+                        id="authorLocation"
+                        type="text"
+                        formControlName="authorLocation"
+                        [readonly]="!('UpdateCatalog' | hasPermission)"
+                    />
+                </vdr-form-field>
+                <vdr-form-field label="Response" for="response">
+                    <textarea
+                        clrTextarea
+                        id="response"
+                        formControlName="response"
+                        [readonly]="!('UpdateCatalog' | hasPermission)"
+                    ></textarea>
+                </vdr-form-field>
+            </section>
+        </form>
+    </div>
+    <div class="clr-col-4">
+        <div class="card" *ngIf="entity$ | async as review">
+            <div class="card-img">
+                <img class="product-image" [src]="review.product!.featuredAsset!.preview + '?preset=small'" />
+            </div>
+            <div class="card-footer">
+                <a [routerLink]="['/catalog', 'products', review.product.id]">{{ review.product.name }}</a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,14 @@
+@import "../../reviews-ui";
+
+.state-icon {
+    margin-right: 3px;
+    &.new {
+        color: $color-warning-500;
+    }
+    &.approved {
+        color: $color-success-500;
+    }
+    &.rejected {
+        color: $color-error-500;
+    }
+}
