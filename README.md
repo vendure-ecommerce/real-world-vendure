@@ -1,6 +1,11 @@
 # real-world-vendure
 
-This project was generated with [`@vendure/create`](https://github.com/vendure-ecommerce/vendure/tree/master/packages/create).
+This repo demonstrates a real-world Vendure server. It was generated with [`@vendure/create`](https://github.com/vendure-ecommerce/vendure/tree/master/packages/create), but adds extra tooling and includes some example real-world plugins.
+
+## Tooling
+
+* [eslint](https://eslint.org/) & [Prettier](https://prettier.io/): These are tools for finding and fixing common code issues and formatting your code in a standard way. Run `yarn lint:fix` to lint and format your code.
+
 
 ## Directory structure
 
@@ -11,8 +16,6 @@ This project was generated with [`@vendure/create`](https://github.com/vendure-e
 
 ```
 yarn start
-# or
-npm run start
 ```
 
 will start the Vendure server and [worker](https://www.vendure.io/docs/developer-guide/vendure-worker/) processes from
@@ -22,8 +25,6 @@ the `src` directory.
 
 ```
 yarn build
-# or
-npm run build
 ```
 
 will compile the TypeScript sources into the `/dist` directory.
@@ -36,22 +37,16 @@ The following npm scripts can be used to generate migrations:
 
 ```
 yarn migration:generate [name]
-# or
-npm run migration:generate [name]
 ```
 
 run any pending migrations that have been generated:
 
 ```
 yarn migration:run
-# or
-npm run migration:run
 ```
 
 and revert the most recently-applied migration:
 
 ```
 yarn migration:revert
-# or
-npm run migration:revert
 ```

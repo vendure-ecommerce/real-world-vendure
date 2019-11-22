@@ -9,7 +9,8 @@
     "build": "tsc",
     "migration:generate": "ts-node migration generate",
     "migration:run": "ts-node migration run",
-    "migration:revert": "ts-node migration revert"
+    "migration:revert": "ts-node migration revert",
+    "lint:fix": "eslint ./src/**/*.ts"
   },
   "dependencies": {
     "@vendure/admin-ui-plugin": "0.6.1",
@@ -19,7 +20,13 @@
     "sqlite3": "4.1.0"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.8.0",
+    "@typescript-eslint/parser": "^2.8.0",
     "concurrently": "5.0.0",
+    "eslint": "^6.6.0",
+    "eslint-config-prettier": "^6.7.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "prettier": "^1.19.1",
     "ts-node": "8.5.2"
   }
 }

@@ -2,7 +2,7 @@ import {
     examplePaymentHandler,
     DefaultSearchPlugin,
     VendureConfig,
-} from '@vendure/core'; 
+} from '@vendure/core';
 import { defaultEmailHandlers, EmailPlugin } from '@vendure/email-plugin';
 import { AssetServerPlugin } from '@vendure/asset-server-plugin';
 import { AdminUiPlugin } from '@vendure/admin-ui-plugin';
@@ -44,7 +44,8 @@ export const config: VendureConfig = {
                 fromAddress: '"example" <noreply@example.com>',
                 verifyEmailAddressUrl: 'http://localhost:8080/verify',
                 passwordResetUrl: 'http://localhost:8080/password-reset',
-                changeEmailAddressUrl: 'http://localhost:8080/verify-email-address-change'
+                changeEmailAddressUrl:
+                    'http://localhost:8080/verify-email-address-change',
             },
         }),
         AdminUiPlugin.init({ port: 3002 }),
