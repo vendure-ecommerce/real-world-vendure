@@ -4,7 +4,14 @@ This repo demonstrates a real-world Vendure server. It was generated with [`@ven
 
 ## Tooling
 
-* [eslint](https://eslint.org/) & [Prettier](https://prettier.io/): These are tools for finding and fixing common code issues and formatting your code in a standard way. Run `yarn lint:fix` to lint and format your code.
+### [eslint](https://eslint.org/) & [Prettier](https://prettier.io/)
+These are tools for finding and fixing common code issues and formatting your code in a standard way. Run `yarn lint:fix` to lint and format your code.
+
+## Plugins
+
+### Braintree Plugin
+
+This is a working implementation for the Braintree payment provider. It demonstrates how a typical `PaymentMethodHandler` is used. The basic pattern will be similar for other modern payment processors such as Stripe or PayPal. See the [Braintree plugin readme](./src/plugins/braintree/README.md) for more information.
 
 
 ## Directory structure

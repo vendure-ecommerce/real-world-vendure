@@ -10,16 +10,18 @@
     "migration:generate": "ts-node migration generate",
     "migration:run": "ts-node migration run",
     "migration:revert": "ts-node migration revert",
-    "lint:fix": "eslint ./src/**/*.ts"
+    "lint:fix": "eslint ./src/**/*.ts --fix"
   },
   "dependencies": {
     "@vendure/admin-ui-plugin": "0.6.1",
     "@vendure/asset-server-plugin": "0.6.1",
     "@vendure/core": "0.6.1",
     "@vendure/email-plugin": "0.6.1",
+    "braintree": "^2.21.0",
     "sqlite3": "4.1.0"
   },
   "devDependencies": {
+    "@types/braintree": "^2.20.0",
     "@typescript-eslint/eslint-plugin": "^2.8.0",
     "@typescript-eslint/parser": "^2.8.0",
     "concurrently": "5.0.0",

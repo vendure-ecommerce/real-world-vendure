@@ -8,6 +8,8 @@ import { AssetServerPlugin } from '@vendure/asset-server-plugin';
 import { AdminUiPlugin } from '@vendure/admin-ui-plugin';
 import path from 'path';
 
+import { BraintreePlugin } from './plugins/braintree/braintree-plugin';
+
 export const config: VendureConfig = {
     authOptions: {
         sessionSecret: 'jysakgzhw6',
@@ -49,5 +51,6 @@ export const config: VendureConfig = {
             },
         }),
         AdminUiPlugin.init({ port: 3002 }),
+        BraintreePlugin,
     ],
 };
