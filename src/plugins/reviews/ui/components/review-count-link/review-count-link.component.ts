@@ -6,12 +6,13 @@ import { CustomFieldConfig, CustomFieldControl } from '@vendure/admin-ui/src';
 @Component({
     selector: 'kb-review-count-link',
     template: `
-        {{ formControl.value }} <a [routerLink]="['/extensions/product-reviews-list', productId]">View product reviews</a>
+        {{ formControl.value }}
+        <a [routerLink]="['/extensions/product-reviews-list', productId]">View product reviews</a>
     `,
     styles: [``],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ReviewCountLinkComponent implements CustomFieldControl  {
+export class ReviewCountLinkComponent implements CustomFieldControl {
     customFieldConfig: CustomFieldConfig;
     formControl: FormControl;
 

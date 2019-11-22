@@ -36,11 +36,11 @@ export class ProductReviewsListComponent
             (...args: any[]) => {
                 return this.dataService.query(GET_REVIEWS_FOR_PRODUCT, args);
             },
-            // tslint:disable-next-line:no-non-null-assertion
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
             data => data.product!.reviews,
             (skip, take) => {
                 return {
-                    // tslint:disable-next-line:no-non-null-assertion
+                    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
                     productId: route.snapshot.paramMap.get('id')!,
                     options: {
                         skip,
@@ -72,15 +72,11 @@ export class ProductReviewsListComponent
                     id: this.route.snapshot.paramMap.get('id') || '',
                 },
             )
-            .single$.pipe(
-                shareReplay(1),
-            );
+            .single$.pipe(shareReplay(1));
         this.histogramBinData$ = productWithHistogram$.pipe(
             map(data => (data.product ? data.product.reviewsHistogram : [])),
         );
-        this.product$ = productWithHistogram$.pipe(
-            map(data => data.product),
-        );
+        this.product$ = productWithHistogram$.pipe(map(data => data.product));
     }
 
     applyRatingFilters(filteredBin: number) {

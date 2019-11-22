@@ -11,9 +11,7 @@ import { BraintreeResolver } from './braintree.resolver';
     imports: [PluginCommonModule],
     providers: [],
     configuration: config => {
-        config.paymentOptions.paymentMethodHandlers.push(
-            braintreePaymentMethodHandler,
-        );
+        config.paymentOptions.paymentMethodHandlers.push(braintreePaymentMethodHandler);
         return config;
     },
     shopApiExtensions: {

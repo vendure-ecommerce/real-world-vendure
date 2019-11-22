@@ -2,6 +2,4 @@ import { ConfigArgValues } from '@vendure/core/dist/common/configurable-operatio
 
 import { braintreePaymentMethodHandler } from './braintree-payment-method';
 
-export type PaymentMethodArgsHash = ConfigArgValues<
-    typeof braintreePaymentMethodHandler['args']
->;
+export type PaymentMethodArgsHash = ConfigArgValues<typeof braintreePaymentMethodHandler['args']>;

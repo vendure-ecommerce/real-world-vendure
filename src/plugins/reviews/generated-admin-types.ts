@@ -1,5 +1,6 @@
 // tslint:disable
 export type Maybe<T> = T | null;
+
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string,
@@ -26,7 +27,7 @@ export type AddNoteToOrderInput = {
 };
 
 export type Address = Node & {
-  __typename?: 'Address',
+   __typename?: 'Address',
   id: Scalars['ID'],
   createdAt: Scalars['DateTime'],
   updatedAt: Scalars['DateTime'],
@@ -45,7 +46,7 @@ export type Address = Node & {
 };
 
 export type Adjustment = {
-  __typename?: 'Adjustment',
+   __typename?: 'Adjustment',
   adjustmentSource: Scalars['String'],
   type: AdjustmentType,
   description: Scalars['String'],
@@ -63,7 +64,7 @@ export enum AdjustmentType {
 }
 
 export type Administrator = Node & {
-  __typename?: 'Administrator',
+   __typename?: 'Administrator',
   id: Scalars['ID'],
   createdAt: Scalars['DateTime'],
   updatedAt: Scalars['DateTime'],
@@ -82,7 +83,7 @@ export type AdministratorFilterParameter = {
 };
 
 export type AdministratorList = PaginatedList & {
-  __typename?: 'AdministratorList',
+   __typename?: 'AdministratorList',
   items: Array<Administrator>,
   totalItems: Scalars['Int'],
 };
@@ -104,7 +105,7 @@ export type AdministratorSortParameter = {
 };
 
 export type Asset = Node & {
-  __typename?: 'Asset',
+   __typename?: 'Asset',
   id: Scalars['ID'],
   createdAt: Scalars['DateTime'],
   updatedAt: Scalars['DateTime'],
@@ -132,7 +133,7 @@ export type AssetFilterParameter = {
 };
 
 export type AssetList = PaginatedList & {
-  __typename?: 'AssetList',
+   __typename?: 'AssetList',
   items: Array<Asset>,
   totalItems: Scalars['Int'],
 };
@@ -170,7 +171,7 @@ export type AssignProductsToChannelInput = {
 };
 
 export type BooleanCustomFieldConfig = CustomField & {
-  __typename?: 'BooleanCustomFieldConfig',
+   __typename?: 'BooleanCustomFieldConfig',
   name: Scalars['String'],
   type: Scalars['String'],
   label?: Maybe<Array<LocalizedString>>,
@@ -182,7 +183,7 @@ export type BooleanOperators = {
 };
 
 export type Cancellation = Node & StockMovement & {
-  __typename?: 'Cancellation',
+   __typename?: 'Cancellation',
   id: Scalars['ID'],
   createdAt: Scalars['DateTime'],
   updatedAt: Scalars['DateTime'],
@@ -201,7 +202,7 @@ export type CancelOrderInput = {
 };
 
 export type Channel = Node & {
-  __typename?: 'Channel',
+   __typename?: 'Channel',
   id: Scalars['ID'],
   createdAt: Scalars['DateTime'],
   updatedAt: Scalars['DateTime'],
@@ -215,7 +216,7 @@ export type Channel = Node & {
 };
 
 export type Collection = Node & {
-  __typename?: 'Collection',
+   __typename?: 'Collection',
   isPrivate: Scalars['Boolean'],
   id: Scalars['ID'],
   createdAt: Scalars['DateTime'],
@@ -241,7 +242,7 @@ export type CollectionProductVariantsArgs = {
 };
 
 export type CollectionBreadcrumb = {
-  __typename?: 'CollectionBreadcrumb',
+   __typename?: 'CollectionBreadcrumb',
   id: Scalars['ID'],
   name: Scalars['String'],
 };
@@ -257,7 +258,7 @@ export type CollectionFilterParameter = {
 };
 
 export type CollectionList = PaginatedList & {
-  __typename?: 'CollectionList',
+   __typename?: 'CollectionList',
   items: Array<Collection>,
   totalItems: Scalars['Int'],
 };
@@ -279,7 +280,7 @@ export type CollectionSortParameter = {
 };
 
 export type CollectionTranslation = {
-  __typename?: 'CollectionTranslation',
+   __typename?: 'CollectionTranslation',
   id: Scalars['ID'],
   createdAt: Scalars['DateTime'],
   updatedAt: Scalars['DateTime'],
@@ -297,14 +298,14 @@ export type CollectionTranslationInput = {
 };
 
 export type ConfigArg = {
-  __typename?: 'ConfigArg',
+   __typename?: 'ConfigArg',
   name: Scalars['String'],
   type: Scalars['String'],
   value: Scalars['String'],
 };
 
 export type ConfigArgDefinition = {
-  __typename?: 'ConfigArgDefinition',
+   __typename?: 'ConfigArgDefinition',
   name: Scalars['String'],
   type: Scalars['String'],
   label?: Maybe<Scalars['String']>,
@@ -319,13 +320,13 @@ export type ConfigArgInput = {
 };
 
 export type ConfigurableOperation = {
-  __typename?: 'ConfigurableOperation',
+   __typename?: 'ConfigurableOperation',
   code: Scalars['String'],
   args: Array<ConfigArg>,
 };
 
 export type ConfigurableOperationDefinition = {
-  __typename?: 'ConfigurableOperationDefinition',
+   __typename?: 'ConfigurableOperationDefinition',
   code: Scalars['String'],
   args: Array<ConfigArgDefinition>,
   description: Scalars['String'],
@@ -337,7 +338,7 @@ export type ConfigurableOperationInput = {
 };
 
 export type Country = Node & {
-  __typename?: 'Country',
+   __typename?: 'Country',
   id: Scalars['ID'],
   createdAt: Scalars['DateTime'],
   updatedAt: Scalars['DateTime'],
@@ -358,7 +359,7 @@ export type CountryFilterParameter = {
 };
 
 export type CountryList = PaginatedList & {
-  __typename?: 'CountryList',
+   __typename?: 'CountryList',
   items: Array<Country>,
   totalItems: Scalars['Int'],
 };
@@ -379,7 +380,7 @@ export type CountrySortParameter = {
 };
 
 export type CountryTranslation = {
-  __typename?: 'CountryTranslation',
+   __typename?: 'CountryTranslation',
   id: Scalars['ID'],
   createdAt: Scalars['DateTime'],
   updatedAt: Scalars['DateTime'],
@@ -486,8 +487,6 @@ export type CreateGroupOptionInput = {
 };
 
 export type CreateProductCustomFieldsInput = {
-  legacy_itemId?: Maybe<Scalars['Int']>,
-  pageType?: Maybe<Scalars['String']>,
   reviewRating?: Maybe<Scalars['Float']>,
   reviewCount?: Maybe<Scalars['Float']>,
 };
@@ -514,11 +513,6 @@ export type CreateProductOptionInput = {
   customFields?: Maybe<Scalars['JSON']>,
 };
 
-export type CreateProductVariantCustomFieldsInput = {
-  legacy_prodId?: Maybe<Scalars['Int']>,
-  weight?: Maybe<Scalars['Int']>,
-};
-
 export type CreateProductVariantInput = {
   productId: Scalars['ID'],
   translations: Array<ProductVariantTranslationInput>,
@@ -531,7 +525,7 @@ export type CreateProductVariantInput = {
   assetIds?: Maybe<Array<Scalars['ID']>>,
   stockOnHand?: Maybe<Scalars['Int']>,
   trackInventory?: Maybe<Scalars['Boolean']>,
-  customFields?: Maybe<CreateProductVariantCustomFieldsInput>,
+  customFields?: Maybe<Scalars['JSON']>,
 };
 
 export type CreateProductVariantOptionInput = {
@@ -907,14 +901,14 @@ export enum CurrencyCode {
 }
 
 export type CurrentUser = {
-  __typename?: 'CurrentUser',
+   __typename?: 'CurrentUser',
   id: Scalars['ID'],
   identifier: Scalars['String'],
   channels: Array<CurrentUserChannel>,
 };
 
 export type CurrentUserChannel = {
-  __typename?: 'CurrentUserChannel',
+   __typename?: 'CurrentUserChannel',
   id: Scalars['ID'],
   token: Scalars['String'],
   code: Scalars['String'],
@@ -922,7 +916,7 @@ export type CurrentUserChannel = {
 };
 
 export type Customer = Node & {
-  __typename?: 'Customer',
+   __typename?: 'Customer',
   id: Scalars['ID'],
   createdAt: Scalars['DateTime'],
   updatedAt: Scalars['DateTime'],
@@ -953,7 +947,7 @@ export type CustomerFilterParameter = {
 };
 
 export type CustomerGroup = Node & {
-  __typename?: 'CustomerGroup',
+   __typename?: 'CustomerGroup',
   id: Scalars['ID'],
   createdAt: Scalars['DateTime'],
   updatedAt: Scalars['DateTime'],
@@ -961,7 +955,7 @@ export type CustomerGroup = Node & {
 };
 
 export type CustomerList = PaginatedList & {
-  __typename?: 'CustomerList',
+   __typename?: 'CustomerList',
   items: Array<Customer>,
   totalItems: Scalars['Int'],
 };
@@ -994,7 +988,7 @@ export type CustomField = {
 export type CustomFieldConfig = StringCustomFieldConfig | LocaleStringCustomFieldConfig | IntCustomFieldConfig | FloatCustomFieldConfig | BooleanCustomFieldConfig | DateTimeCustomFieldConfig;
 
 export type CustomFields = {
-  __typename?: 'CustomFields',
+   __typename?: 'CustomFields',
   Address: Array<CustomFieldConfig>,
   Collection: Array<CustomFieldConfig>,
   Customer: Array<CustomFieldConfig>,
@@ -1028,7 +1022,7 @@ export type DateRange = {
  * See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/datetime-local#Additional_attributes
  **/
 export type DateTimeCustomFieldConfig = CustomField & {
-  __typename?: 'DateTimeCustomFieldConfig',
+   __typename?: 'DateTimeCustomFieldConfig',
   name: Scalars['String'],
   type: Scalars['String'],
   label?: Maybe<Array<LocalizedString>>,
@@ -1039,7 +1033,7 @@ export type DateTimeCustomFieldConfig = CustomField & {
 };
 
 export type DeletionResponse = {
-  __typename?: 'DeletionResponse',
+   __typename?: 'DeletionResponse',
   result: DeletionResult,
   message?: Maybe<Scalars['String']>,
 };
@@ -1052,7 +1046,7 @@ export enum DeletionResult {
 }
 
 export type Facet = Node & {
-  __typename?: 'Facet',
+   __typename?: 'Facet',
   isPrivate: Scalars['Boolean'],
   id: Scalars['ID'],
   createdAt: Scalars['DateTime'],
@@ -1075,7 +1069,7 @@ export type FacetFilterParameter = {
 };
 
 export type FacetList = PaginatedList & {
-  __typename?: 'FacetList',
+   __typename?: 'FacetList',
   items: Array<Facet>,
   totalItems: Scalars['Int'],
 };
@@ -1096,7 +1090,7 @@ export type FacetSortParameter = {
 };
 
 export type FacetTranslation = {
-  __typename?: 'FacetTranslation',
+   __typename?: 'FacetTranslation',
   id: Scalars['ID'],
   createdAt: Scalars['DateTime'],
   updatedAt: Scalars['DateTime'],
@@ -1112,7 +1106,7 @@ export type FacetTranslationInput = {
 };
 
 export type FacetValue = Node & {
-  __typename?: 'FacetValue',
+   __typename?: 'FacetValue',
   id: Scalars['ID'],
   createdAt: Scalars['DateTime'],
   updatedAt: Scalars['DateTime'],
@@ -1129,13 +1123,13 @@ export type FacetValue = Node & {
  * by the search, and in what quantity.
  **/
 export type FacetValueResult = {
-  __typename?: 'FacetValueResult',
+   __typename?: 'FacetValueResult',
   facetValue: FacetValue,
   count: Scalars['Int'],
 };
 
 export type FacetValueTranslation = {
-  __typename?: 'FacetValueTranslation',
+   __typename?: 'FacetValueTranslation',
   id: Scalars['ID'],
   createdAt: Scalars['DateTime'],
   updatedAt: Scalars['DateTime'],
@@ -1151,7 +1145,7 @@ export type FacetValueTranslationInput = {
 };
 
 export type FloatCustomFieldConfig = CustomField & {
-  __typename?: 'FloatCustomFieldConfig',
+   __typename?: 'FloatCustomFieldConfig',
   name: Scalars['String'],
   type: Scalars['String'],
   label?: Maybe<Array<LocalizedString>>,
@@ -1162,7 +1156,7 @@ export type FloatCustomFieldConfig = CustomField & {
 };
 
 export type Fulfillment = Node & {
-  __typename?: 'Fulfillment',
+   __typename?: 'Fulfillment',
   id: Scalars['ID'],
   createdAt: Scalars['DateTime'],
   updatedAt: Scalars['DateTime'],
@@ -1178,7 +1172,7 @@ export type FulfillOrderInput = {
 };
 
 export type GlobalSettings = {
-  __typename?: 'GlobalSettings',
+   __typename?: 'GlobalSettings',
   id: Scalars['ID'],
   createdAt: Scalars['DateTime'],
   updatedAt: Scalars['DateTime'],
@@ -1189,7 +1183,7 @@ export type GlobalSettings = {
 };
 
 export type HistoryEntry = Node & {
-  __typename?: 'HistoryEntry',
+   __typename?: 'HistoryEntry',
   id: Scalars['ID'],
   createdAt: Scalars['DateTime'],
   updatedAt: Scalars['DateTime'],
@@ -1207,7 +1201,7 @@ export type HistoryEntryFilterParameter = {
 };
 
 export type HistoryEntryList = PaginatedList & {
-  __typename?: 'HistoryEntryList',
+   __typename?: 'HistoryEntryList',
   items: Array<HistoryEntry>,
   totalItems: Scalars['Int'],
 };
@@ -1237,14 +1231,14 @@ export enum HistoryEntryType {
 }
 
 export type ImportInfo = {
-  __typename?: 'ImportInfo',
+   __typename?: 'ImportInfo',
   errors?: Maybe<Array<Scalars['String']>>,
   processed: Scalars['Int'],
   imported: Scalars['Int'],
 };
 
 export type IntCustomFieldConfig = CustomField & {
-  __typename?: 'IntCustomFieldConfig',
+   __typename?: 'IntCustomFieldConfig',
   name: Scalars['String'],
   type: Scalars['String'],
   label?: Maybe<Array<LocalizedString>>,
@@ -1255,7 +1249,7 @@ export type IntCustomFieldConfig = CustomField & {
 };
 
 export type JobInfo = {
-  __typename?: 'JobInfo',
+   __typename?: 'JobInfo',
   id: Scalars['String'],
   name: Scalars['String'],
   state: JobState,
@@ -1658,7 +1652,7 @@ export enum LanguageCode {
 }
 
 export type LocaleStringCustomFieldConfig = CustomField & {
-  __typename?: 'LocaleStringCustomFieldConfig',
+   __typename?: 'LocaleStringCustomFieldConfig',
   name: Scalars['String'],
   type: Scalars['String'],
   label?: Maybe<Array<LocalizedString>>,
@@ -1667,13 +1661,13 @@ export type LocaleStringCustomFieldConfig = CustomField & {
 };
 
 export type LocalizedString = {
-  __typename?: 'LocalizedString',
+   __typename?: 'LocalizedString',
   languageCode: LanguageCode,
   value: Scalars['String'],
 };
 
 export type LoginResult = {
-  __typename?: 'LoginResult',
+   __typename?: 'LoginResult',
   user: CurrentUser,
 };
 
@@ -1684,7 +1678,7 @@ export type MoveCollectionInput = {
 };
 
 export type Mutation = {
-  __typename?: 'Mutation',
+   __typename?: 'Mutation',
   /** Create a new Administrator */
   createAdministrator: Administrator,
   /** Update an existing Administrator */
@@ -2231,7 +2225,7 @@ export type NumberRange = {
 };
 
 export type Order = Node & {
-  __typename?: 'Order',
+   __typename?: 'Order',
   id: Scalars['ID'],
   createdAt: Scalars['DateTime'],
   updatedAt: Scalars['DateTime'],
@@ -2269,7 +2263,7 @@ export type OrderHistoryArgs = {
 };
 
 export type OrderAddress = {
-  __typename?: 'OrderAddress',
+   __typename?: 'OrderAddress',
   fullName?: Maybe<Scalars['String']>,
   company?: Maybe<Scalars['String']>,
   streetLine1?: Maybe<Scalars['String']>,
@@ -2298,7 +2292,7 @@ export type OrderFilterParameter = {
 };
 
 export type OrderItem = Node & {
-  __typename?: 'OrderItem',
+   __typename?: 'OrderItem',
   id: Scalars['ID'],
   createdAt: Scalars['DateTime'],
   updatedAt: Scalars['DateTime'],
@@ -2313,7 +2307,7 @@ export type OrderItem = Node & {
 };
 
 export type OrderLine = Node & {
-  __typename?: 'OrderLine',
+   __typename?: 'OrderLine',
   id: Scalars['ID'],
   createdAt: Scalars['DateTime'],
   updatedAt: Scalars['DateTime'],
@@ -2326,13 +2320,7 @@ export type OrderLine = Node & {
   totalPrice: Scalars['Int'],
   adjustments: Array<Adjustment>,
   order: Order,
-  customFields?: Maybe<OrderLineCustomFields>,
-};
-
-export type OrderLineCustomFields = {
-  __typename?: 'OrderLineCustomFields',
-  addedFromWishlistCustomerName?: Maybe<Scalars['String']>,
-  addedFromWishlistName?: Maybe<Scalars['String']>,
+  customFields?: Maybe<Scalars['JSON']>,
 };
 
 export type OrderLineInput = {
@@ -2341,7 +2329,7 @@ export type OrderLineInput = {
 };
 
 export type OrderList = PaginatedList & {
-  __typename?: 'OrderList',
+   __typename?: 'OrderList',
   items: Array<Order>,
   totalItems: Scalars['Int'],
 };
@@ -2373,7 +2361,7 @@ export type PaginatedList = {
 };
 
 export type Payment = Node & {
-  __typename?: 'Payment',
+   __typename?: 'Payment',
   id: Scalars['ID'],
   createdAt: Scalars['DateTime'],
   updatedAt: Scalars['DateTime'],
@@ -2387,7 +2375,7 @@ export type Payment = Node & {
 };
 
 export type PaymentMethod = Node & {
-  __typename?: 'PaymentMethod',
+   __typename?: 'PaymentMethod',
   id: Scalars['ID'],
   createdAt: Scalars['DateTime'],
   updatedAt: Scalars['DateTime'],
@@ -2404,7 +2392,7 @@ export type PaymentMethodFilterParameter = {
 };
 
 export type PaymentMethodList = PaginatedList & {
-  __typename?: 'PaymentMethodList',
+   __typename?: 'PaymentMethodList',
   items: Array<PaymentMethod>,
   totalItems: Scalars['Int'],
 };
@@ -2468,13 +2456,13 @@ export enum Permission {
 
 /** The price range where the result has more than one price */
 export type PriceRange = {
-  __typename?: 'PriceRange',
+   __typename?: 'PriceRange',
   min: Scalars['Int'],
   max: Scalars['Int'],
 };
 
 export type Product = Node & {
-  __typename?: 'Product',
+   __typename?: 'Product',
   enabled: Scalars['Boolean'],
   channels: Array<Channel>,
   id: Scalars['ID'],
@@ -2502,9 +2490,7 @@ export type ProductReviewsArgs = {
 };
 
 export type ProductCustomFields = {
-  __typename?: 'ProductCustomFields',
-  legacy_itemId?: Maybe<Scalars['Int']>,
-  pageType?: Maybe<Scalars['String']>,
+   __typename?: 'ProductCustomFields',
   reviewRating?: Maybe<Scalars['Float']>,
   reviewCount?: Maybe<Scalars['Float']>,
 };
@@ -2517,14 +2503,12 @@ export type ProductFilterParameter = {
   name?: Maybe<StringOperators>,
   slug?: Maybe<StringOperators>,
   description?: Maybe<StringOperators>,
-  legacy_itemId?: Maybe<NumberOperators>,
-  pageType?: Maybe<StringOperators>,
   reviewRating?: Maybe<NumberOperators>,
   reviewCount?: Maybe<NumberOperators>,
 };
 
 export type ProductList = PaginatedList & {
-  __typename?: 'ProductList',
+   __typename?: 'ProductList',
   items: Array<Product>,
   totalItems: Scalars['Int'],
 };
@@ -2537,7 +2521,7 @@ export type ProductListOptions = {
 };
 
 export type ProductOption = Node & {
-  __typename?: 'ProductOption',
+   __typename?: 'ProductOption',
   id: Scalars['ID'],
   createdAt: Scalars['DateTime'],
   updatedAt: Scalars['DateTime'],
@@ -2550,7 +2534,7 @@ export type ProductOption = Node & {
 };
 
 export type ProductOptionGroup = Node & {
-  __typename?: 'ProductOptionGroup',
+   __typename?: 'ProductOptionGroup',
   id: Scalars['ID'],
   createdAt: Scalars['DateTime'],
   updatedAt: Scalars['DateTime'],
@@ -2563,7 +2547,7 @@ export type ProductOptionGroup = Node & {
 };
 
 export type ProductOptionGroupTranslation = {
-  __typename?: 'ProductOptionGroupTranslation',
+   __typename?: 'ProductOptionGroupTranslation',
   id: Scalars['ID'],
   createdAt: Scalars['DateTime'],
   updatedAt: Scalars['DateTime'],
@@ -2579,7 +2563,7 @@ export type ProductOptionGroupTranslationInput = {
 };
 
 export type ProductOptionTranslation = {
-  __typename?: 'ProductOptionTranslation',
+   __typename?: 'ProductOptionTranslation',
   id: Scalars['ID'],
   createdAt: Scalars['DateTime'],
   updatedAt: Scalars['DateTime'],
@@ -2595,7 +2579,7 @@ export type ProductOptionTranslationInput = {
 };
 
 export type ProductReview = Node & {
-  __typename?: 'ProductReview',
+   __typename?: 'ProductReview',
   id: Scalars['ID'],
   createdAt: Scalars['DateTime'],
   updatedAt: Scalars['DateTime'],
@@ -2630,13 +2614,13 @@ export type ProductReviewFilterParameter = {
 };
 
 export type ProductReviewHistogramItem = {
-  __typename?: 'ProductReviewHistogramItem',
+   __typename?: 'ProductReviewHistogramItem',
   bin: Scalars['Int'],
   frequency: Scalars['Int'],
 };
 
 export type ProductReviewList = PaginatedList & {
-  __typename?: 'ProductReviewList',
+   __typename?: 'ProductReviewList',
   items: Array<ProductReview>,
   totalItems: Scalars['Int'],
 };
@@ -2671,14 +2655,12 @@ export type ProductSortParameter = {
   name?: Maybe<SortOrder>,
   slug?: Maybe<SortOrder>,
   description?: Maybe<SortOrder>,
-  legacy_itemId?: Maybe<SortOrder>,
-  pageType?: Maybe<SortOrder>,
   reviewRating?: Maybe<SortOrder>,
   reviewCount?: Maybe<SortOrder>,
 };
 
 export type ProductTranslation = {
-  __typename?: 'ProductTranslation',
+   __typename?: 'ProductTranslation',
   id: Scalars['ID'],
   createdAt: Scalars['DateTime'],
   updatedAt: Scalars['DateTime'],
@@ -2698,7 +2680,7 @@ export type ProductTranslationInput = {
 };
 
 export type ProductVariant = Node & {
-  __typename?: 'ProductVariant',
+   __typename?: 'ProductVariant',
   enabled: Scalars['Boolean'],
   stockOnHand: Scalars['Int'],
   trackInventory: Scalars['Boolean'],
@@ -2721,18 +2703,12 @@ export type ProductVariant = Node & {
   options: Array<ProductOption>,
   facetValues: Array<FacetValue>,
   translations: Array<ProductVariantTranslation>,
-  customFields?: Maybe<ProductVariantCustomFields>,
+  customFields?: Maybe<Scalars['JSON']>,
 };
 
 
 export type ProductVariantStockMovementsArgs = {
   options?: Maybe<StockMovementListOptions>
-};
-
-export type ProductVariantCustomFields = {
-  __typename?: 'ProductVariantCustomFields',
-  legacy_prodId?: Maybe<Scalars['Int']>,
-  weight?: Maybe<Scalars['Int']>,
 };
 
 export type ProductVariantFilterParameter = {
@@ -2748,12 +2724,10 @@ export type ProductVariantFilterParameter = {
   currencyCode?: Maybe<StringOperators>,
   priceIncludesTax?: Maybe<BooleanOperators>,
   priceWithTax?: Maybe<NumberOperators>,
-  legacy_prodId?: Maybe<NumberOperators>,
-  weight?: Maybe<NumberOperators>,
 };
 
 export type ProductVariantList = PaginatedList & {
-  __typename?: 'ProductVariantList',
+   __typename?: 'ProductVariantList',
   items: Array<ProductVariant>,
   totalItems: Scalars['Int'],
 };
@@ -2775,12 +2749,10 @@ export type ProductVariantSortParameter = {
   name?: Maybe<SortOrder>,
   price?: Maybe<SortOrder>,
   priceWithTax?: Maybe<SortOrder>,
-  legacy_prodId?: Maybe<SortOrder>,
-  weight?: Maybe<SortOrder>,
 };
 
 export type ProductVariantTranslation = {
-  __typename?: 'ProductVariantTranslation',
+   __typename?: 'ProductVariantTranslation',
   id: Scalars['ID'],
   createdAt: Scalars['DateTime'],
   updatedAt: Scalars['DateTime'],
@@ -2796,7 +2768,7 @@ export type ProductVariantTranslationInput = {
 };
 
 export type Promotion = Node & {
-  __typename?: 'Promotion',
+   __typename?: 'Promotion',
   id: Scalars['ID'],
   createdAt: Scalars['DateTime'],
   updatedAt: Scalars['DateTime'],
@@ -2822,7 +2794,7 @@ export type PromotionFilterParameter = {
 };
 
 export type PromotionList = PaginatedList & {
-  __typename?: 'PromotionList',
+   __typename?: 'PromotionList',
   items: Array<Promotion>,
   totalItems: Scalars['Int'],
 };
@@ -2846,7 +2818,7 @@ export type PromotionSortParameter = {
 };
 
 export type Query = {
-  __typename?: 'Query',
+   __typename?: 'Query',
   administrators: AdministratorList,
   administrator?: Maybe<Administrator>,
   assets: AssetList,
@@ -3098,7 +3070,7 @@ export type QueryProductReviewArgs = {
 };
 
 export type Refund = Node & {
-  __typename?: 'Refund',
+   __typename?: 'Refund',
   id: Scalars['ID'],
   createdAt: Scalars['DateTime'],
   updatedAt: Scalars['DateTime'],
@@ -3129,7 +3101,7 @@ export type RemoveProductsFromChannelInput = {
 };
 
 export type Return = Node & StockMovement & {
-  __typename?: 'Return',
+   __typename?: 'Return',
   id: Scalars['ID'],
   createdAt: Scalars['DateTime'],
   updatedAt: Scalars['DateTime'],
@@ -3140,7 +3112,7 @@ export type Return = Node & StockMovement & {
 };
 
 export type Role = Node & {
-  __typename?: 'Role',
+   __typename?: 'Role',
   id: Scalars['ID'],
   createdAt: Scalars['DateTime'],
   updatedAt: Scalars['DateTime'],
@@ -3158,7 +3130,7 @@ export type RoleFilterParameter = {
 };
 
 export type RoleList = PaginatedList & {
-  __typename?: 'RoleList',
+   __typename?: 'RoleList',
   items: Array<Role>,
   totalItems: Scalars['Int'],
 };
@@ -3179,7 +3151,7 @@ export type RoleSortParameter = {
 };
 
 export type Sale = Node & StockMovement & {
-  __typename?: 'Sale',
+   __typename?: 'Sale',
   id: Scalars['ID'],
   createdAt: Scalars['DateTime'],
   updatedAt: Scalars['DateTime'],
@@ -3200,19 +3172,19 @@ export type SearchInput = {
 };
 
 export type SearchReindexResponse = {
-  __typename?: 'SearchReindexResponse',
+   __typename?: 'SearchReindexResponse',
   success: Scalars['Boolean'],
 };
 
 export type SearchResponse = {
-  __typename?: 'SearchResponse',
+   __typename?: 'SearchResponse',
   items: Array<SearchResult>,
   totalItems: Scalars['Int'],
   facetValues: Array<FacetValueResult>,
 };
 
 export type SearchResult = {
-  __typename?: 'SearchResult',
+   __typename?: 'SearchResult',
   enabled: Scalars['Boolean'],
   /** An array of ids of the Collections in which this result appears */
   channelIds: Array<Scalars['ID']>,
@@ -3245,7 +3217,7 @@ export type SearchResultSortParameter = {
 };
 
 export type ServerConfig = {
-  __typename?: 'ServerConfig',
+   __typename?: 'ServerConfig',
   customFieldConfig: CustomFields,
 };
 
@@ -3255,7 +3227,7 @@ export type SettleRefundInput = {
 };
 
 export type ShippingMethod = Node & {
-  __typename?: 'ShippingMethod',
+   __typename?: 'ShippingMethod',
   id: Scalars['ID'],
   createdAt: Scalars['DateTime'],
   updatedAt: Scalars['DateTime'],
@@ -3273,7 +3245,7 @@ export type ShippingMethodFilterParameter = {
 };
 
 export type ShippingMethodList = PaginatedList & {
-  __typename?: 'ShippingMethodList',
+   __typename?: 'ShippingMethodList',
   items: Array<ShippingMethod>,
   totalItems: Scalars['Int'],
 };
@@ -3286,7 +3258,7 @@ export type ShippingMethodListOptions = {
 };
 
 export type ShippingMethodQuote = {
-  __typename?: 'ShippingMethodQuote',
+   __typename?: 'ShippingMethodQuote',
   id: Scalars['ID'],
   price: Scalars['Int'],
   priceWithTax: Scalars['Int'],
@@ -3304,7 +3276,7 @@ export type ShippingMethodSortParameter = {
 
 /** The price value where the result has a single price */
 export type SinglePrice = {
-  __typename?: 'SinglePrice',
+   __typename?: 'SinglePrice',
   value: Scalars['Int'],
 };
 
@@ -3314,7 +3286,7 @@ export enum SortOrder {
 }
 
 export type StockAdjustment = Node & StockMovement & {
-  __typename?: 'StockAdjustment',
+   __typename?: 'StockAdjustment',
   id: Scalars['ID'],
   createdAt: Scalars['DateTime'],
   updatedAt: Scalars['DateTime'],
@@ -3335,7 +3307,7 @@ export type StockMovement = {
 export type StockMovementItem = StockAdjustment | Sale | Cancellation | Return;
 
 export type StockMovementList = {
-  __typename?: 'StockMovementList',
+   __typename?: 'StockMovementList',
   items: Array<StockMovementItem>,
   totalItems: Scalars['Int'],
 };
@@ -3354,7 +3326,7 @@ export enum StockMovementType {
 }
 
 export type StringCustomFieldConfig = CustomField & {
-  __typename?: 'StringCustomFieldConfig',
+   __typename?: 'StringCustomFieldConfig',
   name: Scalars['String'],
   type: Scalars['String'],
   length?: Maybe<Scalars['Int']>,
@@ -3365,7 +3337,7 @@ export type StringCustomFieldConfig = CustomField & {
 };
 
 export type StringFieldOption = {
-  __typename?: 'StringFieldOption',
+   __typename?: 'StringFieldOption',
   value: Scalars['String'],
   label?: Maybe<Array<LocalizedString>>,
 };
@@ -3376,7 +3348,7 @@ export type StringOperators = {
 };
 
 export type TaxCategory = Node & {
-  __typename?: 'TaxCategory',
+   __typename?: 'TaxCategory',
   id: Scalars['ID'],
   createdAt: Scalars['DateTime'],
   updatedAt: Scalars['DateTime'],
@@ -3384,7 +3356,7 @@ export type TaxCategory = Node & {
 };
 
 export type TaxRate = Node & {
-  __typename?: 'TaxRate',
+   __typename?: 'TaxRate',
   id: Scalars['ID'],
   createdAt: Scalars['DateTime'],
   updatedAt: Scalars['DateTime'],
@@ -3405,7 +3377,7 @@ export type TaxRateFilterParameter = {
 };
 
 export type TaxRateList = PaginatedList & {
-  __typename?: 'TaxRateList',
+   __typename?: 'TaxRateList',
   items: Array<TaxRate>,
   totalItems: Scalars['Int'],
 };
@@ -3443,7 +3415,7 @@ export type TestShippingMethodOrderLineInput = {
 };
 
 export type TestShippingMethodQuote = {
-  __typename?: 'TestShippingMethodQuote',
+   __typename?: 'TestShippingMethodQuote',
   price: Scalars['Int'],
   priceWithTax: Scalars['Int'],
   description: Scalars['String'],
@@ -3451,7 +3423,7 @@ export type TestShippingMethodQuote = {
 };
 
 export type TestShippingMethodResult = {
-  __typename?: 'TestShippingMethodResult',
+   __typename?: 'TestShippingMethodResult',
   eligible: Scalars['Boolean'],
   quote?: Maybe<TestShippingMethodQuote>,
 };
@@ -3554,8 +3526,6 @@ export type UpdatePaymentMethodInput = {
 };
 
 export type UpdateProductCustomFieldsInput = {
-  legacy_itemId?: Maybe<Scalars['Int']>,
-  pageType?: Maybe<Scalars['String']>,
   reviewRating?: Maybe<Scalars['Float']>,
   reviewCount?: Maybe<Scalars['Float']>,
 };
@@ -3591,11 +3561,6 @@ export type UpdateProductReviewInput = {
   response?: Maybe<Scalars['String']>,
 };
 
-export type UpdateProductVariantCustomFieldsInput = {
-  legacy_prodId?: Maybe<Scalars['Int']>,
-  weight?: Maybe<Scalars['Int']>,
-};
-
 export type UpdateProductVariantInput = {
   id: Scalars['ID'],
   enabled?: Maybe<Scalars['Boolean']>,
@@ -3608,7 +3573,7 @@ export type UpdateProductVariantInput = {
   assetIds?: Maybe<Array<Scalars['ID']>>,
   stockOnHand?: Maybe<Scalars['Int']>,
   trackInventory?: Maybe<Scalars['Boolean']>,
-  customFields?: Maybe<UpdateProductVariantCustomFieldsInput>,
+  customFields?: Maybe<Scalars['JSON']>,
 };
 
 export type UpdatePromotionInput = {
@@ -3661,7 +3626,7 @@ export type UpdateZoneInput = {
 
 
 export type User = Node & {
-  __typename?: 'User',
+   __typename?: 'User',
   id: Scalars['ID'],
   createdAt: Scalars['DateTime'],
   updatedAt: Scalars['DateTime'],
@@ -3673,10 +3638,11 @@ export type User = Node & {
 };
 
 export type Zone = Node & {
-  __typename?: 'Zone',
+   __typename?: 'Zone',
   id: Scalars['ID'],
   createdAt: Scalars['DateTime'],
   updatedAt: Scalars['DateTime'],
   name: Scalars['String'],
   members: Array<Country>,
 };
+

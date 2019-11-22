@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Customer, DeepPartial, Product, ProductVariant, VendureEntity } from '@vendure/core';
 import { Column, Entity, ManyToOne } from 'typeorm';
 

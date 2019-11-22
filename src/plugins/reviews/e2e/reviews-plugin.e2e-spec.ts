@@ -1,4 +1,4 @@
-/* tslint:disable:no-non-null-assertion */
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { createTestEnvironment } from '@vendure/testing';
 import path from 'path';
 
@@ -11,10 +11,7 @@ import {
     REJECT_REVIEW,
 } from './graphql/admin-e2e-definitions.graphql';
 import { SUBMIT_PRODUCT_REVIEW } from './graphql/shop-e2e-definitions.graphql';
-import {
-    ApproveReview,
-    GetProductReviewData,
-} from './types/generated-admin-types';
+import { ApproveReview, GetProductReviewData } from './types/generated-admin-types';
 import { SubmitProductReview } from './types/generated-shop-types';
 import { testConfig, TEST_SETUP_TIMEOUT_MS } from './config/test-config';
 import { initialData } from './config/e2e-initial-data';
@@ -116,10 +113,7 @@ describe('reviews plugin', () => {
     it('additional reviews update average rating', async () => {
         const submitProductReview = await submitReviewWithRating(1);
 
-        const { approveProductReview } = await adminClient.query<
-            ApproveReview.Mutation,
-            ApproveReview.Variables
-        >(APPROVE_REVIEW, {
+        await adminClient.query<ApproveReview.Mutation, ApproveReview.Variables>(APPROVE_REVIEW, {
             id: submitProductReview.id,
         });
 

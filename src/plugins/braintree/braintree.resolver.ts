@@ -18,16 +18,10 @@ import { PaymentMethodArgsHash } from './types';
 
 @Resolver()
 export class BraintreeResolver {
-    constructor(
-        @InjectConnection() private connection: Connection,
-        private orderService: OrderService,
-    ) {}
+    constructor(@InjectConnection() private connection: Connection, private orderService: OrderService) {}
 
     @Query()
-    async generateBraintreeClientToken(
-        @Ctx() ctx: RequestContext,
-        @Args() orderId: ID,
-    ) {
+    async generateBraintreeClientToken(@Ctx() ctx: RequestContext, @Args() orderId: ID) {
         const order = await this.orderService.findOne(ctx, orderId);
         if (order && order.customer) {
             const customerId = order.customer.id.toString();
@@ -42,24 +36,18 @@ export class BraintreeResolver {
                 Logger.error(e);
             }
         } else {
-            throw new InternalServerError(
-                `[${loggerCtx}] Could not find a Customer for the given Order`,
-            );
+            throw new InternalServerError(`[${loggerCtx}] Could not find a Customer for the given Order`);
         }
     }
 
     private async getPaymentMethodArgs(): Promise<PaymentMethodArgsHash> {
-        const method = await this.connection
-            .getRepository(PaymentMethod)
-            .findOne({
-                where: {
-                    code: braintreePaymentMethodHandler.code,
-                },
-            });
+        const method = await this.connection.getRepository(PaymentMethod).findOne({
+            where: {
+                code: braintreePaymentMethodHandler.code,
+            },
+        });
         if (!method) {
-            throw new InternalServerError(
-                `[${loggerCtx}] Could not find Braintree PaymentMethod`,
-            );
+            throw new InternalServerError(`[${loggerCtx}] Could not find Braintree PaymentMethod`);
         }
         return method.configArgs.reduce((hash, arg) => {
             return {

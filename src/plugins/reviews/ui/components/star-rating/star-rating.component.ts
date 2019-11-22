@@ -23,18 +23,16 @@ export class StarRatingComponent implements CustomFieldControl {
 
     get stars(): StarType[] {
         const rating = this.starRating;
-        return Array.from({ length: 5 })
-            .map((_, i) => {
-                const pos = i + 1;
-                const filled = rating >= pos;
-                if (filled) {
-                    return 'full';
-                }
-                if (Math.ceil(rating) < pos) {
-                    return 'empty';
-                }
-                return 'half';
-            });
+        return Array.from({ length: 5 }).map((_, i) => {
+            const pos = i + 1;
+            const filled = rating >= pos;
+            if (filled) {
+                return 'full';
+            }
+            if (Math.ceil(rating) < pos) {
+                return 'empty';
+            }
+            return 'half';
+        });
     }
 }
-

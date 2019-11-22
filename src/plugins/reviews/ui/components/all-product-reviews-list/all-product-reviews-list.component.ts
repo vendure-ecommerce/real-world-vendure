@@ -1,9 +1,8 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BaseListComponent, DataService } from '@vendure/admin-ui/src';
 
 import { GetAllReviews, SortOrder } from '../../generated-types';
-import { GET_REVIEWS_FOR_PRODUCT } from '../product-reviews-list/product-reviews-list.graphql';
 
 import { GET_ALL_REVIEWS } from './all-product-reviews-list.graphql';
 
@@ -26,11 +25,10 @@ export class AllProductReviewsListComponent extends BaseListComponent<
             (...args: any[]) => {
                 return this.dataService.query<GetAllReviews.Query>(GET_ALL_REVIEWS, args);
             },
-            // tslint:disable-next-line:no-non-null-assertion
             data => data.productReviews,
             (skip, take) => {
                 return {
-                    // tslint:disable-next-line:no-non-null-assertion
+                    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
                     productId: route.snapshot.paramMap.get('id')!,
                     options: {
                         skip,

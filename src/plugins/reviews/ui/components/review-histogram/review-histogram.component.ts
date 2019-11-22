@@ -49,5 +49,4 @@ export class ReviewHistogramComponent implements OnChanges {
         }
         this.filterChange.emit(this.filteredBin);
     }
-
 }

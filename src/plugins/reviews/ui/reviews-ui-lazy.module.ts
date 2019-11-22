@@ -71,10 +71,7 @@ export function productReviewsBreadcrumb(resolved: { data: GetProductName.Produc
     ];
 }
 
-export function reviewDetailBreadcrumb(
-    resolved: { entity: Observable<GetReview.ProductReview> },
-    params: any,
-) {
+export function reviewDetailBreadcrumb(resolved: { entity: Observable<GetReview.ProductReview> }) {
     return resolved.entity.pipe(
         map(entity => [
             {

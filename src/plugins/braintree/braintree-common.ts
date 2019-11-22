@@ -14,18 +14,14 @@ export function getGateway(args: PaymentMethodArgsHash): BraintreeGateway {
 /**
  * Returns a subset of the Transaction object of interest to the Administrator.
  */
-export function extractMetadataFromTransaction(
-    transaction: Transaction,
-): { [key: string]: any } {
+export function extractMetadataFromTransaction(transaction: Transaction): { [key: string]: any } {
     const metadata: { [key: string]: any } = {
         status: transaction.status,
         currencyIsoCode: transaction.currencyIsoCode,
         merchantAccountId: transaction.merchantAccountId,
         cvvCheck: decodeAvsCode(transaction.cvvResponseCode),
         avsPostCodeCheck: decodeAvsCode(transaction.avsPostalCodeResponseCode),
-        avsStreetAddressCheck: decodeAvsCode(
-            transaction.avsStreetAddressResponseCode,
-        ),
+        avsStreetAddressCheck: decodeAvsCode(transaction.avsStreetAddressResponseCode),
         processorAuthorizationCode: transaction.processorAuthorizationCode,
         processorResponseText: transaction.processorResponseText,
         paymentMethod: transaction.paymentInstrumentType,
@@ -37,19 +33,14 @@ export function extractMetadataFromTransaction(
             expirationDate: transaction.creditCard.expirationDate,
         };
     }
-    if (
-        transaction.paypalAccount &&
-        transaction.paypalAccount.authorizationId
-    ) {
+    if (transaction.paypalAccount && transaction.paypalAccount.authorizationId) {
         metadata.paypalData = {
             payerEmail: transaction.paypalAccount.payerEmail,
             paymentId: transaction.paypalAccount.paymentId,
             authorizationId: transaction.paypalAccount.authorizationId,
             payerStatus: transaction.paypalAccount.payerStatus,
-            sellerProtectionStatus:
-                transaction.paypalAccount.sellerProtectionStatus,
-            transactionFeeAmount:
-                transaction.paypalAccount.transactionFeeAmount,
+            sellerProtectionStatus: transaction.paypalAccount.sellerProtectionStatus,
+            transactionFeeAmount: transaction.paypalAccount.transactionFeeAmount,
         };
     }
     return metadata;

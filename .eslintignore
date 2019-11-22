@@ -1,1 +1,2 @@
 migrations/*.ts
+generated-*.ts

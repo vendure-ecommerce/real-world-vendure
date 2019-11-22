@@ -33,9 +33,7 @@ export const braintreePaymentMethodHandler = new PaymentMethodHandler({
                     state: 'Declined' as const,
                     transactionId: response.transaction.id,
                     errorMessage: response.message,
-                    metadata: extractMetadataFromTransaction(
-                        response.transaction,
-                    ),
+                    metadata: extractMetadataFromTransaction(response.transaction),
                 };
             }
             return {
@@ -64,10 +62,7 @@ export const braintreePaymentMethodHandler = new PaymentMethodHandler({
 
     async createRefund(input, total, order, payment, args) {
         const gateway = getGateway(args);
-        const response = await gateway.transaction.refund(
-            payment.transactionId,
-            (total / 100).toString(10),
-        );
+        const response = await gateway.transaction.refund(payment.transactionId, (total / 100).toString(10));
         if (!response.success) {
             return {
                 state: 'Failed' as const,

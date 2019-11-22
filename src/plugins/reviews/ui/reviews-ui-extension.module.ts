@@ -25,23 +25,33 @@ import { ReviewsSharedModule } from './reviews-shared.module';
     ],
     exports: [],
 })
-export class ReviewsUiExtensionModule { }
+export class ReviewsUiExtensionModule {}
 
 export function defineCustomFieldControls(customFieldComponentService: CustomFieldComponentService) {
     return () => {
-        customFieldComponentService.registerCustomFieldComponent('Product', 'reviewCount', ReviewCountLinkComponent);
-        customFieldComponentService.registerCustomFieldComponent('Product', 'reviewRating', StarRatingComponent);
+        customFieldComponentService.registerCustomFieldComponent(
+            'Product',
+            'reviewCount',
+            ReviewCountLinkComponent,
+        );
+        customFieldComponentService.registerCustomFieldComponent(
+            'Product',
+            'reviewRating',
+            StarRatingComponent,
+        );
     };
 }
 
 export function addNavItems(navBuilderService: NavBuilderService) {
     return () => {
-        navBuilderService.addNavMenuItem({
+        navBuilderService.addNavMenuItem(
+            {
                 id: 'reviews',
                 label: 'Product reviews',
                 routerLink: ['/extensions/product-reviews'],
                 icon: 'star',
             },
-            'marketing');
+            'marketing',
+        );
     };
 }
