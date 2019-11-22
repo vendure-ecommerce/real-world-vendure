@@ -1,0 +1,25 @@
+{
+  "name": "real-world-vendure",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "run:server": "ts-node ./src/index.ts",
+    "run:worker": "ts-node ./src/index-worker.ts",
+    "start": "concurrently yarn:run:*",
+    "build": "tsc",
+    "migration:generate": "ts-node migration generate",
+    "migration:run": "ts-node migration run",
+    "migration:revert": "ts-node migration revert"
+  },
+  "dependencies": {
+    "@vendure/admin-ui-plugin": "0.6.1",
+    "@vendure/asset-server-plugin": "0.6.1",
+    "@vendure/core": "0.6.1",
+    "@vendure/email-plugin": "0.6.1",
+    "sqlite3": "4.1.0"
+  },
+  "devDependencies": {
+    "concurrently": "5.0.0",
+    "ts-node": "8.5.2"
+  }
+}
