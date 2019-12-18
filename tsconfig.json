@@ -10,7 +10,15 @@
     "strictPropertyInitialization": false,
     "sourceMap": false,
     "outDir": "./dist",
+    "skipLibCheck": true,
     "baseUrl": "./"
   },
-  "exclude": ["node_modules", "migration.ts"]
+  "exclude": [
+    "node_modules",
+    "migration.ts",
+    "gulpfile.ts",
+    "migrations/*.ts",
+    "src/plugins/**/ui/*",
+    "**/*.spec.ts"
+  ]
 }

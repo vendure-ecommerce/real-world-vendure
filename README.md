@@ -6,6 +6,7 @@ This project demonstrates a real-world [Vendure](https://www.vendure.io/) server
 
 1. Clone this repo
 2. `yarn` to install dependencies
+3. `yarn migration:run` to apply the latest changes to the database schema
 3. `yarn start` to run
 
 ## Tooling
@@ -49,7 +50,7 @@ yarn start
 ```
 
 will start the Vendure server and [worker](https://www.vendure.io/docs/developer-guide/vendure-worker/) processes from
-the `src` directory. Note - the first time you run this the custom UI extensionsof the reviews plugin will be compiled which may take a few minutes. Subsequent runs will be much faster (providing the UI extensions of the reviews plugin do not change).
+the `src` directory. Note - the first time you run this the custom UI extensions of the reviews plugin will be compiled which may take a few minutes. Subsequent runs will be much faster (providing the UI extensions of the reviews plugin do not change).
 
 ## Build
 
@@ -57,7 +58,7 @@ the `src` directory. Note - the first time you run this the custom UI extensions
 yarn build
 ```
 
-will compile the TypeScript sources into the `/dist` directory.
+will compile the TypeScript sources into the `/dist` directory and copy over the admin UI extension sources to the correct locations.
 
 ## Migrations
 

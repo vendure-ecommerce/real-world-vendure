@@ -3,6 +3,7 @@ import { defaultEmailHandlers, EmailPlugin } from '@vendure/email-plugin';
 import { AssetServerPlugin } from '@vendure/asset-server-plugin';
 import { AdminUiPlugin } from '@vendure/admin-ui-plugin';
 import path from 'path';
+import fs from 'fs';
 
 import { BraintreePlugin } from './plugins/braintree/braintree-plugin';
 import { ReviewsPlugin } from './plugins/reviews/reviews-plugin';
@@ -19,7 +20,7 @@ export const config: VendureConfig = {
         synchronize: false,
         logging: false,
         database: path.join(__dirname, '../vendure.sqlite'),
-        migrations: [path.join(__dirname, '../migrations/*.ts')],
+        migrations: [getMigrationsPath()],
     },
     paymentOptions: {
         paymentMethodHandlers: [examplePaymentHandler],
@@ -54,3 +55,12 @@ export const config: VendureConfig = {
         ReviewsPlugin,
     ],
 };
+
+function getMigrationsPath() {
+    const devMigrationsPath = path.join(__dirname, '../migrations');
+    const distMigrationsPath = path.join(__dirname, 'migrations');
+
+    return fs.existsSync(distMigrationsPath)
+        ? path.join(distMigrationsPath, '*.js')
+        : path.join(devMigrationsPath, '*.ts');
+}
