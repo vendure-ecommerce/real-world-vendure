@@ -15,10 +15,10 @@
     "e2e:reviews": "jest --config src/plugins/reviews/e2e/config/jest-config.js"
   },
   "dependencies": {
-    "@vendure/admin-ui-plugin": "0.7.0",
-    "@vendure/asset-server-plugin": "0.7.0",
-    "@vendure/core": "0.7.0",
-    "@vendure/email-plugin": "0.7.0",
+    "@vendure/admin-ui-plugin": "0.8.0",
+    "@vendure/asset-server-plugin": "0.8.0",
+    "@vendure/core": "0.8.0",
+    "@vendure/email-plugin": "0.8.0",
     "braintree": "^2.21.0",
     "sqlite3": "4.1.0"
   },
@@ -33,7 +33,7 @@
     "@types/jest": "^24.0.23",
     "@typescript-eslint/eslint-plugin": "^2.8.0",
     "@typescript-eslint/parser": "^2.8.0",
-    "@vendure/testing": "^0.7.0",
+    "@vendure/testing": "^0.8.0",
     "concurrently": "5.0.0",
     "eslint": "^6.6.0",
     "eslint-config-prettier": "^6.7.0",
