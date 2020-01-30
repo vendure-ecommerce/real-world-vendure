@@ -3,11 +3,11 @@
   "compilerOptions": {
     "types": ["jest", "node"],
     "lib": ["es2015"],
-    "skipLibCheck": false,
+    "skipLibCheck": true,
     "inlineSourceMap": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "allowJs": true
+    "allowJs": false
   },
   "include": ["../*.e2e-spec.ts"]
 }

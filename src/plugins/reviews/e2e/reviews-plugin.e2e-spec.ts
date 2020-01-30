@@ -1,20 +1,18 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { createTestEnvironment } from '@vendure/testing';
+import { createTestEnvironment, registerInitializer, SqljsInitializer } from '@vendure/testing';
 import path from 'path';
 
 import { ReviewsPlugin } from '../reviews-plugin';
 import { RejectReview } from '../ui/generated-types';
 
-import {
-    APPROVE_REVIEW,
-    GET_PRODUCT_REVIEW_DATA,
-    REJECT_REVIEW,
-} from './graphql/admin-e2e-definitions.graphql';
+import { APPROVE_REVIEW, GET_PRODUCT_REVIEW_DATA, REJECT_REVIEW, } from './graphql/admin-e2e-definitions.graphql';
 import { SUBMIT_PRODUCT_REVIEW } from './graphql/shop-e2e-definitions.graphql';
 import { ApproveReview, GetProductReviewData } from './types/generated-admin-types';
 import { SubmitProductReview } from './types/generated-shop-types';
-import { testConfig, TEST_SETUP_TIMEOUT_MS } from './config/test-config';
+import { TEST_SETUP_TIMEOUT_MS, testConfig } from './config/test-config';
 import { initialData } from './config/e2e-initial-data';
+
+registerInitializer('sqljs', new SqljsInitializer(path.join(__dirname, '__data__')));
 
 describe('reviews plugin', () => {
     let firstReviewId: string;
@@ -27,8 +25,7 @@ describe('reviews plugin', () => {
     beforeAll(async () => {
         await server.init({
             initialData,
-            dataDir: path.join(__dirname, '__data__'),
-            productsCsvPath: path.join(__dirname, 'config.e2e-product.csv'),
+            productsCsvPath: path.join(__dirname, 'config/e2e-products.csv'),
             customerCount: 1,
         });
         await adminClient.asSuperAdmin();
