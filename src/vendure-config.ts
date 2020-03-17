@@ -4,10 +4,11 @@ import { AssetServerPlugin } from '@vendure/asset-server-plugin';
 import { AdminUiPlugin } from '@vendure/admin-ui-plugin';
 import { compileUiExtensions } from '@vendure/ui-devkit/compiler';
 import path from 'path';
-import fs from 'fs';
 
+import fs from 'fs';
 import { BraintreePlugin } from './plugins/braintree/braintree-plugin';
 import { ReviewsPlugin } from './plugins/reviews/reviews-plugin';
+import { nonAngularUiExtensions } from './ui-extensions/ui-extensions';
 
 export const config: VendureConfig = {
     authOptions: {
@@ -52,7 +53,7 @@ export const config: VendureConfig = {
             port: 3002,
             app: compileUiExtensions({
                 outputPath: path.join(__dirname, '../__admin-ui'),
-                extensions: [ReviewsPlugin.uiExtensions],
+                extensions: [ReviewsPlugin.uiExtensions, nonAngularUiExtensions],
                 devMode: true,
             }),
         }),

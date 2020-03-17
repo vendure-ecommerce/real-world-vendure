@@ -7,7 +7,8 @@ This project demonstrates a real-world [Vendure](https://www.vendure.io/) server
 1. Clone this repo
 2. `yarn` to install dependencies
 3. `yarn migration:run` to apply the latest changes to the database schema
-3. `yarn start` to run
+4. In the `/src/ui-extensions/react-app` directory, run `yarn` and then `yarn build`
+3. In the root dir, run `yarn start` to start the Vendure server
 
 ## Tooling
 
@@ -36,6 +37,13 @@ This plugin adds the capability for customers to create product reviews which ca
 
 The plugin showcases several advanced capabilities of the Vendure plugin system. See the [reviews plugin readme](./src/plugins/reviews/README.md) for more information.
 
+## UI Extensions
+
+This repo also demonstrates several approaches to extending the Admin UI:
+
+* Angular-based ui extensions in the [reviews plugin](./src/plugins/reviews/ui)
+* A React-based, [compiled ui extension](./src/ui-extensions/react-app) build with Create React App
+* A Vue-based, [uncompiled ui extension](./src/ui-extensions/vue-app)
 
 ## Directory structure
 
