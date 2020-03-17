@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { CustomFieldConfig, CustomFieldControl } from '@vendure/admin-ui/src';
+import { CustomFieldConfigType, CustomFieldControl } from '@vendure/admin-ui/core';
 
 @Component({
     selector: 'kb-review-count-link',
@@ -13,7 +13,7 @@ import { CustomFieldConfig, CustomFieldControl } from '@vendure/admin-ui/src';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ReviewCountLinkComponent implements CustomFieldControl {
-    customFieldConfig: CustomFieldConfig;
+    customFieldConfig: CustomFieldConfigType;
     formControl: FormControl;
 
     get productId(): string | null {

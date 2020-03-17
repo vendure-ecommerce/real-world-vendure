@@ -2,6 +2,7 @@ import { examplePaymentHandler, DefaultSearchPlugin, VendureConfig } from '@vend
 import { defaultEmailHandlers, EmailPlugin } from '@vendure/email-plugin';
 import { AssetServerPlugin } from '@vendure/asset-server-plugin';
 import { AdminUiPlugin } from '@vendure/admin-ui-plugin';
+import { compileUiExtensions } from '@vendure/ui-devkit/compiler';
 import path from 'path';
 import fs from 'fs';
 
@@ -49,7 +50,11 @@ export const config: VendureConfig = {
         }),
         AdminUiPlugin.init({
             port: 3002,
-            extensions: [ReviewsPlugin.uiExtensions],
+            app: compileUiExtensions({
+                outputPath: path.join(__dirname, '../__admin-ui'),
+                extensions: [ReviewsPlugin.uiExtensions],
+                devMode: true,
+            }),
         }),
         BraintreePlugin,
         ReviewsPlugin,

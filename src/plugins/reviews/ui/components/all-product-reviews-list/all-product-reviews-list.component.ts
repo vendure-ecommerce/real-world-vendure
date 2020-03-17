@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BaseListComponent, DataService } from '@vendure/admin-ui/src';
+import { BaseListComponent, DataService } from '@vendure/admin-ui/core';
 
 import { GetAllReviews, SortOrder } from '../../generated-types';
 

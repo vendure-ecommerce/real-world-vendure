@@ -7,6 +7,7 @@ import { ProductReviewAdminResolver } from './graphql/product-review-admin.resol
 import { ProductReviewEntityResolver } from './graphql/product-review-entity.resolver';
 import { ProductReviewShopResolver } from './graphql/product-review-shop.resolver';
 import path from 'path';
+import { AdminUiExtension } from '@vendure/ui-devkit/compiler';
 
 @VendurePlugin({
     imports: [PluginCommonModule],
@@ -36,7 +37,7 @@ import path from 'path';
     },
 })
 export class ReviewsPlugin {
-    static uiExtensions = {
+    static uiExtensions: AdminUiExtension = {
         extensionPath: path.join(__dirname, 'ui'),
         ngModules: [
             {
@@ -46,6 +47,7 @@ export class ReviewsPlugin {
             },
             {
                 type: 'lazy' as const,
+                route: 'product-reviews',
                 ngModuleFileName: 'reviews-ui-lazy.module.ts',
                 ngModuleName: 'ReviewsUiLazyModule',
             },

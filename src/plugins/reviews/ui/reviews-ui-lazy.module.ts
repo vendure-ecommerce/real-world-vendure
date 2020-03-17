@@ -18,13 +18,14 @@ import { ReviewsSharedModule } from './reviews-shared.module';
         ReviewsSharedModule,
         RouterModule.forChild([
             {
-                path: 'product-reviews-list/:id',
+                path: 'product/:id',
                 component: ProductReviewsListComponent,
                 resolve: { data: ProductReviewsResolver },
                 data: { breadcrumb: productReviewsBreadcrumb },
             },
             {
-                path: 'product-reviews',
+                path: '',
+                pathMatch: 'full',
                 component: AllProductReviewsListComponent,
                 data: {
                     breadcrumb: [
@@ -36,7 +37,7 @@ import { ReviewsSharedModule } from './reviews-shared.module';
                 },
             },
             {
-                path: 'product-reviews/:id',
+                path: ':id',
                 component: ProductReviewDetailComponent,
                 resolve: { entity: ReviewDetailResolver },
                 data: { breadcrumb: reviewDetailBreadcrumb },

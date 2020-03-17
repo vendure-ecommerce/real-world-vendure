@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
-import { DataService } from '@vendure/admin-ui/src';
+import { DataService } from '@vendure/admin-ui/core';
 import { Observable } from 'rxjs';
 import { map, shareReplay, take } from 'rxjs/operators';
 

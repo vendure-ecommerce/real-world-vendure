@@ -6,7 +6,7 @@ import {
     DataService,
     NotificationService,
     ServerConfigService,
-} from '@vendure/admin-ui/src';
+} from '@vendure/admin-ui/core';
 import { Observable, of } from 'rxjs';
 import { filter, map, mapTo, switchMap } from 'rxjs/operators';
 

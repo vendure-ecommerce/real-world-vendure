@@ -2,5 +2,6 @@ node_modules
 dist
 static/assets/cache
 static/email/test-emails
+__admin-ui
 .idea
 yarn-error.log
