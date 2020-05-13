@@ -25,7 +25,7 @@ import { APPROVE_REVIEW, REJECT_REVIEW, UPDATE_REVIEW } from './product-review-d
     selector: 'kb-product-review-detail',
     templateUrl: './product-review-detail.component.html',
     styleUrls: ['./product-review-detail.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
+    changeDetection: ChangeDetectionStrategy.Default,
 })
 export class ProductReviewDetailComponent extends BaseDetailComponent<ProductReview.Fragment>
     implements OnInit {
@@ -37,11 +37,11 @@ export class ProductReviewDetailComponent extends BaseDetailComponent<ProductRev
         router: Router,
         serverConfigService: ServerConfigService,
         private formBuilder: FormBuilder,
-        private dataService: DataService,
+        protected dataService: DataService,
         private changeDetector: ChangeDetectorRef,
         private notificationService: NotificationService,
     ) {
-        super(route, router, serverConfigService);
+        super(route, router, serverConfigService, dataService);
         this.detailForm = this.formBuilder.group({
             summary: ['', Validators.required],
             body: '',

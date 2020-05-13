@@ -8,7 +8,7 @@ type StarType = 'empty' | 'full' | 'half';
     selector: 'kb-star-rating',
     templateUrl: './star-rating.component.html',
     styleUrls: ['./star-rating.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
+    changeDetection: ChangeDetectionStrategy.Default,
 })
 export class StarRatingComponent implements CustomFieldControl {
     @Input() rating: number | null;

@@ -1,22 +1,31 @@
-import { examplePaymentHandler, DefaultSearchPlugin, VendureConfig } from '@vendure/core';
+import { DefaultSearchPlugin, examplePaymentHandler, VendureConfig } from '@vendure/core';
 import { defaultEmailHandlers, EmailPlugin } from '@vendure/email-plugin';
 import { AssetServerPlugin } from '@vendure/asset-server-plugin';
 import { AdminUiPlugin } from '@vendure/admin-ui-plugin';
-import { compileUiExtensions } from '@vendure/ui-devkit/compiler';
 import path from 'path';
 
 import fs from 'fs';
 import { BraintreePlugin } from './plugins/braintree/braintree-plugin';
 import { ReviewsPlugin } from './plugins/reviews/reviews-plugin';
-import { nonAngularUiExtensions } from './ui-extensions/ui-extensions';
+import { customAdminUi } from '../compile-admin-ui';
 
 export const config: VendureConfig = {
+    apiOptions: {
+        port: 3000,
+        adminApiPath: 'admin-api',
+        shopApiPath: 'shop-api',
+        adminApiPlayground: {
+            settings: { 'request.credentials': 'include' },
+        },
+        adminApiDebug: true,
+        shopApiPlayground: {
+            settings: { 'request.credentials': 'include' },
+        },
+        shopApiDebug: true,
+    },
     authOptions: {
         sessionSecret: 'jysakgzhw6',
     },
-    port: 3000,
-    adminApiPath: 'admin-api',
-    shopApiPath: 'shop-api',
     dbConnectionOptions: {
         type: 'sqlite',
         synchronize: false,
@@ -51,11 +60,7 @@ export const config: VendureConfig = {
         }),
         AdminUiPlugin.init({
             port: 3002,
-            app: compileUiExtensions({
-                outputPath: path.join(__dirname, '../__admin-ui'),
-                extensions: [ReviewsPlugin.uiExtensions, nonAngularUiExtensions],
-                devMode: true,
-            }),
+            app: customAdminUi({ recompile: true, devMode: true }),
         }),
         BraintreePlugin,
         ReviewsPlugin,

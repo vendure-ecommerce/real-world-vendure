@@ -1,4 +1,4 @@
-import { Args, Parent, ResolveProperty, Resolver } from '@nestjs/graphql';
+import { Args, Parent, ResolveField, Resolver } from '@nestjs/graphql';
 import { InjectConnection } from '@nestjs/typeorm';
 import { Api, ApiType, ListQueryBuilder, Product } from '@vendure/core';
 import { Connection } from 'typeorm';
@@ -13,7 +13,7 @@ export class ProductEntityResolver {
         @InjectConnection() private connection: Connection,
     ) {}
 
-    @ResolveProperty()
+    @ResolveField()
     reviews(@Api() apiType: ApiType, @Parent() product: Product, @Args() args: ProductReviewsArgs) {
         return this.listQueryBuilder
             .build(ProductReview, args.options || undefined, {
@@ -30,7 +30,7 @@ export class ProductEntityResolver {
             }));
     }
 
-    @ResolveProperty()
+    @ResolveField()
     reviewsHistogram(@Parent() product: Product) {
         return this.connection
             .createQueryBuilder()

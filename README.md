@@ -6,7 +6,7 @@ This project demonstrates a real-world [Vendure](https://www.vendure.io/) server
 
 1. Clone this repo
 2. `yarn` to install dependencies
-3. `yarn migration:run` to apply the latest changes to the database schema
+3. `yarn populate` to populate the database with some sample data
 4. In the `/src/ui-extensions/react-app` directory, run `yarn` and then `yarn build`
 3. In the root dir, run `yarn start` to start the Vendure server
 

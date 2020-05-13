@@ -7,7 +7,7 @@ import { CustomFieldConfigType, CustomFieldControl } from '@vendure/admin-ui/cor
     selector: 'kb-review-count-link',
     template: `
         {{ formControl.value }}
-        <a [routerLink]="['/extensions/product-reviews-list', productId]">View product reviews</a>
+        <a [routerLink]="['/extensions/product-reviews/product', productId]">View product reviews</a>
     `,
     styles: [``],
     changeDetection: ChangeDetectionStrategy.OnPush,

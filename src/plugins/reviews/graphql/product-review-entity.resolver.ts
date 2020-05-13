@@ -1,4 +1,4 @@
-import { Parent, ResolveProperty, Resolver } from '@nestjs/graphql';
+import { Parent, ResolveField, Resolver } from '@nestjs/graphql';
 import { InjectConnection } from '@nestjs/typeorm';
 import { Ctx, Product, ProductVariant, RequestContext, translateDeep } from '@vendure/core';
 import { Connection } from 'typeorm';
@@ -9,7 +9,7 @@ import { ProductReview } from '../entities/product-review.entity';
 export class ProductReviewEntityResolver {
     constructor(@InjectConnection() private connection: Connection) {}
 
-    @ResolveProperty()
+    @ResolveField()
     async product(@Parent() review: ProductReview, @Ctx() ctx: RequestContext) {
         let product: Product | null = review.product;
         if (!product) {
@@ -25,7 +25,7 @@ export class ProductReviewEntityResolver {
         }
     }
 
-    @ResolveProperty()
+    @ResolveField()
     async productVariant(@Parent() review: ProductReview, @Ctx() ctx: RequestContext) {
         let productVariant: ProductVariant | null = review.productVariant;
         if (!productVariant) {
