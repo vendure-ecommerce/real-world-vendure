@@ -1,7 +1,7 @@
 import { compileUiExtensions } from '@vendure/ui-devkit/compiler';
 import path from 'path';
-import { ReviewsPlugin } from './src/plugins/reviews/reviews-plugin';
-import { nonAngularUiExtensions } from './src/ui-extensions/ui-extensions';
+import { ReviewsPlugin } from './plugins/reviews/reviews-plugin';
+import { nonAngularUiExtensions } from './ui-extensions/ui-extensions';
 
 if (require.main === module) {
     // Called directly from command line
@@ -11,7 +11,7 @@ if (require.main === module) {
 }
 
 export function customAdminUi(options: { recompile: boolean; devMode: boolean; }) {
-    const compiledAppPath = path.join(__dirname, 'admin-ui');
+    const compiledAppPath = path.join(__dirname, '../admin-ui');
     if (options.recompile) {
         return compileUiExtensions({
             outputPath: compiledAppPath,

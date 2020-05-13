@@ -16,9 +16,11 @@
   "exclude": [
     "node_modules",
     "migration.ts",
+    "populate.ts",
     "gulpfile.ts",
     "migrations/*.ts",
     "src/plugins/**/ui/*",
-    "**/*.spec.ts"
+    "**/*.spec.ts",
+    "src/ui-extensions/*"
   ]
 }

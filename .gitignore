@@ -2,6 +2,7 @@ node_modules
 dist
 static/assets
 static/email/test-emails
-__admin-ui
+/admin-ui
 .idea
 yarn-error.log
+vendure.sqlite

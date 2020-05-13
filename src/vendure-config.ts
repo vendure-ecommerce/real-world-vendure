@@ -7,7 +7,9 @@ import path from 'path';
 import fs from 'fs';
 import { BraintreePlugin } from './plugins/braintree/braintree-plugin';
 import { ReviewsPlugin } from './plugins/reviews/reviews-plugin';
-import { customAdminUi } from '../compile-admin-ui';
+import { customAdminUi } from './compile-admin-ui';
+
+const IS_PROD = path.basename(__dirname) === 'dist';
 
 export const config: VendureConfig = {
     apiOptions: {
@@ -60,7 +62,7 @@ export const config: VendureConfig = {
         }),
         AdminUiPlugin.init({
             port: 3002,
-            app: customAdminUi({ recompile: true, devMode: true }),
+            app: customAdminUi({ recompile: !IS_PROD, devMode: !IS_PROD }),
         }),
         BraintreePlugin,
         ReviewsPlugin,
