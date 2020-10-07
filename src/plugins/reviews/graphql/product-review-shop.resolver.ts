@@ -1,49 +1,47 @@
 import { Args, Mutation, Resolver } from '@nestjs/graphql';
-import { InjectConnection } from '@nestjs/typeorm';
 import {
     Ctx,
     Customer,
-    getEntityOrThrow,
     ListQueryBuilder,
     Product,
     ProductVariant,
     RequestContext,
+    Transaction,
+    TransactionalConnection,
 } from '@vendure/core';
-import { Connection } from 'typeorm';
 
 import { ProductReview } from '../entities/product-review.entity';
 import { MutationSubmitProductReviewArgs, MutationVoteOnReviewArgs } from '../generated-shop-types';
 
 @Resolver()
 export class ProductReviewShopResolver {
-    constructor(
-        @InjectConnection() private connection: Connection,
-        private listQueryBuilder: ListQueryBuilder,
-    ) {}
+    constructor(private connection: TransactionalConnection, private listQueryBuilder: ListQueryBuilder) {}
 
+    @Transaction()
     @Mutation()
     async submitProductReview(
         @Ctx() ctx: RequestContext,
         @Args() { input }: MutationSubmitProductReviewArgs,
     ) {
         const review = new ProductReview(input);
-        const product = await getEntityOrThrow(this.connection, Product, input.productId);
+        const product = await this.connection.getEntityOrThrow(ctx, Product, input.productId);
         review.product = product;
         review.state = 'new';
         if (input.variantId) {
-            const variant = await getEntityOrThrow(this.connection, ProductVariant, input.variantId);
+            const variant = await this.connection.getEntityOrThrow(ctx, ProductVariant, input.variantId);
             review.productVariant = variant;
         }
         if (input.customerId) {
-            const customer = await getEntityOrThrow(this.connection, Customer, input.customerId);
+            const customer = await this.connection.getEntityOrThrow(ctx, Customer, input.customerId);
             review.author = customer;
         }
-        return this.connection.getRepository(ProductReview).save(review);
+        return this.connection.getRepository(ctx, ProductReview).save(review);
     }
 
+    @Transaction()
     @Mutation()
     async voteOnReview(@Ctx() ctx: RequestContext, @Args() { id, vote }: MutationVoteOnReviewArgs) {
-        const review = await getEntityOrThrow(this.connection, ProductReview, id, {
+        const review = await this.connection.getEntityOrThrow(ctx, ProductReview, id, {
             relations: ['product'],
             where: {
                 state: 'approved',
@@ -54,6 +52,6 @@ export class ProductReviewShopResolver {
         } else {
             review.downvotes++;
         }
-        return this.connection.getRepository(ProductReview).save(review);
+        return this.connection.getRepository(ctx, ProductReview).save(review);
     }
 }

@@ -1,5 +1,4 @@
 import { Args, Query, Resolver } from '@nestjs/graphql';
-import { InjectConnection } from '@nestjs/typeorm';
 import {
     Ctx,
     ID,
@@ -8,8 +7,8 @@ import {
     OrderService,
     PaymentMethod,
     RequestContext,
+    TransactionalConnection,
 } from '@vendure/core';
-import { Connection } from 'typeorm';
 
 import { getGateway } from './braintree-common';
 import { braintreePaymentMethodHandler } from './braintree-payment-method';
@@ -18,14 +17,14 @@ import { PaymentMethodArgsHash } from './types';
 
 @Resolver()
 export class BraintreeResolver {
-    constructor(@InjectConnection() private connection: Connection, private orderService: OrderService) {}
+    constructor(private connection: TransactionalConnection, private orderService: OrderService) {}
 
     @Query()
     async generateBraintreeClientToken(@Ctx() ctx: RequestContext, @Args() { orderId }: { orderId: ID }) {
         const order = await this.orderService.findOne(ctx, orderId);
         if (order && order.customer) {
             const customerId = order.customer.id.toString();
-            const args = await this.getPaymentMethodArgs();
+            const args = await this.getPaymentMethodArgs(ctx);
             const gateway = getGateway(args);
             try {
                 const result = await gateway.clientToken.generate({
@@ -40,8 +39,8 @@ export class BraintreeResolver {
         }
     }
 
-    private async getPaymentMethodArgs(): Promise<PaymentMethodArgsHash> {
-        const method = await this.connection.getRepository(PaymentMethod).findOne({
+    private async getPaymentMethodArgs(ctx: RequestContext): Promise<PaymentMethodArgsHash> {
+        const method = await this.connection.getRepository(ctx, PaymentMethod).findOne({
             where: {
                 code: braintreePaymentMethodHandler.code,
             },

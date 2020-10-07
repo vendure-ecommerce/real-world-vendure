@@ -1,21 +1,28 @@
 import { Parent, ResolveField, Resolver } from '@nestjs/graphql';
-import { InjectConnection } from '@nestjs/typeorm';
-import { Ctx, Product, ProductVariant, RequestContext, translateDeep } from '@vendure/core';
-import { Connection } from 'typeorm';
+import {
+    Ctx,
+    Product,
+    ProductVariant,
+    RequestContext,
+    TransactionalConnection,
+    translateDeep,
+} from '@vendure/core';
 
 import { ProductReview } from '../entities/product-review.entity';
 
 @Resolver('ProductReview')
 export class ProductReviewEntityResolver {
-    constructor(@InjectConnection() private connection: Connection) {}
+    constructor(private connection: TransactionalConnection) {}
 
     @ResolveField()
     async product(@Parent() review: ProductReview, @Ctx() ctx: RequestContext) {
         let product: Product | null = review.product;
         if (!product) {
-            const reviewWithProduct = await this.connection.getRepository(ProductReview).findOne(review.id, {
-                relations: ['product'],
-            });
+            const reviewWithProduct = await this.connection
+                .getRepository(ctx, ProductReview)
+                .findOne(review.id, {
+                    relations: ['product'],
+                });
             if (reviewWithProduct) {
                 product = reviewWithProduct.product;
             }
@@ -30,7 +37,7 @@ export class ProductReviewEntityResolver {
         let productVariant: ProductVariant | null = review.productVariant;
         if (!productVariant) {
             const reviewWithProductVariant = await this.connection
-                .getRepository(ProductReview)
+                .getRepository(ctx, ProductReview)
                 .findOne(review.id, {
                     relations: ['productVariant'],
                 });
