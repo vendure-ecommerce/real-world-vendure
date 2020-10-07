@@ -5,7 +5,11 @@ import path from 'path';
 import { ReviewsPlugin } from '../reviews-plugin';
 import { RejectReview } from '../ui/generated-types';
 
-import { APPROVE_REVIEW, GET_PRODUCT_REVIEW_DATA, REJECT_REVIEW, } from './graphql/admin-e2e-definitions.graphql';
+import {
+    APPROVE_REVIEW,
+    GET_PRODUCT_REVIEW_DATA,
+    REJECT_REVIEW,
+} from './graphql/admin-e2e-definitions.graphql';
 import { SUBMIT_PRODUCT_REVIEW } from './graphql/shop-e2e-definitions.graphql';
 import { ApproveReview, GetProductReviewData } from './types/generated-admin-types';
 import { SubmitProductReview } from './types/generated-shop-types';

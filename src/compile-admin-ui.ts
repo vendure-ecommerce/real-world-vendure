@@ -5,12 +5,14 @@ import { nonAngularUiExtensions } from './ui-extensions/ui-extensions';
 
 if (require.main === module) {
     // Called directly from command line
-    customAdminUi({ recompile: true, devMode: false }).compile?.().then(() => {
-        process.exit(0);
-    });
+    customAdminUi({ recompile: true, devMode: false })
+        .compile?.()
+        .then(() => {
+            process.exit(0);
+        });
 }
 
-export function customAdminUi(options: { recompile: boolean; devMode: boolean; }) {
+export function customAdminUi(options: { recompile: boolean; devMode: boolean }) {
     const compiledAppPath = path.join(__dirname, '../admin-ui');
     if (options.recompile) {
         return compileUiExtensions({

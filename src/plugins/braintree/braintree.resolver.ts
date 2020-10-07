@@ -21,7 +21,7 @@ export class BraintreeResolver {
     constructor(@InjectConnection() private connection: Connection, private orderService: OrderService) {}
 
     @Query()
-    async generateBraintreeClientToken(@Ctx() ctx: RequestContext, @Args() { orderId }: { orderId: ID; }) {
+    async generateBraintreeClientToken(@Ctx() ctx: RequestContext, @Args() { orderId }: { orderId: ID }) {
         const order = await this.orderService.findOne(ctx, orderId);
         if (order && order.customer) {
             const customerId = order.customer.id.toString();

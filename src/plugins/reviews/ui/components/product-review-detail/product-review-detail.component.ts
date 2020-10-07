@@ -27,7 +27,8 @@ import { APPROVE_REVIEW, REJECT_REVIEW, UPDATE_REVIEW } from './product-review-d
     styleUrls: ['./product-review-detail.component.scss'],
     changeDetection: ChangeDetectionStrategy.Default,
 })
-export class ProductReviewDetailComponent extends BaseDetailComponent<ProductReview.Fragment>
+export class ProductReviewDetailComponent
+    extends BaseDetailComponent<ProductReview.Fragment>
     implements OnInit {
     detailForm: FormGroup;
     reviewState$: Observable<ReviewState>;
