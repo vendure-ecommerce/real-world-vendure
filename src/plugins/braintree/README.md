@@ -5,7 +5,7 @@ This plugin enables payments to be processed by [Braintree](https://www.braintre
 ## Requirements
 
 1. You will need to create a Braintree sandbox account as outlined in https://developers.braintreepayments.com/start/overview.
-2. Then install `braintree` and `@types/braintree` from npm. This plugin was written with `v2.20.0` of the Braintree lib.
+2. Then install `braintree` and `@types/braintree` from npm. This plugin was written with `v3.0.0` of the Braintree lib.
 
 ## Setup
 1. Add the plugin to your VendureConfig `plugins` array.
