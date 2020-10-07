@@ -27,7 +27,7 @@ export class ProductReviewsListComponent
     >
     implements OnInit {
     histogramBinData$: Observable<ProductReviewHistogramItem[]>;
-    product$: Observable<GetReviewsHistogram.Product | null>;
+    product$: Observable<GetReviewsHistogram.Product | null | undefined>;
     private filteredRating: number | null;
 
     constructor(private dataService: DataService, router: Router, route: ActivatedRoute) {

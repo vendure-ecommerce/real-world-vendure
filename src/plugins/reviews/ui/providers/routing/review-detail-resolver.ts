@@ -12,7 +12,9 @@ import { GET_REVIEW } from './review-detail-resolver.graphql';
 export class ReviewDetailResolver implements Resolve<any> {
     constructor(private dataService: DataService) {}
 
-    resolve(route: ActivatedRouteSnapshot): Observable<Observable<GetReview.ProductReview | null>> {
+    resolve(
+        route: ActivatedRouteSnapshot,
+    ): Observable<Observable<GetReview.ProductReview | null | undefined>> {
         const stream = this.dataService
             .query<GetReview.Query, GetReview.Variables>(GET_REVIEW, {
                 id: route.paramMap.get('id') || '',
