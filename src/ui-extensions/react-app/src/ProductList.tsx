@@ -29,7 +29,7 @@ export class ProductList extends React.Component<{}, { products: any[] }> {
             },
             err => console.error(err),
             () => console.log('completed products stream'),
-        );
+        ) as any;
     }
 
     toggleEnabled = (id: string, enabled: boolean) => {
