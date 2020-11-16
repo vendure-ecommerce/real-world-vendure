@@ -23,7 +23,7 @@ Jest tests for the reviews plugin are run with `yarn e2e:reviews`
 ### [graphql-code-generator](https://graphql-code-generator.com/)
 This is used to generate TypeScript types based on the Vendure server's GraphQL APIs. It is used to automatically generate correct types for plugin resolvers and plugin e2e tests. This ensures that whenever a schema is changed or a CustomField added, new typings can be generated to make sure your resolvers and tests are correct. 
 
-Whenever a change to the GraphQL API is made either by a plugin schema extension or by the definition of CustomFields, run `yarn generate-types` to update the TypeScript definitions.
+Whenever a change to the GraphQL API is made either by a plugin schema extension or by the definition of CustomFields, run `yarn generate-types` to update the TypeScript definitions (make sure the server is running locally at the same time).
 
 ## Plugins
 

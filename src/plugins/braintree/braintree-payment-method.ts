@@ -16,7 +16,7 @@ export const braintreePaymentMethodHandler = new PaymentMethodHandler({
         privateKey: { type: 'string' },
     },
 
-    async createPayment(order, args, metadata) {
+    async createPayment(ctx, order, args, metadata) {
         const gateway = getGateway(args);
         try {
             const response = await gateway.transaction.sale({
@@ -60,7 +60,7 @@ export const braintreePaymentMethodHandler = new PaymentMethodHandler({
         };
     },
 
-    async createRefund(input, total, order, payment, args) {
+    async createRefund(ctx, input, total, order, payment, args) {
         const gateway = getGateway(args);
         const response = await gateway.transaction.refund(payment.transactionId, (total / 100).toString(10));
         if (!response.success) {
