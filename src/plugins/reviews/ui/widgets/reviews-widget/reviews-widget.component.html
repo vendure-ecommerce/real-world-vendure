@@ -1,0 +1,32 @@
+<vdr-data-table
+    [items]="pendingReviews$ | async"
+>
+    <ng-template let-review="item">
+        <td class="left align-middle">
+            {{ review.createdAt | date:'mediumDate' }}
+        </td>
+        <td class="left align-middle">{{ review.authorName }}</td>
+        <td class="left align-middle">
+            <div class="product-info">
+                <span class="product-name">{{ review.product.name }}</span>
+            </div>
+        </td>
+
+        <td class="left align-middle">
+
+            <kb-star-rating [rating]="review.rating"></kb-star-rating>
+        </td>
+        <td class="left align-middle">{{ review.summary }}</td>
+        <td class="left align-middle">
+            <kb-review-state-label [state]="review.state"></kb-review-state-label>
+        </td>
+        <td class="right align-middle">
+            <vdr-table-row-action
+                iconShape="edit"
+                [label]="'common.edit' | translate"
+                [linkTo]="['/extensions', 'product-reviews', review.id]"
+            ></vdr-table-row-action>
+        </td>
+    </ng-template>
+</vdr-data-table>
+
