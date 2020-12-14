@@ -7,7 +7,6 @@ import { AllProductReviewsListComponent } from './components/all-product-reviews
 import { ProductReviewDetailComponent } from './components/product-review-detail/product-review-detail.component';
 import { ProductReviewsListComponent } from './components/product-reviews-list/product-reviews-list.component';
 import { ReviewHistogramComponent } from './components/review-histogram/review-histogram.component';
-import { ReviewStateLabelComponent } from './components/review-state-label/review-state-label.component';
 import { GetProductName, GetReview } from './generated-types';
 import { ProductReviewsResolver } from './providers/routing/product-reviews-resolver';
 import { ReviewDetailResolver } from './providers/routing/review-detail-resolver';
@@ -49,7 +48,6 @@ import { ReviewsSharedModule } from './reviews-shared.module';
         ProductReviewDetailComponent,
         ReviewHistogramComponent,
         AllProductReviewsListComponent,
-        ReviewStateLabelComponent,
     ],
     providers: [ProductReviewsResolver, ReviewDetailResolver],
 })
