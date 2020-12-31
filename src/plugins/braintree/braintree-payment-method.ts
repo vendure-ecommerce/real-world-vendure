@@ -16,11 +16,11 @@ export const braintreePaymentMethodHandler = new PaymentMethodHandler({
         privateKey: { type: 'string' },
     },
 
-    async createPayment(ctx, order, args, metadata) {
+    async createPayment(ctx, order, amount, args, metadata) {
         const gateway = getGateway(args);
         try {
             const response = await gateway.transaction.sale({
-                amount: (order.total / 100).toString(10),
+                amount: (amount / 100).toString(10),
                 orderId: order.code,
                 paymentMethodNonce: metadata.nonce,
                 options: {
@@ -29,7 +29,7 @@ export const braintreePaymentMethodHandler = new PaymentMethodHandler({
             });
             if (!response.success) {
                 return {
-                    amount: order.total,
+                    amount: amount,
                     state: 'Declined' as const,
                     transactionId: response.transaction.id,
                     errorMessage: response.message,
@@ -37,7 +37,7 @@ export const braintreePaymentMethodHandler = new PaymentMethodHandler({
                 };
             }
             return {
-                amount: order.total,
+                amount: amount,
                 state: 'Settled' as const,
                 transactionId: response.transaction.id,
                 metadata: extractMetadataFromTransaction(response.transaction),
