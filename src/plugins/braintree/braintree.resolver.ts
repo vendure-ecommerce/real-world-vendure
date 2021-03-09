@@ -48,7 +48,7 @@ export class BraintreeResolver {
         if (!method) {
             throw new InternalServerError(`[${loggerCtx}] Could not find Braintree PaymentMethod`);
         }
-        return method.configArgs.reduce((hash, arg) => {
+        return method.handler.args.reduce((hash, arg) => {
             return {
                 ...hash,
                 [arg.name]: arg.value,

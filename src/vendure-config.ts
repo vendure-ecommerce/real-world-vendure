@@ -43,13 +43,12 @@ export const config: VendureConfig = {
         AssetServerPlugin.init({
             route: 'assets',
             assetUploadDir: path.join(__dirname, '../static/assets'),
-            port: 3001,
         }),
         DefaultSearchPlugin,
         EmailPlugin.init({
+            route: 'mailbox',
             devMode: true,
             outputPath: path.join(__dirname, '../static/email/test-emails'),
-            mailboxPort: 3003,
             handlers: defaultEmailHandlers,
             templatePath: path.join(__dirname, '../static/email/templates'),
             globalTemplateVars: {
@@ -61,8 +60,9 @@ export const config: VendureConfig = {
             },
         }),
         AdminUiPlugin.init({
+            route: 'admin',
             port: 3002,
-            app: customAdminUi({ recompile: !IS_PROD, devMode: !IS_PROD }),
+            app: customAdminUi({ recompile: IS_PROD, devMode: IS_PROD }),
         }),
         BraintreePlugin,
         ReviewsPlugin,
