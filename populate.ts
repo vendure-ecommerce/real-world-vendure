@@ -26,9 +26,6 @@ if (require.main === module) {
             importExportOptions: {
                 importAssetsDir: resolveFromCreatePackage('assets/images'),
             },
-            workerOptions: {
-                runInMainProcess: true,
-            },
             customFields: {},
             plugins: config.plugins!.filter(plugin => plugin !== AdminUiPlugin),
         }),
@@ -69,7 +66,7 @@ async function populateReview(config: RuntimeVendureConfig) {
             submitProductReview(input: {
                 productId: "1",
                 summary: "A great laptop!",
-                body: "The laptop looks great an performance is flawless."
+                body: "The laptop looks great an performance is flawless.",
                 rating: 5,
                 authorName: "Randall M",
                 authorLocation: "Vienna",
