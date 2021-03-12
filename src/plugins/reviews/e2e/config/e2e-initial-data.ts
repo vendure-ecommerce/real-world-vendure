@@ -13,6 +13,7 @@ export const initialData: InitialData = {
         { name: 'Standard Shipping', price: 500 },
         { name: 'Express Shipping', price: 1000 },
     ],
+    paymentMethods: [],
     countries: [
         { name: 'Australia', code: 'AU', zone: 'Oceania' },
         { name: 'Austria', code: 'AT', zone: 'Europe' },
