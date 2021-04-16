@@ -22,8 +22,8 @@
     "@vendure/core": "^1.0.0-beta.2",
     "@vendure/email-plugin": "^1.0.0-beta.2",
     "@vendure/ui-devkit": "^1.0.0-beta.2",
-    "braintree": "^3.0.0",
-    "sqlite3": "4.1.0"
+    "better-sqlite3": "^7.1.5",
+    "braintree": "^3.0.0"
   },
   "devDependencies": {
     "@graphql-codegen/add": "^2.0.1",
