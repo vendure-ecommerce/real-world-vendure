@@ -63,14 +63,16 @@ async function populateReview(config: RuntimeVendureConfig) {
 
     await client.query(gql`
         mutation {
-            submitProductReview(input: {
-                productId: "1",
-                summary: "A great laptop!",
-                body: "The laptop looks great an performance is flawless.",
-                rating: 5,
-                authorName: "Randall M",
-                authorLocation: "Vienna",
-            }) {
+            submitProductReview(
+                input: {
+                    productId: "1"
+                    summary: "A great laptop!"
+                    body: "The laptop looks great an performance is flawless."
+                    rating: 5
+                    authorName: "Randall M"
+                    authorLocation: "Vienna"
+                }
+            ) {
                 id
             }
         }

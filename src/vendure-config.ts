@@ -1,4 +1,9 @@
-import { DefaultSearchPlugin, examplePaymentHandler, VendureConfig } from '@vendure/core';
+import {
+    DefaultJobQueuePlugin,
+    DefaultSearchPlugin,
+    dummyPaymentHandler,
+    VendureConfig,
+} from '@vendure/core';
 import { defaultEmailHandlers, EmailPlugin } from '@vendure/email-plugin';
 import { AssetServerPlugin } from '@vendure/asset-server-plugin';
 import { AdminUiPlugin } from '@vendure/admin-ui-plugin';
@@ -26,17 +31,19 @@ export const config: VendureConfig = {
         shopApiDebug: true,
     },
     authOptions: {
-        sessionSecret: 'jysakgzhw6',
+        cookieOptions: {
+            secret: 'jysakgzhw6',
+        },
     },
     dbConnectionOptions: {
         type: 'better-sqlite3',
-        synchronize: false,
+        synchronize: true,
         logging: false,
         database: path.join(__dirname, '../vendure.sqlite'),
         migrations: [getMigrationsPath()],
     },
     paymentOptions: {
-        paymentMethodHandlers: [examplePaymentHandler],
+        paymentMethodHandlers: [dummyPaymentHandler],
     },
     customFields: {},
     plugins: [
@@ -45,6 +52,7 @@ export const config: VendureConfig = {
             assetUploadDir: path.join(__dirname, '../static/assets'),
         }),
         DefaultSearchPlugin,
+        DefaultJobQueuePlugin,
         EmailPlugin.init({
             route: 'mailbox',
             devMode: true,
