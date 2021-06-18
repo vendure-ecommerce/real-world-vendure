@@ -6,7 +6,8 @@ import {
     patchEntity,
     Permission,
     Product,
-    RequestContext, Transaction,
+    RequestContext,
+    Transaction,
     TransactionalConnection,
 } from '@vendure/core';
 
@@ -55,7 +56,7 @@ export class ProductReviewAdminResolver {
     ) {
         const review = await this.connection.getEntityOrThrow(ctx, ProductReview, input.id);
         const originalResponse = review.response;
-        const updatedShippingMethod = patchEntity(review, input as any);
+        const updatedShippingMethod = patchEntity(review, input);
         if (input.response !== originalResponse) {
             updatedShippingMethod.responseCreatedAt = new Date();
         }
@@ -66,14 +67,16 @@ export class ProductReviewAdminResolver {
     @Mutation()
     @Allow(Permission.UpdateCatalog)
     async approveProductReview(@Ctx() ctx: RequestContext, @Args() { id }: MutationApproveProductReviewArgs) {
-        const review = await this.connection.getEntityOrThrow(ctx, ProductReview, id, { relations: ['product'] });
+        const review = await this.connection.getEntityOrThrow(ctx, ProductReview, id, {
+            relations: ['product'],
+        });
         if (review.state !== 'new') {
             return review;
         }
         const { product } = review;
         const newRating = this.calculateNewReviewAverage(review.rating, product);
-        (product.customFields as any).reviewCount++;
-        (product.customFields as any).reviewRating = newRating;
+        product.customFields.reviewCount++;
+        product.customFields.reviewRating = newRating;
         await this.connection.getRepository(ctx, Product).save(product);
         review.state = 'approved';
         return this.connection.getRepository(ctx, ProductReview).save(review);
@@ -92,8 +95,8 @@ export class ProductReviewAdminResolver {
     }
 
     private calculateNewReviewAverage(rating: number, product: Product): number {
-        const count = (product.customFields as any).reviewCount;
-        const currentRating = (product.customFields as any).reviewRating || 0;
+        const count = product.customFields.reviewCount;
+        const currentRating = product.customFields.reviewRating || 0;
         const newRating = (currentRating * count + rating) / (count + 1);
         return newRating;
     }

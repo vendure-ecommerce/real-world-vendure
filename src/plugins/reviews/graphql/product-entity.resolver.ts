@@ -27,8 +27,7 @@ export class ProductEntityResolver {
 
     @ResolveField()
     reviewsHistogram(@Parent() product: Product) {
-        return this.connection
-            .rawConnection
+        return this.connection.rawConnection
             .createQueryBuilder()
             .select('ROUND(`rating`)', 'bin')
             .addSelect('COUNT(*)', 'frequency')
