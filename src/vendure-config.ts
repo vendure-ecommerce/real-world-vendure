@@ -37,7 +37,7 @@ export const config: VendureConfig = {
     },
     dbConnectionOptions: {
         type: 'better-sqlite3',
-        synchronize: true,
+        synchronize: false,
         logging: false,
         database: path.join(__dirname, '../vendure.sqlite'),
         migrations: [getMigrationsPath()],
@@ -70,7 +70,7 @@ export const config: VendureConfig = {
         AdminUiPlugin.init({
             route: 'admin',
             port: 3002,
-            app: customAdminUi({ recompile: IS_PROD, devMode: IS_PROD }),
+            app: customAdminUi({ recompile: !IS_PROD, devMode: !IS_PROD }),
         }),
         BraintreePlugin,
         ReviewsPlugin,
