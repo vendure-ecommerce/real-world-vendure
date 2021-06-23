@@ -10,13 +10,15 @@ import { DEFAULT_DASHBOARD_WIDGET_LAYOUT } from '@vendure/admin-ui/dashboard';
 import { ReviewCountLinkComponent } from './components/review-count-link/review-count-link.component';
 import { StarRatingComponent } from './components/star-rating/star-rating.component';
 import { ReviewsSharedModule } from './reviews-shared.module';
+import { RelationReviewInputComponent } from './components/featured-review-selector/featured-review-selector.component';
 
 @NgModule({
     imports: [ReviewsSharedModule],
-    declarations: [ReviewCountLinkComponent],
+    declarations: [ReviewCountLinkComponent, RelationReviewInputComponent],
     providers: [
         registerCustomFieldComponent('Product', 'reviewCount', ReviewCountLinkComponent),
         registerCustomFieldComponent('Product', 'reviewRating', StarRatingComponent),
+        registerCustomFieldComponent('Product', 'featuredReview', RelationReviewInputComponent),
         addNavMenuItem(
             {
                 id: 'reviews',

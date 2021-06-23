@@ -33,6 +33,12 @@ import { AdminUiExtension } from '@vendure/ui-devkit/compiler';
             defaultValue: 0,
             type: 'float',
         });
+        config.customFields.Product.push({
+            name: 'featuredReview',
+            public: true,
+            type: 'relation',
+            entity: ProductReview,
+        });
         return config;
     },
 })
