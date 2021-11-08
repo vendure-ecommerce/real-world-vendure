@@ -25,7 +25,8 @@ export class ProductReviewsListComponent
         GetReviewForProduct.Items,
         GetReviewForProduct.Variables
     >
-    implements OnInit {
+    implements OnInit
+{
     histogramBinData$: Observable<ProductReviewHistogramItem[]>;
     product$: Observable<GetReviewsHistogram.Product | null | undefined>;
     private filteredRating: number | null;

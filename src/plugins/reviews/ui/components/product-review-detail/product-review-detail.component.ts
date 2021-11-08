@@ -29,7 +29,8 @@ import { APPROVE_REVIEW, REJECT_REVIEW, UPDATE_REVIEW } from './product-review-d
 })
 export class ProductReviewDetailComponent
     extends BaseDetailComponent<ProductReview.Fragment>
-    implements OnInit {
+    implements OnInit
+{
     detailForm: FormGroup;
     reviewState$: Observable<ReviewState>;
 

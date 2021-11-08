@@ -5,7 +5,6 @@ import {
     registerDashboardWidget,
     setDashboardWidgetLayout,
 } from '@vendure/admin-ui/core';
-import { DEFAULT_DASHBOARD_WIDGET_LAYOUT } from '@vendure/admin-ui/dashboard';
 
 import { ReviewCountLinkComponent } from './components/review-count-link/review-count-link.component';
 import { StarRatingComponent } from './components/star-rating/star-rating.component';
