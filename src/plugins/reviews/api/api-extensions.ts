@@ -10,7 +10,6 @@ export const commonApiExtensions = gql`
         summary: String!
         body: String
         rating: Float!
-        author: Customer
         authorName: String!
         authorLocation: String
         upvotes: Int!
@@ -47,6 +46,10 @@ export const adminApiExtensions = gql`
         summary: String
         body: String
         response: String
+    }
+
+    extend type ProductReview {
+        author: Customer
     }
 
     extend type Query {
