@@ -1600,43 +1600,43 @@ export type MutationaddItemToOrderArgs = {
 };
 
 
-export type MutationremoveOrderLineArgs = {
+export type MutationRemoveOrderLineArgs = {
   orderLineId: Scalars['ID'];
 };
 
 
-export type MutationadjustOrderLineArgs = {
+export type MutationAdjustOrderLineArgs = {
   orderLineId: Scalars['ID'];
   quantity: Scalars['Int'];
 };
 
 
-export type MutationapplyCouponCodeArgs = {
+export type MutationApplyCouponCodeArgs = {
   couponCode: Scalars['String'];
 };
 
 
-export type MutationremoveCouponCodeArgs = {
+export type MutationRemoveCouponCodeArgs = {
   couponCode: Scalars['String'];
 };
 
 
-export type MutationtransitionOrderToStateArgs = {
+export type MutationTransitionOrderToStateArgs = {
   state: Scalars['String'];
 };
 
 
-export type MutationsetOrderShippingAddressArgs = {
+export type MutationSetOrderShippingAddressArgs = {
   input: CreateAddressInput;
 };
 
 
-export type MutationsetOrderBillingAddressArgs = {
+export type MutationSetOrderBillingAddressArgs = {
   input: CreateAddressInput;
 };
 
 
-export type MutationsetOrderCustomFieldsArgs = {
+export type MutationSetOrderCustomFieldsArgs = {
   input: UpdateOrderInput;
 };
 
@@ -1646,17 +1646,17 @@ export type MutationsetOrderShippingMethodArgs = {
 };
 
 
-export type MutationaddPaymentToOrderArgs = {
+export type MutationAddPaymentToOrderArgs = {
   input: PaymentInput;
 };
 
 
-export type MutationsetCustomerForOrderArgs = {
+export type MutationSetCustomerForOrderArgs = {
   input: CreateCustomerInput;
 };
 
 
-export type MutationloginArgs = {
+export type MutationLoginArgs = {
   username: Scalars['String'];
   password: Scalars['String'];
   rememberMe?: Maybe<Scalars['Boolean']>;
@@ -1669,76 +1669,76 @@ export type MutationauthenticateArgs = {
 };
 
 
-export type MutationregisterCustomerAccountArgs = {
+export type MutationRegisterCustomerAccountArgs = {
   input: RegisterCustomerInput;
 };
 
 
-export type MutationrefreshCustomerVerificationArgs = {
+export type MutationRefreshCustomerVerificationArgs = {
   emailAddress: Scalars['String'];
 };
 
 
-export type MutationupdateCustomerArgs = {
+export type MutationUpdateCustomerArgs = {
   input: UpdateCustomerInput;
 };
 
 
-export type MutationcreateCustomerAddressArgs = {
+export type MutationCreateCustomerAddressArgs = {
   input: CreateAddressInput;
 };
 
 
-export type MutationupdateCustomerAddressArgs = {
+export type MutationUpdateCustomerAddressArgs = {
   input: UpdateAddressInput;
 };
 
 
-export type MutationdeleteCustomerAddressArgs = {
+export type MutationDeleteCustomerAddressArgs = {
   id: Scalars['ID'];
 };
 
 
-export type MutationverifyCustomerAccountArgs = {
+export type MutationVerifyCustomerAccountArgs = {
   token: Scalars['String'];
   password?: Maybe<Scalars['String']>;
 };
 
 
-export type MutationupdateCustomerPasswordArgs = {
+export type MutationUpdateCustomerPasswordArgs = {
   currentPassword: Scalars['String'];
   newPassword: Scalars['String'];
 };
 
 
-export type MutationrequestUpdateCustomerEmailAddressArgs = {
+export type MutationRequestUpdateCustomerEmailAddressArgs = {
   password: Scalars['String'];
   newEmailAddress: Scalars['String'];
 };
 
 
-export type MutationupdateCustomerEmailAddressArgs = {
+export type MutationUpdateCustomerEmailAddressArgs = {
   token: Scalars['String'];
 };
 
 
-export type MutationrequestPasswordResetArgs = {
+export type MutationRequestPasswordResetArgs = {
   emailAddress: Scalars['String'];
 };
 
 
-export type MutationresetPasswordArgs = {
+export type MutationResetPasswordArgs = {
   token: Scalars['String'];
   password: Scalars['String'];
 };
 
 
-export type MutationsubmitProductReviewArgs = {
+export type MutationSubmitProductReviewArgs = {
   input: SubmitProductReviewInput;
 };
 
 
-export type MutationvoteOnReviewArgs = {
+export type MutationVoteOnReviewArgs = {
   id: Scalars['ID'];
   vote: Scalars['Boolean'];
 };
@@ -2378,7 +2378,7 @@ export type ProductvariantListArgs = {
 };
 
 
-export type ProductreviewsArgs = {
+export type ProductReviewsArgs = {
   options?: Maybe<ProductReviewListOptions>;
 };
 
