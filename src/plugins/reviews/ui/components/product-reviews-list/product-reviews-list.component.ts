@@ -47,7 +47,7 @@ export class ProductReviewsListComponent
                         skip,
                         take,
                         sort: {
-                            createdAt: SortOrder.Desc,
+                            createdAt: SortOrder.DESC,
                         },
                         ...(this.filteredRating != null
                             ? {

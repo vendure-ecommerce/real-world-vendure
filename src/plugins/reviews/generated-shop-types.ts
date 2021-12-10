@@ -1,6 +1,8 @@
 /* eslint-disable */
 export type Maybe<T> = T;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string | number;
@@ -157,7 +159,7 @@ export type Collection = Node & {
 };
 
 
-export type CollectionproductVariantsArgs = {
+export type CollectionProductVariantsArgs = {
   options?: Maybe<ProductVariantListOptions>;
 };
 
@@ -720,7 +722,7 @@ export type Customer = Node & {
 };
 
 
-export type CustomerordersArgs = {
+export type CustomerOrdersArgs = {
   options?: Maybe<OrderListOptions>;
 };
 
@@ -744,7 +746,7 @@ export type CustomerGroup = Node & {
 };
 
 
-export type CustomerGroupcustomersArgs = {
+export type CustomerGroupCustomersArgs = {
   options?: Maybe<CustomerListOptions>;
 };
 
@@ -1594,151 +1596,151 @@ export type Mutation = {
 };
 
 
-export type MutationaddItemToOrderArgs = {
+export type MutationAddItemToOrderArgs = {
   productVariantId: Scalars['ID'];
   quantity: Scalars['Int'];
 };
 
 
-export type MutationremoveOrderLineArgs = {
+export type MutationRemoveOrderLineArgs = {
   orderLineId: Scalars['ID'];
 };
 
 
-export type MutationadjustOrderLineArgs = {
+export type MutationAdjustOrderLineArgs = {
   orderLineId: Scalars['ID'];
   quantity: Scalars['Int'];
 };
 
 
-export type MutationapplyCouponCodeArgs = {
+export type MutationApplyCouponCodeArgs = {
   couponCode: Scalars['String'];
 };
 
 
-export type MutationremoveCouponCodeArgs = {
+export type MutationRemoveCouponCodeArgs = {
   couponCode: Scalars['String'];
 };
 
 
-export type MutationtransitionOrderToStateArgs = {
+export type MutationTransitionOrderToStateArgs = {
   state: Scalars['String'];
 };
 
 
-export type MutationsetOrderShippingAddressArgs = {
+export type MutationSetOrderShippingAddressArgs = {
   input: CreateAddressInput;
 };
 
 
-export type MutationsetOrderBillingAddressArgs = {
+export type MutationSetOrderBillingAddressArgs = {
   input: CreateAddressInput;
 };
 
 
-export type MutationsetOrderCustomFieldsArgs = {
+export type MutationSetOrderCustomFieldsArgs = {
   input: UpdateOrderInput;
 };
 
 
-export type MutationsetOrderShippingMethodArgs = {
+export type MutationSetOrderShippingMethodArgs = {
   shippingMethodId: Scalars['ID'];
 };
 
 
-export type MutationaddPaymentToOrderArgs = {
+export type MutationAddPaymentToOrderArgs = {
   input: PaymentInput;
 };
 
 
-export type MutationsetCustomerForOrderArgs = {
+export type MutationSetCustomerForOrderArgs = {
   input: CreateCustomerInput;
 };
 
 
-export type MutationloginArgs = {
+export type MutationLoginArgs = {
   username: Scalars['String'];
   password: Scalars['String'];
   rememberMe?: Maybe<Scalars['Boolean']>;
 };
 
 
-export type MutationauthenticateArgs = {
+export type MutationAuthenticateArgs = {
   input: AuthenticationInput;
   rememberMe?: Maybe<Scalars['Boolean']>;
 };
 
 
-export type MutationregisterCustomerAccountArgs = {
+export type MutationRegisterCustomerAccountArgs = {
   input: RegisterCustomerInput;
 };
 
 
-export type MutationrefreshCustomerVerificationArgs = {
+export type MutationRefreshCustomerVerificationArgs = {
   emailAddress: Scalars['String'];
 };
 
 
-export type MutationupdateCustomerArgs = {
+export type MutationUpdateCustomerArgs = {
   input: UpdateCustomerInput;
 };
 
 
-export type MutationcreateCustomerAddressArgs = {
+export type MutationCreateCustomerAddressArgs = {
   input: CreateAddressInput;
 };
 
 
-export type MutationupdateCustomerAddressArgs = {
+export type MutationUpdateCustomerAddressArgs = {
   input: UpdateAddressInput;
 };
 
 
-export type MutationdeleteCustomerAddressArgs = {
+export type MutationDeleteCustomerAddressArgs = {
   id: Scalars['ID'];
 };
 
 
-export type MutationverifyCustomerAccountArgs = {
+export type MutationVerifyCustomerAccountArgs = {
   token: Scalars['String'];
   password?: Maybe<Scalars['String']>;
 };
 
 
-export type MutationupdateCustomerPasswordArgs = {
+export type MutationUpdateCustomerPasswordArgs = {
   currentPassword: Scalars['String'];
   newPassword: Scalars['String'];
 };
 
 
-export type MutationrequestUpdateCustomerEmailAddressArgs = {
+export type MutationRequestUpdateCustomerEmailAddressArgs = {
   password: Scalars['String'];
   newEmailAddress: Scalars['String'];
 };
 
 
-export type MutationupdateCustomerEmailAddressArgs = {
+export type MutationUpdateCustomerEmailAddressArgs = {
   token: Scalars['String'];
 };
 
 
-export type MutationrequestPasswordResetArgs = {
+export type MutationRequestPasswordResetArgs = {
   emailAddress: Scalars['String'];
 };
 
 
-export type MutationresetPasswordArgs = {
+export type MutationResetPasswordArgs = {
   token: Scalars['String'];
   password: Scalars['String'];
 };
 
 
-export type MutationsubmitProductReviewArgs = {
+export type MutationSubmitProductReviewArgs = {
   input: SubmitProductReviewInput;
 };
 
 
-export type MutationvoteOnReviewArgs = {
+export type MutationVoteOnReviewArgs = {
   id: Scalars['ID'];
   vote: Scalars['Boolean'];
 };
@@ -1860,7 +1862,7 @@ export type Order = Node & {
 };
 
 
-export type OrderhistoryArgs = {
+export type OrderHistoryArgs = {
   options?: Maybe<HistoryEntryListOptions>;
 };
 
@@ -2373,12 +2375,12 @@ export type Product = Node & {
 };
 
 
-export type ProductvariantListArgs = {
+export type ProductVariantListArgs = {
   options?: Maybe<ProductVariantListOptions>;
 };
 
 
-export type ProductreviewsArgs = {
+export type ProductReviewsArgs = {
   options?: Maybe<ProductReviewListOptions>;
 };
 
@@ -2711,54 +2713,54 @@ export type Query = {
 };
 
 
-export type QuerycollectionsArgs = {
+export type QueryCollectionsArgs = {
   options?: Maybe<CollectionListOptions>;
 };
 
 
-export type QuerycollectionArgs = {
+export type QueryCollectionArgs = {
   id?: Maybe<Scalars['ID']>;
   slug?: Maybe<Scalars['String']>;
 };
 
 
-export type QueryfacetsArgs = {
+export type QueryFacetsArgs = {
   options?: Maybe<FacetListOptions>;
 };
 
 
-export type QueryfacetArgs = {
+export type QueryFacetArgs = {
   id: Scalars['ID'];
 };
 
 
-export type QueryorderArgs = {
+export type QueryOrderArgs = {
   id: Scalars['ID'];
 };
 
 
-export type QueryorderByCodeArgs = {
+export type QueryOrderByCodeArgs = {
   code: Scalars['String'];
 };
 
 
-export type QueryproductArgs = {
+export type QueryProductArgs = {
   id?: Maybe<Scalars['ID']>;
   slug?: Maybe<Scalars['String']>;
 };
 
 
-export type QueryproductsArgs = {
+export type QueryProductsArgs = {
   options?: Maybe<ProductListOptions>;
 };
 
 
-export type QuerysearchArgs = {
+export type QuerySearchArgs = {
   input: SearchInput;
 };
 
 
-export type QuerygenerateBraintreeClientTokenArgs = {
+export type QueryGenerateBraintreeClientTokenArgs = {
   orderId: Scalars['ID'];
 };
 

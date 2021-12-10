@@ -1,9 +1,11 @@
 /* eslint-disable */
 export type Maybe<T> = T;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: string | number;
+  ID: string;
   String: string;
   Boolean: boolean;
   Int: number;
@@ -353,7 +355,7 @@ export type Collection = Node & {
 };
 
 
-export type CollectionproductVariantsArgs = {
+export type CollectionProductVariantsArgs = {
   options?: Maybe<ProductVariantListOptions>;
 };
 
@@ -1164,12 +1166,12 @@ export type Customer = Node & {
 };
 
 
-export type CustomerhistoryArgs = {
+export type CustomerHistoryArgs = {
   options?: Maybe<HistoryEntryListOptions>;
 };
 
 
-export type CustomerordersArgs = {
+export type CustomerOrdersArgs = {
   options?: Maybe<OrderListOptions>;
 };
 
@@ -1193,7 +1195,7 @@ export type CustomerGroup = Node & {
 };
 
 
-export type CustomerGroupcustomersArgs = {
+export type CustomerGroupCustomersArgs = {
   options?: Maybe<CustomerListOptions>;
 };
 
@@ -2417,561 +2419,561 @@ export type Mutation = {
 };
 
 
-export type MutationcreateAdministratorArgs = {
+export type MutationCreateAdministratorArgs = {
   input: CreateAdministratorInput;
 };
 
 
-export type MutationupdateAdministratorArgs = {
+export type MutationUpdateAdministratorArgs = {
   input: UpdateAdministratorInput;
 };
 
 
-export type MutationupdateActiveAdministratorArgs = {
+export type MutationUpdateActiveAdministratorArgs = {
   input: UpdateActiveAdministratorInput;
 };
 
 
-export type MutationdeleteAdministratorArgs = {
+export type MutationDeleteAdministratorArgs = {
   id: Scalars['ID'];
 };
 
 
-export type MutationassignRoleToAdministratorArgs = {
+export type MutationAssignRoleToAdministratorArgs = {
   administratorId: Scalars['ID'];
   roleId: Scalars['ID'];
 };
 
 
-export type MutationcreateAssetsArgs = {
+export type MutationCreateAssetsArgs = {
   input: Array<CreateAssetInput>;
 };
 
 
-export type MutationupdateAssetArgs = {
+export type MutationUpdateAssetArgs = {
   input: UpdateAssetInput;
 };
 
 
-export type MutationdeleteAssetArgs = {
+export type MutationDeleteAssetArgs = {
   input: DeleteAssetInput;
 };
 
 
-export type MutationdeleteAssetsArgs = {
+export type MutationDeleteAssetsArgs = {
   input: DeleteAssetsInput;
 };
 
 
-export type MutationassignAssetsToChannelArgs = {
+export type MutationAssignAssetsToChannelArgs = {
   input: AssignAssetsToChannelInput;
 };
 
 
-export type MutationloginArgs = {
+export type MutationLoginArgs = {
   username: Scalars['String'];
   password: Scalars['String'];
   rememberMe?: Maybe<Scalars['Boolean']>;
 };
 
 
-export type MutationauthenticateArgs = {
+export type MutationAuthenticateArgs = {
   input: AuthenticationInput;
   rememberMe?: Maybe<Scalars['Boolean']>;
 };
 
 
-export type MutationcreateChannelArgs = {
+export type MutationCreateChannelArgs = {
   input: CreateChannelInput;
 };
 
 
-export type MutationupdateChannelArgs = {
+export type MutationUpdateChannelArgs = {
   input: UpdateChannelInput;
 };
 
 
-export type MutationdeleteChannelArgs = {
+export type MutationDeleteChannelArgs = {
   id: Scalars['ID'];
 };
 
 
-export type MutationcreateCollectionArgs = {
+export type MutationCreateCollectionArgs = {
   input: CreateCollectionInput;
 };
 
 
-export type MutationupdateCollectionArgs = {
+export type MutationUpdateCollectionArgs = {
   input: UpdateCollectionInput;
 };
 
 
-export type MutationdeleteCollectionArgs = {
+export type MutationDeleteCollectionArgs = {
   id: Scalars['ID'];
 };
 
 
-export type MutationmoveCollectionArgs = {
+export type MutationMoveCollectionArgs = {
   input: MoveCollectionInput;
 };
 
 
-export type MutationcreateCountryArgs = {
+export type MutationCreateCountryArgs = {
   input: CreateCountryInput;
 };
 
 
-export type MutationupdateCountryArgs = {
+export type MutationUpdateCountryArgs = {
   input: UpdateCountryInput;
 };
 
 
-export type MutationdeleteCountryArgs = {
+export type MutationDeleteCountryArgs = {
   id: Scalars['ID'];
 };
 
 
-export type MutationcreateCustomerGroupArgs = {
+export type MutationCreateCustomerGroupArgs = {
   input: CreateCustomerGroupInput;
 };
 
 
-export type MutationupdateCustomerGroupArgs = {
+export type MutationUpdateCustomerGroupArgs = {
   input: UpdateCustomerGroupInput;
 };
 
 
-export type MutationdeleteCustomerGroupArgs = {
+export type MutationDeleteCustomerGroupArgs = {
   id: Scalars['ID'];
 };
 
 
-export type MutationaddCustomersToGroupArgs = {
+export type MutationAddCustomersToGroupArgs = {
   customerGroupId: Scalars['ID'];
   customerIds: Array<Scalars['ID']>;
 };
 
 
-export type MutationremoveCustomersFromGroupArgs = {
+export type MutationRemoveCustomersFromGroupArgs = {
   customerGroupId: Scalars['ID'];
   customerIds: Array<Scalars['ID']>;
 };
 
 
-export type MutationcreateCustomerArgs = {
+export type MutationCreateCustomerArgs = {
   input: CreateCustomerInput;
   password?: Maybe<Scalars['String']>;
 };
 
 
-export type MutationupdateCustomerArgs = {
+export type MutationUpdateCustomerArgs = {
   input: UpdateCustomerInput;
 };
 
 
-export type MutationdeleteCustomerArgs = {
+export type MutationDeleteCustomerArgs = {
   id: Scalars['ID'];
 };
 
 
-export type MutationcreateCustomerAddressArgs = {
+export type MutationCreateCustomerAddressArgs = {
   customerId: Scalars['ID'];
   input: CreateAddressInput;
 };
 
 
-export type MutationupdateCustomerAddressArgs = {
+export type MutationUpdateCustomerAddressArgs = {
   input: UpdateAddressInput;
 };
 
 
-export type MutationdeleteCustomerAddressArgs = {
+export type MutationDeleteCustomerAddressArgs = {
   id: Scalars['ID'];
 };
 
 
-export type MutationaddNoteToCustomerArgs = {
+export type MutationAddNoteToCustomerArgs = {
   input: AddNoteToCustomerInput;
 };
 
 
-export type MutationupdateCustomerNoteArgs = {
+export type MutationUpdateCustomerNoteArgs = {
   input: UpdateCustomerNoteInput;
 };
 
 
-export type MutationdeleteCustomerNoteArgs = {
+export type MutationDeleteCustomerNoteArgs = {
   id: Scalars['ID'];
 };
 
 
-export type MutationcreateFacetArgs = {
+export type MutationCreateFacetArgs = {
   input: CreateFacetInput;
 };
 
 
-export type MutationupdateFacetArgs = {
+export type MutationUpdateFacetArgs = {
   input: UpdateFacetInput;
 };
 
 
-export type MutationdeleteFacetArgs = {
+export type MutationDeleteFacetArgs = {
   id: Scalars['ID'];
   force?: Maybe<Scalars['Boolean']>;
 };
 
 
-export type MutationcreateFacetValuesArgs = {
+export type MutationCreateFacetValuesArgs = {
   input: Array<CreateFacetValueInput>;
 };
 
 
-export type MutationupdateFacetValuesArgs = {
+export type MutationUpdateFacetValuesArgs = {
   input: Array<UpdateFacetValueInput>;
 };
 
 
-export type MutationdeleteFacetValuesArgs = {
+export type MutationDeleteFacetValuesArgs = {
   ids: Array<Scalars['ID']>;
   force?: Maybe<Scalars['Boolean']>;
 };
 
 
-export type MutationupdateGlobalSettingsArgs = {
+export type MutationUpdateGlobalSettingsArgs = {
   input: UpdateGlobalSettingsInput;
 };
 
 
-export type MutationimportProductsArgs = {
+export type MutationImportProductsArgs = {
   csvFile: Scalars['Upload'];
 };
 
 
-export type MutationremoveSettledJobsArgs = {
+export type MutationRemoveSettledJobsArgs = {
   queueNames?: Maybe<Array<Scalars['String']>>;
   olderThan?: Maybe<Scalars['DateTime']>;
 };
 
 
-export type MutationcancelJobArgs = {
+export type MutationCancelJobArgs = {
   jobId: Scalars['ID'];
 };
 
 
-export type MutationflushBufferedJobsArgs = {
+export type MutationFlushBufferedJobsArgs = {
   bufferIds?: Maybe<Array<Scalars['String']>>;
 };
 
 
-export type MutationsettlePaymentArgs = {
+export type MutationSettlePaymentArgs = {
   id: Scalars['ID'];
 };
 
 
-export type MutationaddFulfillmentToOrderArgs = {
+export type MutationAddFulfillmentToOrderArgs = {
   input: FulfillOrderInput;
 };
 
 
-export type MutationcancelOrderArgs = {
+export type MutationCancelOrderArgs = {
   input: CancelOrderInput;
 };
 
 
-export type MutationrefundOrderArgs = {
+export type MutationRefundOrderArgs = {
   input: RefundOrderInput;
 };
 
 
-export type MutationsettleRefundArgs = {
+export type MutationSettleRefundArgs = {
   input: SettleRefundInput;
 };
 
 
-export type MutationaddNoteToOrderArgs = {
+export type MutationAddNoteToOrderArgs = {
   input: AddNoteToOrderInput;
 };
 
 
-export type MutationupdateOrderNoteArgs = {
+export type MutationUpdateOrderNoteArgs = {
   input: UpdateOrderNoteInput;
 };
 
 
-export type MutationdeleteOrderNoteArgs = {
+export type MutationDeleteOrderNoteArgs = {
   id: Scalars['ID'];
 };
 
 
-export type MutationtransitionOrderToStateArgs = {
-  id: Scalars['ID'];
-  state: Scalars['String'];
-};
-
-
-export type MutationtransitionFulfillmentToStateArgs = {
+export type MutationTransitionOrderToStateArgs = {
   id: Scalars['ID'];
   state: Scalars['String'];
 };
 
 
-export type MutationtransitionPaymentToStateArgs = {
+export type MutationTransitionFulfillmentToStateArgs = {
   id: Scalars['ID'];
   state: Scalars['String'];
 };
 
 
-export type MutationsetOrderCustomFieldsArgs = {
+export type MutationTransitionPaymentToStateArgs = {
+  id: Scalars['ID'];
+  state: Scalars['String'];
+};
+
+
+export type MutationSetOrderCustomFieldsArgs = {
   input: UpdateOrderInput;
 };
 
 
-export type MutationmodifyOrderArgs = {
+export type MutationModifyOrderArgs = {
   input: ModifyOrderInput;
 };
 
 
-export type MutationaddManualPaymentToOrderArgs = {
+export type MutationAddManualPaymentToOrderArgs = {
   input: ManualPaymentInput;
 };
 
 
-export type MutationcreatePaymentMethodArgs = {
+export type MutationCreatePaymentMethodArgs = {
   input: CreatePaymentMethodInput;
 };
 
 
-export type MutationupdatePaymentMethodArgs = {
+export type MutationUpdatePaymentMethodArgs = {
   input: UpdatePaymentMethodInput;
 };
 
 
-export type MutationdeletePaymentMethodArgs = {
+export type MutationDeletePaymentMethodArgs = {
   id: Scalars['ID'];
   force?: Maybe<Scalars['Boolean']>;
 };
 
 
-export type MutationcreateProductOptionGroupArgs = {
+export type MutationCreateProductOptionGroupArgs = {
   input: CreateProductOptionGroupInput;
 };
 
 
-export type MutationupdateProductOptionGroupArgs = {
+export type MutationUpdateProductOptionGroupArgs = {
   input: UpdateProductOptionGroupInput;
 };
 
 
-export type MutationcreateProductOptionArgs = {
+export type MutationCreateProductOptionArgs = {
   input: CreateProductOptionInput;
 };
 
 
-export type MutationupdateProductOptionArgs = {
+export type MutationUpdateProductOptionArgs = {
   input: UpdateProductOptionInput;
 };
 
 
-export type MutationcreateProductArgs = {
+export type MutationCreateProductArgs = {
   input: CreateProductInput;
 };
 
 
-export type MutationupdateProductArgs = {
+export type MutationUpdateProductArgs = {
   input: UpdateProductInput;
 };
 
 
-export type MutationdeleteProductArgs = {
+export type MutationDeleteProductArgs = {
   id: Scalars['ID'];
 };
 
 
-export type MutationaddOptionGroupToProductArgs = {
+export type MutationAddOptionGroupToProductArgs = {
   productId: Scalars['ID'];
   optionGroupId: Scalars['ID'];
 };
 
 
-export type MutationremoveOptionGroupFromProductArgs = {
+export type MutationRemoveOptionGroupFromProductArgs = {
   productId: Scalars['ID'];
   optionGroupId: Scalars['ID'];
 };
 
 
-export type MutationcreateProductVariantsArgs = {
+export type MutationCreateProductVariantsArgs = {
   input: Array<CreateProductVariantInput>;
 };
 
 
-export type MutationupdateProductVariantsArgs = {
+export type MutationUpdateProductVariantsArgs = {
   input: Array<UpdateProductVariantInput>;
 };
 
 
-export type MutationdeleteProductVariantArgs = {
+export type MutationDeleteProductVariantArgs = {
   id: Scalars['ID'];
 };
 
 
-export type MutationassignProductsToChannelArgs = {
+export type MutationAssignProductsToChannelArgs = {
   input: AssignProductsToChannelInput;
 };
 
 
-export type MutationremoveProductsFromChannelArgs = {
+export type MutationRemoveProductsFromChannelArgs = {
   input: RemoveProductsFromChannelInput;
 };
 
 
-export type MutationassignProductVariantsToChannelArgs = {
+export type MutationAssignProductVariantsToChannelArgs = {
   input: AssignProductVariantsToChannelInput;
 };
 
 
-export type MutationremoveProductVariantsFromChannelArgs = {
+export type MutationRemoveProductVariantsFromChannelArgs = {
   input: RemoveProductVariantsFromChannelInput;
 };
 
 
-export type MutationcreatePromotionArgs = {
+export type MutationCreatePromotionArgs = {
   input: CreatePromotionInput;
 };
 
 
-export type MutationupdatePromotionArgs = {
+export type MutationUpdatePromotionArgs = {
   input: UpdatePromotionInput;
 };
 
 
-export type MutationdeletePromotionArgs = {
+export type MutationDeletePromotionArgs = {
   id: Scalars['ID'];
 };
 
 
-export type MutationassignPromotionsToChannelArgs = {
+export type MutationAssignPromotionsToChannelArgs = {
   input: AssignPromotionsToChannelInput;
 };
 
 
-export type MutationremovePromotionsFromChannelArgs = {
+export type MutationRemovePromotionsFromChannelArgs = {
   input: RemovePromotionsFromChannelInput;
 };
 
 
-export type MutationcreateRoleArgs = {
+export type MutationCreateRoleArgs = {
   input: CreateRoleInput;
 };
 
 
-export type MutationupdateRoleArgs = {
+export type MutationUpdateRoleArgs = {
   input: UpdateRoleInput;
 };
 
 
-export type MutationdeleteRoleArgs = {
+export type MutationDeleteRoleArgs = {
   id: Scalars['ID'];
 };
 
 
-export type MutationcreateShippingMethodArgs = {
+export type MutationCreateShippingMethodArgs = {
   input: CreateShippingMethodInput;
 };
 
 
-export type MutationupdateShippingMethodArgs = {
+export type MutationUpdateShippingMethodArgs = {
   input: UpdateShippingMethodInput;
 };
 
 
-export type MutationdeleteShippingMethodArgs = {
+export type MutationDeleteShippingMethodArgs = {
   id: Scalars['ID'];
 };
 
 
-export type MutationcreateTagArgs = {
+export type MutationCreateTagArgs = {
   input: CreateTagInput;
 };
 
 
-export type MutationupdateTagArgs = {
+export type MutationUpdateTagArgs = {
   input: UpdateTagInput;
 };
 
 
-export type MutationdeleteTagArgs = {
+export type MutationDeleteTagArgs = {
   id: Scalars['ID'];
 };
 
 
-export type MutationcreateTaxCategoryArgs = {
+export type MutationCreateTaxCategoryArgs = {
   input: CreateTaxCategoryInput;
 };
 
 
-export type MutationupdateTaxCategoryArgs = {
+export type MutationUpdateTaxCategoryArgs = {
   input: UpdateTaxCategoryInput;
 };
 
 
-export type MutationdeleteTaxCategoryArgs = {
+export type MutationDeleteTaxCategoryArgs = {
   id: Scalars['ID'];
 };
 
 
-export type MutationcreateTaxRateArgs = {
+export type MutationCreateTaxRateArgs = {
   input: CreateTaxRateInput;
 };
 
 
-export type MutationupdateTaxRateArgs = {
+export type MutationUpdateTaxRateArgs = {
   input: UpdateTaxRateInput;
 };
 
 
-export type MutationdeleteTaxRateArgs = {
+export type MutationDeleteTaxRateArgs = {
   id: Scalars['ID'];
 };
 
 
-export type MutationcreateZoneArgs = {
+export type MutationCreateZoneArgs = {
   input: CreateZoneInput;
 };
 
 
-export type MutationupdateZoneArgs = {
+export type MutationUpdateZoneArgs = {
   input: UpdateZoneInput;
 };
 
 
-export type MutationdeleteZoneArgs = {
+export type MutationDeleteZoneArgs = {
   id: Scalars['ID'];
 };
 
 
-export type MutationaddMembersToZoneArgs = {
+export type MutationAddMembersToZoneArgs = {
   zoneId: Scalars['ID'];
   memberIds: Array<Scalars['ID']>;
 };
 
 
-export type MutationremoveMembersFromZoneArgs = {
+export type MutationRemoveMembersFromZoneArgs = {
   zoneId: Scalars['ID'];
   memberIds: Array<Scalars['ID']>;
 };
 
 
-export type MutationupdateProductReviewArgs = {
+export type MutationUpdateProductReviewArgs = {
   input: UpdateProductReviewInput;
 };
 
 
-export type MutationapproveProductReviewArgs = {
+export type MutationApproveProductReviewArgs = {
   id: Scalars['ID'];
 };
 
 
-export type MutationrejectProductReviewArgs = {
+export type MutationRejectProductReviewArgs = {
   id: Scalars['ID'];
 };
 
@@ -3088,7 +3090,7 @@ export type Order = Node & {
 };
 
 
-export type OrderhistoryArgs = {
+export type OrderHistoryArgs = {
   options?: Maybe<HistoryEntryListOptions>;
 };
 
@@ -3653,12 +3655,12 @@ export type Product = Node & {
 };
 
 
-export type ProductvariantListArgs = {
+export type ProductVariantListArgs = {
   options?: Maybe<ProductVariantListOptions>;
 };
 
 
-export type ProductreviewsArgs = {
+export type ProductReviewsArgs = {
   options?: Maybe<ProductReviewListOptions>;
 };
 
@@ -3908,7 +3910,7 @@ export type ProductVariant = Node & {
 };
 
 
-export type ProductVariantstockMovementsArgs = {
+export type ProductVariantStockMovementsArgs = {
   options?: Maybe<StockMovementListOptions>;
 };
 
@@ -4118,235 +4120,235 @@ export type Query = {
 };
 
 
-export type QueryadministratorsArgs = {
+export type QueryAdministratorsArgs = {
   options?: Maybe<AdministratorListOptions>;
 };
 
 
-export type QueryadministratorArgs = {
+export type QueryAdministratorArgs = {
   id: Scalars['ID'];
 };
 
 
-export type QueryassetsArgs = {
+export type QueryAssetsArgs = {
   options?: Maybe<AssetListOptions>;
 };
 
 
-export type QueryassetArgs = {
+export type QueryAssetArgs = {
   id: Scalars['ID'];
 };
 
 
-export type QuerychannelArgs = {
+export type QueryChannelArgs = {
   id: Scalars['ID'];
 };
 
 
-export type QuerycollectionsArgs = {
+export type QueryCollectionsArgs = {
   options?: Maybe<CollectionListOptions>;
 };
 
 
-export type QuerycollectionArgs = {
+export type QueryCollectionArgs = {
   id?: Maybe<Scalars['ID']>;
   slug?: Maybe<Scalars['String']>;
 };
 
 
-export type QuerycountriesArgs = {
+export type QueryCountriesArgs = {
   options?: Maybe<CountryListOptions>;
 };
 
 
-export type QuerycountryArgs = {
+export type QueryCountryArgs = {
   id: Scalars['ID'];
 };
 
 
-export type QuerycustomerGroupsArgs = {
+export type QueryCustomerGroupsArgs = {
   options?: Maybe<CustomerGroupListOptions>;
 };
 
 
-export type QuerycustomerGroupArgs = {
+export type QueryCustomerGroupArgs = {
   id: Scalars['ID'];
 };
 
 
-export type QuerycustomersArgs = {
+export type QueryCustomersArgs = {
   options?: Maybe<CustomerListOptions>;
 };
 
 
-export type QuerycustomerArgs = {
+export type QueryCustomerArgs = {
   id: Scalars['ID'];
 };
 
 
-export type QueryfacetsArgs = {
+export type QueryFacetsArgs = {
   options?: Maybe<FacetListOptions>;
 };
 
 
-export type QueryfacetArgs = {
+export type QueryFacetArgs = {
   id: Scalars['ID'];
 };
 
 
-export type QueryjobArgs = {
+export type QueryJobArgs = {
   jobId: Scalars['ID'];
 };
 
 
-export type QueryjobsArgs = {
+export type QueryJobsArgs = {
   options?: Maybe<JobListOptions>;
 };
 
 
-export type QueryjobsByIdArgs = {
+export type QueryJobsByIdArgs = {
   jobIds: Array<Scalars['ID']>;
 };
 
 
-export type QueryjobBufferSizeArgs = {
+export type QueryJobBufferSizeArgs = {
   bufferIds?: Maybe<Array<Scalars['String']>>;
 };
 
 
-export type QueryorderArgs = {
+export type QueryOrderArgs = {
   id: Scalars['ID'];
 };
 
 
-export type QueryordersArgs = {
+export type QueryOrdersArgs = {
   options?: Maybe<OrderListOptions>;
 };
 
 
-export type QuerypaymentMethodsArgs = {
+export type QueryPaymentMethodsArgs = {
   options?: Maybe<PaymentMethodListOptions>;
 };
 
 
-export type QuerypaymentMethodArgs = {
+export type QueryPaymentMethodArgs = {
   id: Scalars['ID'];
 };
 
 
-export type QueryproductOptionGroupsArgs = {
+export type QueryProductOptionGroupsArgs = {
   filterTerm?: Maybe<Scalars['String']>;
 };
 
 
-export type QueryproductOptionGroupArgs = {
+export type QueryProductOptionGroupArgs = {
   id: Scalars['ID'];
 };
 
 
-export type QuerysearchArgs = {
+export type QuerySearchArgs = {
   input: SearchInput;
 };
 
 
-export type QueryproductsArgs = {
+export type QueryProductsArgs = {
   options?: Maybe<ProductListOptions>;
 };
 
 
-export type QueryproductArgs = {
+export type QueryProductArgs = {
   id?: Maybe<Scalars['ID']>;
   slug?: Maybe<Scalars['String']>;
 };
 
 
-export type QueryproductVariantsArgs = {
+export type QueryProductVariantsArgs = {
   options?: Maybe<ProductVariantListOptions>;
   productId?: Maybe<Scalars['ID']>;
 };
 
 
-export type QueryproductVariantArgs = {
+export type QueryProductVariantArgs = {
   id: Scalars['ID'];
 };
 
 
-export type QuerypromotionArgs = {
+export type QueryPromotionArgs = {
   id: Scalars['ID'];
 };
 
 
-export type QuerypromotionsArgs = {
+export type QueryPromotionsArgs = {
   options?: Maybe<PromotionListOptions>;
 };
 
 
-export type QueryrolesArgs = {
+export type QueryRolesArgs = {
   options?: Maybe<RoleListOptions>;
 };
 
 
-export type QueryroleArgs = {
+export type QueryRoleArgs = {
   id: Scalars['ID'];
 };
 
 
-export type QueryshippingMethodsArgs = {
+export type QueryShippingMethodsArgs = {
   options?: Maybe<ShippingMethodListOptions>;
 };
 
 
-export type QueryshippingMethodArgs = {
+export type QueryShippingMethodArgs = {
   id: Scalars['ID'];
 };
 
 
-export type QuerytestShippingMethodArgs = {
+export type QueryTestShippingMethodArgs = {
   input: TestShippingMethodInput;
 };
 
 
-export type QuerytestEligibleShippingMethodsArgs = {
+export type QueryTestEligibleShippingMethodsArgs = {
   input: TestEligibleShippingMethodsInput;
 };
 
 
-export type QuerytagArgs = {
+export type QueryTagArgs = {
   id: Scalars['ID'];
 };
 
 
-export type QuerytagsArgs = {
+export type QueryTagsArgs = {
   options?: Maybe<TagListOptions>;
 };
 
 
-export type QuerytaxCategoryArgs = {
+export type QueryTaxCategoryArgs = {
   id: Scalars['ID'];
 };
 
 
-export type QuerytaxRatesArgs = {
+export type QueryTaxRatesArgs = {
   options?: Maybe<TaxRateListOptions>;
 };
 
 
-export type QuerytaxRateArgs = {
+export type QueryTaxRateArgs = {
   id: Scalars['ID'];
 };
 
 
-export type QueryzoneArgs = {
+export type QueryZoneArgs = {
   id: Scalars['ID'];
 };
 
 
-export type QueryproductReviewsArgs = {
+export type QueryProductReviewsArgs = {
   options?: Maybe<ProductReviewListOptions>;
 };
 
 
-export type QueryproductReviewArgs = {
+export type QueryProductReviewArgs = {
   id: Scalars['ID'];
 };
 
@@ -5260,69 +5262,69 @@ export type Zone = Node & {
 };
 
 export namespace ProductReview {
-  export type fragment = ProductReviewFragment;
+  export type Fragment = ProductReviewFragment;
 }
 
 export namespace GetAllReviews {
   export type Variables = GetAllReviewsQueryVariables;
-  export type query = GetAllReviewsQuery;
-  export type productReviews = (NonNullable<GetAllReviewsQuery['productReviews']>);
-  export type items = NonNullable<(NonNullable<(NonNullable<GetAllReviewsQuery['productReviews']>)['items']>)[number]>;
-  export type product = (NonNullable<NonNullable<(NonNullable<(NonNullable<GetAllReviewsQuery['productReviews']>)['items']>)[number]>['product']>);
-  export type featuredAsset = (NonNullable<(NonNullable<NonNullable<(NonNullable<(NonNullable<GetAllReviewsQuery['productReviews']>)['items']>)[number]>['product']>)['featuredAsset']>);
+  export type Query = GetAllReviewsQuery;
+  export type ProductReviews = (NonNullable<GetAllReviewsQuery['productReviews']>);
+  export type Items = NonNullable<(NonNullable<(NonNullable<GetAllReviewsQuery['productReviews']>)['items']>)[number]>;
+  export type Product = (NonNullable<NonNullable<(NonNullable<(NonNullable<GetAllReviewsQuery['productReviews']>)['items']>)[number]>['product']>);
+  export type FeaturedAsset = (NonNullable<(NonNullable<NonNullable<(NonNullable<(NonNullable<GetAllReviewsQuery['productReviews']>)['items']>)[number]>['product']>)['featuredAsset']>);
 }
 
 export namespace UpdateReview {
   export type Variables = UpdateReviewMutationVariables;
-  export type mutation = UpdateReviewMutation;
-  export type updateProductReview = (NonNullable<UpdateReviewMutation['updateProductReview']>);
+  export type Mutation = UpdateReviewMutation;
+  export type UpdateProductReview = (NonNullable<UpdateReviewMutation['updateProductReview']>);
 }
 
 export namespace ApproveReview {
   export type Variables = ApproveReviewMutationVariables;
-  export type mutation = ApproveReviewMutation;
-  export type approveProductReview = (NonNullable<ApproveReviewMutation['approveProductReview']>);
-  export type product = (NonNullable<(NonNullable<ApproveReviewMutation['approveProductReview']>)['product']>);
-  export type customFields = (NonNullable<(NonNullable<(NonNullable<ApproveReviewMutation['approveProductReview']>)['product']>)['customFields']>);
+  export type Mutation = ApproveReviewMutation;
+  export type ApproveProductReview = (NonNullable<ApproveReviewMutation['approveProductReview']>);
+  export type Product = (NonNullable<(NonNullable<ApproveReviewMutation['approveProductReview']>)['product']>);
+  export type CustomFields = (NonNullable<(NonNullable<(NonNullable<ApproveReviewMutation['approveProductReview']>)['product']>)['customFields']>);
 }
 
 export namespace RejectReview {
   export type Variables = RejectReviewMutationVariables;
-  export type mutation = RejectReviewMutation;
-  export type rejectProductReview = (NonNullable<RejectReviewMutation['rejectProductReview']>);
+  export type Mutation = RejectReviewMutation;
+  export type RejectProductReview = (NonNullable<RejectReviewMutation['rejectProductReview']>);
 }
 
 export namespace GetReviewForProduct {
   export type Variables = GetReviewForProductQueryVariables;
-  export type query = GetReviewForProductQuery;
-  export type product = (NonNullable<GetReviewForProductQuery['product']>);
-  export type reviews = (NonNullable<(NonNullable<GetReviewForProductQuery['product']>)['reviews']>);
-  export type items = NonNullable<(NonNullable<(NonNullable<(NonNullable<GetReviewForProductQuery['product']>)['reviews']>)['items']>)[number]>;
+  export type Query = GetReviewForProductQuery;
+  export type Product = (NonNullable<GetReviewForProductQuery['product']>);
+  export type Reviews = (NonNullable<(NonNullable<GetReviewForProductQuery['product']>)['reviews']>);
+  export type Items = NonNullable<(NonNullable<(NonNullable<(NonNullable<GetReviewForProductQuery['product']>)['reviews']>)['items']>)[number]>;
 }
 
 export namespace GetReviewsHistogram {
   export type Variables = GetReviewsHistogramQueryVariables;
-  export type query = GetReviewsHistogramQuery;
-  export type product = (NonNullable<GetReviewsHistogramQuery['product']>);
-  export type featuredAsset = (NonNullable<(NonNullable<GetReviewsHistogramQuery['product']>)['featuredAsset']>);
-  export type customFields = (NonNullable<(NonNullable<GetReviewsHistogramQuery['product']>)['customFields']>);
-  export type reviewsHistogram = NonNullable<(NonNullable<(NonNullable<GetReviewsHistogramQuery['product']>)['reviewsHistogram']>)[number]>;
+  export type Query = GetReviewsHistogramQuery;
+  export type Product = (NonNullable<GetReviewsHistogramQuery['product']>);
+  export type FeaturedAsset = (NonNullable<(NonNullable<GetReviewsHistogramQuery['product']>)['featuredAsset']>);
+  export type CustomFields = (NonNullable<(NonNullable<GetReviewsHistogramQuery['product']>)['customFields']>);
+  export type ReviewsHistogram = NonNullable<(NonNullable<(NonNullable<GetReviewsHistogramQuery['product']>)['reviewsHistogram']>)[number]>;
 }
 
 export namespace GetProductName {
   export type Variables = GetProductNameQueryVariables;
-  export type query = GetProductNameQuery;
-  export type product = (NonNullable<GetProductNameQuery['product']>);
+  export type Query = GetProductNameQuery;
+  export type Product = (NonNullable<GetProductNameQuery['product']>);
 }
 
 export namespace GetReview {
   export type Variables = GetReviewQueryVariables;
-  export type query = GetReviewQuery;
-  export type productReview = (NonNullable<GetReviewQuery['productReview']>);
-  export type product = (NonNullable<(NonNullable<GetReviewQuery['productReview']>)['product']>);
-  export type featuredAsset = (NonNullable<(NonNullable<(NonNullable<GetReviewQuery['productReview']>)['product']>)['featuredAsset']>);
-  export type productVariant = (NonNullable<(NonNullable<GetReviewQuery['productReview']>)['productVariant']>);
-  export type _featuredAsset = (NonNullable<(NonNullable<(NonNullable<GetReviewQuery['productReview']>)['productVariant']>)['featuredAsset']>);
+  export type Query = GetReviewQuery;
+  export type ProductReview = (NonNullable<GetReviewQuery['productReview']>);
+  export type Product = (NonNullable<(NonNullable<GetReviewQuery['productReview']>)['product']>);
+  export type FeaturedAsset = (NonNullable<(NonNullable<(NonNullable<GetReviewQuery['productReview']>)['product']>)['featuredAsset']>);
+  export type ProductVariant = (NonNullable<(NonNullable<GetReviewQuery['productReview']>)['productVariant']>);
+  export type _FeaturedAsset = (NonNullable<(NonNullable<(NonNullable<GetReviewQuery['productReview']>)['productVariant']>)['featuredAsset']>);
 }
 
 export type ProductReviewFragment = (

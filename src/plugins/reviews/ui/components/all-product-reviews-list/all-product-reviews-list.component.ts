@@ -34,7 +34,7 @@ export class AllProductReviewsListComponent extends BaseListComponent<
                         skip,
                         take,
                         sort: {
-                            createdAt: SortOrder.Desc,
+                            createdAt: SortOrder.DESC,
                         },
                         ...(this.filteredState != null
                             ? {

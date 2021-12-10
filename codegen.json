@@ -2,7 +2,10 @@
   "overwrite": true,
   "config": {
     "strict": true,
-    "namingConvention": "keep",
+    "namingConvention": {
+      "typeNames": "pascalCase",
+      "enumValues": "keep"
+    },
     "scalars": {
       "ID": "string | number"
     },
@@ -45,7 +48,12 @@
         "typescript",
         "typescript-compatibility",
         "typescript-operations"
-      ]
+      ],
+      "config": {
+        "scalars": {
+          "ID": "string"
+        }
+      }
     },
     "src/plugins/reviews/e2e/types/generated-admin-types.ts": {
       "schema": "http://localhost:3000/admin-api",
@@ -59,7 +67,12 @@
         "typescript",
         "typescript-compatibility",
         "typescript-operations"
-      ]
+      ],
+      "config": {
+        "scalars": {
+          "ID": "string"
+        }
+      }
     },
     "src/plugins/reviews/ui/generated-types.ts": {
       "schema": "http://localhost:3000/admin-api",
@@ -73,7 +86,12 @@
         "typescript",
         "typescript-compatibility",
         "typescript-operations"
-      ]
+      ],
+      "config": {
+        "scalars": {
+          "ID": "string"
+        }
+      }
     }
   }
 }
