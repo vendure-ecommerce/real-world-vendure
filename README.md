@@ -29,10 +29,6 @@ Whenever a change to the GraphQL API is made either by a plugin schema extension
 
 ## Plugins
 
-### Braintree Payments Plugin
-
-This is a working implementation for the Braintree payment provider. It demonstrates how a typical `PaymentMethodHandler` is used. The basic pattern will be similar for other modern payment processors such as Stripe or PayPal. See the [Braintree plugin readme](./src/plugins/braintree/README.md) for more information.
-
 ### Reviews Plugin
 
 This plugin adds the capability for customers to create product reviews which can then be used to display product ratings.

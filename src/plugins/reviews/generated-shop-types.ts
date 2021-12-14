@@ -2709,7 +2709,6 @@ export type Query = {
   products: ProductList;
   /** Search Products based on the criteria set by the `SearchInput` */
   search: SearchResponse;
-  generateBraintreeClientToken: Scalars['String'];
 };
 
 
@@ -2757,11 +2756,6 @@ export type QueryProductsArgs = {
 
 export type QuerySearchArgs = {
   input: SearchInput;
-};
-
-
-export type QueryGenerateBraintreeClientTokenArgs = {
-  orderId: Scalars['ID'];
 };
 
 export type RefreshCustomerVerificationResult = Success | NativeAuthStrategyError;
