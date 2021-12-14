@@ -1,4 +1,4 @@
-import { PluginCommonModule, VendurePlugin } from '@vendure/core';
+import { LanguageCode, PluginCommonModule, VendurePlugin } from '@vendure/core';
 
 import { ProductReview } from './entities/product-review.entity';
 import { adminApiExtensions, shopApiExtensions } from './api/api-extensions';
@@ -23,21 +23,27 @@ import { AdminUiExtension } from '@vendure/ui-devkit/compiler';
     configuration: config => {
         config.customFields.Product.push({
             name: 'reviewRating',
+            label: [{ languageCode: LanguageCode.en, value: 'Review rating' }],
             public: true,
             nullable: true,
             type: 'float',
+            ui: { component: 'star-rating-form-input' },
         });
         config.customFields.Product.push({
             name: 'reviewCount',
+            label: [{ languageCode: LanguageCode.en, value: 'Review count' }],
             public: true,
             defaultValue: 0,
             type: 'float',
+            ui: { component: 'review-count-link' },
         });
         config.customFields.Product.push({
             name: 'featuredReview',
+            label: [{ languageCode: LanguageCode.en, value: 'Featured review' }],
             public: true,
             type: 'relation',
             entity: ProductReview,
+            ui: { component: 'review-selector-form-input' },
         });
         return config;
     },

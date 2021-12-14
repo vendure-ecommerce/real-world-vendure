@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import {
     addNavMenuItem,
-    registerCustomFieldComponent,
     registerDashboardWidget,
+    registerFormInputComponent,
     setDashboardWidgetLayout,
 } from '@vendure/admin-ui/core';
 
@@ -15,9 +15,9 @@ import { RelationReviewInputComponent } from './components/featured-review-selec
     imports: [ReviewsSharedModule],
     declarations: [ReviewCountLinkComponent, RelationReviewInputComponent],
     providers: [
-        registerCustomFieldComponent('Product', 'reviewCount', ReviewCountLinkComponent),
-        registerCustomFieldComponent('Product', 'reviewRating', StarRatingComponent),
-        registerCustomFieldComponent('Product', 'featuredReview', RelationReviewInputComponent),
+        registerFormInputComponent('review-count-link', ReviewCountLinkComponent),
+        registerFormInputComponent('star-rating-form-input', StarRatingComponent),
+        registerFormInputComponent('review-selector-form-input', RelationReviewInputComponent),
         addNavMenuItem(
             {
                 id: 'reviews',
