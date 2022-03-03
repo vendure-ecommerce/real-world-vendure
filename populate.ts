@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-import { bootstrap, defaultConfig, mergeConfig, RuntimeVendureConfig } from '@vendure/core';
+import { bootstrap, defaultConfig, Logger, mergeConfig, RuntimeVendureConfig } from '@vendure/core';
 import { populate } from '@vendure/core/cli';
 import { clearAllTables, populateCustomers, SimpleGraphQLClient } from '@vendure/testing';
 import { config } from './src/vendure-config';
@@ -40,7 +40,7 @@ if (require.main === module) {
         )
         .then(async app => {
             console.log('populating customers...');
-            await populateCustomers(10, populateConfig, true);
+            await populateCustomers(app, 10, message => Logger.error(message));
             await populateReview(populateConfig);
             return app.close();
         })
