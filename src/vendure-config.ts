@@ -50,7 +50,7 @@ export const config: VendureConfig = {
             route: 'assets',
             assetUploadDir: path.join(__dirname, '../static/assets'),
         }),
-        // DefaultSearchPlugin,
+        DefaultSearchPlugin,
         DefaultJobQueuePlugin,
         EmailPlugin.init({
             route: 'mailbox',

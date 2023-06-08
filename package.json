@@ -17,7 +17,6 @@
     "e2e:reviews": "vitest --config src/plugins/reviews/e2e/config/vitest.config.js"
   },
   "dependencies": {
-    "@nestjs/graphql": "^10.2.0",
     "@vendure/admin-ui-plugin": "^2.0.0",
     "@vendure/asset-server-plugin": "^2.0.0",
     "@vendure/core": "^2.0.0",
