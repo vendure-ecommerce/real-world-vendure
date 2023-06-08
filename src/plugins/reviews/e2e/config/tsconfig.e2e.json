@@ -1,13 +1,19 @@
 {
   "extends": "../../../../../tsconfig.json",
   "compilerOptions": {
-    "types": ["jest", "node"],
-    "lib": ["es2015"],
+    "types": [
+      "node"
+    ],
+    "lib": [
+      "es2015"
+    ],
+    "useDefineForClassFields": false,
     "skipLibCheck": true,
-    "inlineSourceMap": true,
+    "inlineSourceMap": false,
+    "sourceMap": true,
     "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "allowJs": false
-  },
-  "include": ["../*.e2e-spec.ts"]
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "esModuleInterop": true
+  }
 }
