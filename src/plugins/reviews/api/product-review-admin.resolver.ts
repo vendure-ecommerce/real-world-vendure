@@ -42,8 +42,13 @@ export class ProductReviewAdminResolver {
     @Query()
     @Allow(Permission.ReadCatalog)
     async productReview(@Ctx() ctx: RequestContext, @Args() args: QueryProductReviewArgs) {
-        return this.connection.getRepository(ctx, ProductReview).findOne(args.id, {
-            relations: ['author', 'product', 'productVariant'],
+        return this.connection.getRepository(ctx, ProductReview).findOne({
+            where: { id: args.id },
+            relations: {
+                author: true,
+                product: true,
+                productVariant: true,
+            },
         });
     }
 

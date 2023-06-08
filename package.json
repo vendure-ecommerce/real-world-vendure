@@ -17,32 +17,36 @@
     "e2e:reviews": "jest --config src/plugins/reviews/e2e/config/jest-config.js --runInBand"
   },
   "dependencies": {
-    "@vendure/admin-ui-plugin": "^1.4.0",
-    "@vendure/asset-server-plugin": "^1.4.0",
-    "@vendure/core": "^1.4.0",
-    "@vendure/email-plugin": "^1.4.0",
-    "@vendure/ui-devkit": "^1.4.0",
-    "better-sqlite3": "^7.4.0"
+    "@nestjs/graphql": "^10.2.0",
+    "@vendure/admin-ui-plugin": "^2.0.0",
+    "@vendure/asset-server-plugin": "^2.0.0",
+    "@vendure/core": "^2.0.0",
+    "@vendure/email-plugin": "^2.0.0",
+    "better-sqlite3": "^8.4.0"
   },
   "devDependencies": {
-    "@graphql-codegen/add": "2.0.2",
-    "@graphql-codegen/cli": "1.21.1",
-    "@graphql-codegen/typescript": "1.21.0",
-    "@graphql-codegen/typescript-compatibility": "2.0.1",
-    "@graphql-codegen/typescript-operations": "1.17.14",
-    "@types/jest": "^27.0.2",
-    "@typescript-eslint/eslint-plugin": "^5.3.0",
-    "@typescript-eslint/parser": "^5.3.0",
-    "@vendure/create": "^1.4.0",
-    "@vendure/testing": "^1.4.0",
-    "concurrently": "6.3.0",
-    "eslint": "^8.2.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-prettier": "^4.0.0",
-    "jest": "^27.3.1",
+    "@graphql-codegen/add": "5.0.0",
+    "@graphql-codegen/cli": "4.0.1",
+    "@graphql-codegen/typescript": "4.0.0",
+    "@graphql-codegen/typescript-compatibility": "2.1.5",
+    "@graphql-codegen/typescript-operations": "4.0.0",
+    "@swc/core": "^1.3.62",
+    "@typescript-eslint/eslint-plugin": "^5.59.9",
+    "@typescript-eslint/parser": "^5.59.9",
+    "@vendure/create": "^2.0.0",
+    "@vendure/testing": "^2.0.0",
+    "@vendure/ui-devkit": "^2.0.0",
+    "concurrently": "8.1.0",
+    "eslint": "^8.42.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
     "prettier": "^2.4.1",
-    "ts-jest": "^27.0.7",
-    "ts-node": "10.4.0",
-    "typescript": "4.3.5"
+    "ts-node": "10.9.1",
+    "typescript": "4.9.5",
+    "unplugin-swc": "^1.3.2",
+    "vitest": "^0.32.0"
+  },
+  "overrides": {
+    "graphql": "16.6.0"
   }
 }

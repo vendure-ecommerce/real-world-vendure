@@ -13,7 +13,7 @@ export class ProductEntityResolver {
         return this.listQueryBuilder
             .build(ProductReview, args.options || undefined, {
                 where: {
-                    product,
+                    product: { id: product.id },
                     ...(apiType === 'shop' ? { state: 'approved' } : {}),
                 },
                 relations: ['product', 'product.featuredAsset'],

@@ -5,11 +5,11 @@ This project demonstrates a real-world [Vendure](https://www.vendure.io/) server
 ## Getting Started
 
 1. Clone this repo
-2. `yarn` to install dependencies
-3. `yarn populate` to populate the database with some sample data
-4. In the `/src/ui-extensions/react-app` directory, run `yarn` and then `yarn build`
-5. In the root dir, run `yarn build` to build the application 
-6. Run `yarn start` to start the Vendure server
+2. `npm install` to install dependencies
+3. `npm run populate` to populate the database with some sample data
+4. In the `/src/ui-extensions/react-app` directory, run `npm` and then `npm run build`
+5. In the root dir, run `npm run build` to build the application 
+6. Run `npm start` to start the Vendure server
 7. Login to [`http://localhost:3000/admin/login`](http://localhost:3000/admin/login) with the default [`@vendure/create`](https://www.vendure.io/docs/getting-started/#installation-with-@vendure/create) credentials (username `superadmin`, password `superadmin`).
 
 ## Tooling

@@ -18,11 +18,12 @@ export class ProductReviewEntityResolver {
     async product(@Parent() review: ProductReview, @Ctx() ctx: RequestContext) {
         let product: Product | null = review.product;
         if (!product) {
-            const reviewWithProduct = await this.connection
-                .getRepository(ctx, ProductReview)
-                .findOne(review.id, {
-                    relations: ['product'],
-                });
+            const reviewWithProduct = await this.connection.getRepository(ctx, ProductReview).findOne({
+                where: { id: review.id },
+                relations: {
+                    product: true,
+                },
+            });
             if (reviewWithProduct) {
                 product = reviewWithProduct.product;
             }
@@ -36,11 +37,12 @@ export class ProductReviewEntityResolver {
     async productVariant(@Parent() review: ProductReview, @Ctx() ctx: RequestContext) {
         let productVariant: ProductVariant | null = review.productVariant;
         if (!productVariant) {
-            const reviewWithProductVariant = await this.connection
-                .getRepository(ctx, ProductReview)
-                .findOne(review.id, {
-                    relations: ['productVariant'],
-                });
+            const reviewWithProductVariant = await this.connection.getRepository(ctx, ProductReview).findOne({
+                where: { id: review.id },
+                relations: {
+                    productVariant: true,
+                },
+            });
             if (reviewWithProductVariant) {
                 productVariant = reviewWithProductVariant.productVariant;
             }

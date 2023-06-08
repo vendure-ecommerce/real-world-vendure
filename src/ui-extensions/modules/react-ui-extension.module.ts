@@ -14,12 +14,12 @@ import { hostExternalFrame } from '@vendure/admin-ui/core';
                 path: '',
                 breadcrumbLabel: 'React App',
 
-                extensionUrl: './assets/react-app/index.html',
+                // extensionUrl: './assets/react-app/index.html',
 
                 /**
                  * During development you can point to the live-reloading dev server
                  */
-                // extensionUrl: 'http://localhost:3080/admin/assets/react-app',
+                extensionUrl: 'http://localhost:3080/admin/assets/react-app',
 
                 openInNewTab: false,
             }),

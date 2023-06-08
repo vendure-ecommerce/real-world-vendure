@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { createTestEnvironment, registerInitializer, SqljsInitializer } from '@vendure/testing';
+import { describe, beforeAll, afterAll, it, expect } from 'vitest';
 import path from 'path';
 
 import { ReviewsPlugin } from '../reviews-plugin';

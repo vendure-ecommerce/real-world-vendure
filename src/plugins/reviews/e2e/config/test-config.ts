@@ -16,7 +16,7 @@ export const TEST_SETUP_TIMEOUT_MS = process.env.E2E_DEBUG ? 1800 * 1000 : 12000
 if (process.env.E2E_DEBUG) {
     // tslint:disable-next-line:no-console
     console.log('E2E_DEBUG', process.env.E2E_DEBUG, ' - setting long timeout');
-    jest.setTimeout(1800 * 1000);
+    // jest.setTimeout(1800 * 1000);
 }
 
 export const testConfig = mergeConfig(defaultTestConfig, {
