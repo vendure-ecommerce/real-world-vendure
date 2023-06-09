@@ -17,10 +17,9 @@
     "node_modules",
     "migration.ts",
     "populate.ts",
-    "gulpfile.ts",
     "migrations/*.ts",
-    "src/plugins/**/ui/*",
     "**/*.spec.ts",
+    "src/plugins/**/ui/*",
     "src/ui-extensions/*"
   ]
 }

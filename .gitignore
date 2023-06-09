@@ -5,4 +5,4 @@ static/email/test-emails
 /admin-ui
 .idea
 yarn-error.log
-vendure.sqlite
+vendure.sqlite*

@@ -1,6 +1,8 @@
-# real-world-vendure
+# Real World Vendure
 
 This project demonstrates a real-world [Vendure](https://www.vendure.io/) server setup. It was generated with [`@vendure/create`](https://github.com/vendure-ecommerce/vendure/tree/master/packages/create), but adds extra tooling and includes some example real-world plugins.
+
+![Screenshot of the Admin UI product details page with reviews](./product-reviews-screenshot.webp)
 
 ## Getting Started
 
@@ -17,15 +19,15 @@ This project demonstrates a real-world [Vendure](https://www.vendure.io/) server
 ### [eslint](https://eslint.org/) & [Prettier](https://prettier.io/)
 These are tools for finding and fixing common code issues and formatting your code in a standard way. Run `yarn lint:fix` to lint and format your code.
 
-### [jest](https://jestjs.io/) & [ts-jest](https://github.com/kulshekhar/ts-jest)
-Jest is a testing framework used in the plugin end-to-end tests. Ts-jest allows Jest to work directly with TypeScript files without requiring a compilation step.
+### [vitest](https://vitest.dev/)
+Vitest is a testing framework used in the plugin end-to-end tests. Testing in Vendure is covered in our [testing guide](https://docs.vendure.io/developer-guide/testing/).
 
-Jest tests for the reviews plugin are run with `yarn e2e:reviews`
+End-to-end tests for the reviews plugin are run with `yarn e2e:reviews`
 
 ### [graphql-code-generator](https://graphql-code-generator.com/)
 This is used to generate TypeScript types based on the Vendure server's GraphQL APIs. It is used to automatically generate correct types for plugin resolvers and plugin e2e tests. This ensures that whenever a schema is changed or a CustomField added, new typings can be generated to make sure your resolvers and tests are correct. 
 
-Whenever a change to the GraphQL API is made either by a plugin schema extension or by the definition of CustomFields, run `yarn generate-types` to update the TypeScript definitions (make sure the server is running locally at the same time).
+Whenever a change to the GraphQL API is made either by a plugin schema extension or by the definition of CustomFields, run `yarn codegen` to update the TypeScript definitions (make sure the server is running locally at the same time).
 
 ## Plugins
 

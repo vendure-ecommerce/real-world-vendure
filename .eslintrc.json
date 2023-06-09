@@ -10,8 +10,7 @@
   ],
   "env": {
     "node": true,
-    "jasmine": true,
-    "jest": true
+    "jasmine": true
   },
   "rules": {
     "prettier/prettier": [

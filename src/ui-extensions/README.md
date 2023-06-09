@@ -8,4 +8,4 @@ The Vue app is very simple - it is a single static HTML file and a single JavaSc
 
 ### React App
 
-The React app is more complex as it requires a build step. It can also be run in dev mode with live-reloading. In this case, follow the directions in the [react-ui-extension.module.ts](./modules/react-ui-extension.module.ts) file to point to the dev server URL.
+The React app is more complex than the Vue example as it requires a build step. It can also be run in dev mode with live-reloading. In this case, follow the directions in the [react-ui-extension.module.ts](./modules/react-ui-extension.module.ts) file to point to the dev server URL.

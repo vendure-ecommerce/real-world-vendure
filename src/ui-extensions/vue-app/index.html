@@ -8,12 +8,12 @@
         <link rel="stylesheet" href="../../theme.min.css" />
     </head>
     <body>
-        <div id="app" style="padding: 1rem;">
-            <div>
+        <div id="app">
+            <div class="page-block">
                 <h1>{{ greeting }}</h1>
                 <p>This is a demonstration of how Admin UI extensions can be created using any web framework, and interoperate
                 seamlessly with the Angular-based host application.</p>
-                <button v-on:click="getProducts" class="btn btn-primary">Get products</button>
+                <button v-on:click="getProducts" class="button primary mt-2">Get products</button>
                 <h3 v-if="products.length">Products</h3>
                 <ol>
                     <li v-for="product in products">
@@ -22,7 +22,7 @@
                         <span class="label label-danger" v-else>Disabled</span>
                         <button
                             v-on:click="toggleEnabled(product.id, !product.enabled)"
-                            class="btn btn-sm btn-secondary"
+                            class="button-small"
                         >
                             toggle
                         </button>
