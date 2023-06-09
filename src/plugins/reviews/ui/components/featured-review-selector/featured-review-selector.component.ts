@@ -4,9 +4,7 @@ import { CustomFieldControl, DataService } from '@vendure/admin-ui/core';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
-
-import { GET_REVIEWS_FOR_PRODUCT } from '../product-reviews-list/product-reviews-list.graphql';
-import { GetReviewForProduct, ProductReviewFragment } from '../../generated-types';
+import { GetReviewForProductDocument, ProductReviewFragment } from '../../generated-types';
 
 @Component({
     selector: 'kb-relation-review-input',
@@ -18,7 +16,7 @@ import { GetReviewForProduct, ProductReviewFragment } from '../../generated-type
                 <clr-icon shape="link"></clr-icon>
             </a>
         </div>
-        <select appendTo="body" [formControl]="formControl">
+        <select  class="mt-1" [formControl]="formControl">
             <option [ngValue]="null">Select a review...</option>
             <option *ngFor="let item of reviews$ | async" [ngValue]="item">
                 <b>{{ item.summary }}</b>
@@ -39,15 +37,12 @@ export class RelationReviewInputComponent implements OnInit, CustomFieldControl 
 
     ngOnInit() {
         this.reviews$ = this.route.data.pipe(
-            switchMap(data => data.entity),
+            switchMap(data => data.detail.entity),
             switchMap((product: any) => {
                 return this.dataService
-                    .query<GetReviewForProduct.Query, GetReviewForProduct.Variables>(
-                        GET_REVIEWS_FOR_PRODUCT,
-                        {
-                            productId: product.id,
-                        },
-                    )
+                    .query(GetReviewForProductDocument, {
+                        productId: product.id,
+                    })
                     .mapSingle(({ product }) => product?.reviews.items ?? []);
             }),
         );

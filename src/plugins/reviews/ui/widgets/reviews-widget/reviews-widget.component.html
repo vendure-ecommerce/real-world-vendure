@@ -1,32 +1,28 @@
-<vdr-data-table
-    [items]="pendingReviews$ | async"
+<table class="table"
 >
-    <ng-template let-review="item">
-        <td class="left align-middle">
+    <tr *ngFor="let review of pendingReviews$ | async">
+        <td class="center">
             {{ review.createdAt | date:'mediumDate' }}
         </td>
-        <td class="left align-middle">{{ review.authorName }}</td>
-        <td class="left align-middle">
+        <td class="center">
             <div class="product-info">
                 <span class="product-name">{{ review.product.name }}</span>
             </div>
         </td>
+        <td class="center">
+            <a class="button-ghost" [routerLink]="['/extensions', 'product-reviews', review.id]">
+            {{ review.summary }}
+                <clr-icon shape="arrow right"></clr-icon>
+            </a>
+        </td>
+        <td class="center">{{ review.authorName }}</td>
+        <td class="center">
 
-        <td class="left align-middle">
-
-            <kb-star-rating [rating]="review.rating"></kb-star-rating>
+            <star-rating [rating]="review.rating"></star-rating>
         </td>
-        <td class="left align-middle">{{ review.summary }}</td>
-        <td class="left align-middle">
-            <kb-review-state-label [state]="review.state"></kb-review-state-label>
+        <td class="center">
+            <review-state-label [state]="review.state"></review-state-label>
         </td>
-        <td class="right align-middle">
-            <vdr-table-row-action
-                iconShape="edit"
-                [label]="'common.edit' | translate"
-                [linkTo]="['/extensions', 'product-reviews', review.id]"
-            ></vdr-table-row-action>
-        </td>
-    </ng-template>
-</vdr-data-table>
+    </tr>
+</table>
 

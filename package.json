@@ -9,7 +9,7 @@
     "run:worker": "ts-node ./src/index-worker.ts",
     "start": "concurrently yarn:run:*",
     "build": "rimraf dist && rimraf admin-ui && tsc && tsc -p tsconfig.migrations.json && yarn compile-admin-ui",
-    "generate-types": "graphql-codegen --config ./codegen.json",
+    "codegen": "graphql-codegen --config ./codegen.ts",
     "migration:generate": "ts-node migration generate",
     "migration:run": "ts-node migration run",
     "migration:revert": "ts-node migration revert",
@@ -26,6 +26,7 @@
   "devDependencies": {
     "@graphql-codegen/add": "5.0.0",
     "@graphql-codegen/cli": "4.0.1",
+    "@graphql-codegen/typed-document-node": "^5.0.0",
     "@graphql-codegen/typescript": "4.0.0",
     "@graphql-codegen/typescript-compatibility": "2.1.5",
     "@graphql-codegen/typescript-operations": "4.0.0",

@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { ReviewState } from '../../common/ui-types';
 
 @Component({
-    selector: 'kb-review-state-label',
+    selector: 'review-state-label',
     templateUrl: './review-state-label.component.html',
     styleUrls: ['./review-state-label.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,

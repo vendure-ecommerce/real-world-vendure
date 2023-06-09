@@ -3,8 +3,6 @@ import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
 import { DataService } from '@vendure/admin-ui/core';
 import { Observable } from 'rxjs';
 
-import { GetProductName } from '../../generated-types';
-
 import { GET_PRODUCT_NAME } from './product-reviews-resolver.graphql';
 
 @Injectable()

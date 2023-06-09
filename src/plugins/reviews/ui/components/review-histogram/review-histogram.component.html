@@ -1,5 +1,5 @@
 <div class="bar-container" *ngFor="let bin of bins">
-    <kb-star-rating [rating]="bin" [showLabel]="false"></kb-star-rating>
+    <star-rating [rating]="bin" [showLabel]="false"></star-rating>
     <div class="bar">
         <div class="fill" [style.width.%]="getPercentage(bin)"></div>
     </div>

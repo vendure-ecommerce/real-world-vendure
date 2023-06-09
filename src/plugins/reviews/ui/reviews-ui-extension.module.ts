@@ -4,12 +4,15 @@ import {
     registerDashboardWidget,
     registerFormInputComponent,
     setDashboardWidgetLayout,
+    registerPageTab,
+    detailComponentWithResolver,
 } from '@vendure/admin-ui/core';
 
 import { ReviewCountLinkComponent } from './components/review-count-link/review-count-link.component';
 import { StarRatingComponent } from './components/star-rating/star-rating.component';
 import { ReviewsSharedModule } from './reviews-shared.module';
 import { RelationReviewInputComponent } from './components/featured-review-selector/featured-review-selector.component';
+import {ProductReviewsListComponent} from "./components/product-reviews-list/product-reviews-list.component";
 
 @NgModule({
     imports: [ReviewsSharedModule],
@@ -36,11 +39,18 @@ import { RelationReviewInputComponent } from './components/featured-review-selec
                 ),
         }),
         setDashboardWidgetLayout([
-            { id: 'welcome', width: 12 },
+            { id: 'metrics', width: 12 },
             { id: 'orderSummary', width: 6 },
             { id: 'reviews', width: 6 },
             { id: 'latestOrders', width: 12 },
         ]),
+        registerPageTab({
+            location: 'product-detail',
+            route: 'reviews',
+            tab: 'Reviews',
+            tabIcon: 'star',
+            component: ProductReviewsListComponent,
+        }),
     ],
     exports: [],
 })

@@ -1,58 +1,75 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import {
-    BaseDetailComponent,
-    DataService,
-    NotificationService,
-    ServerConfigService,
-} from '@vendure/admin-ui/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { DataService, NotificationService, TypedBaseDetailComponent } from '@vendure/admin-ui/core';
 import { Observable, of } from 'rxjs';
 import { filter, map, mapTo, switchMap } from 'rxjs/operators';
 
 import { ReviewState } from '../../common/ui-types';
 import {
-    ApproveReview,
-    ProductReview,
-    RejectReview,
+    ApproveReviewDocument,
+    GetReviewDetailDocument,
+    ProductReviewFragment,
+    RejectReviewDocument,
     UpdateProductReviewInput,
-    UpdateReview,
+    UpdateReviewDocument,
 } from '../../generated-types';
+import gql from 'graphql-tag';
 
-import { APPROVE_REVIEW, REJECT_REVIEW, UPDATE_REVIEW } from './product-review-detail.graphql';
+import { PRODUCT_REVIEW_FRAGMENT } from '../../common/fragments.graphql';
+
+export const GET_REVIEW_DETAIL = gql`
+    query GetReviewDetail($id: ID!) {
+        productReview(id: $id) {
+            ...ProductReview
+            product {
+                id
+                name
+                featuredAsset {
+                    id
+                    preview
+                }
+            }
+            productVariant {
+                id
+                name
+                featuredAsset {
+                    id
+                    preview
+                }
+            }
+        }
+    }
+    ${PRODUCT_REVIEW_FRAGMENT}
+`;
 
 @Component({
-    selector: 'kb-product-review-detail',
+    selector: 'product-review-detail',
     templateUrl: './product-review-detail.component.html',
     styleUrls: ['./product-review-detail.component.scss'],
     changeDetection: ChangeDetectionStrategy.Default,
 })
 export class ProductReviewDetailComponent
-    extends BaseDetailComponent<ProductReview.Fragment>
-    implements OnInit
+    extends TypedBaseDetailComponent<typeof GetReviewDetailDocument, 'productReview'>
+    implements OnInit, OnDestroy
 {
-    detailForm: FormGroup;
+    detailForm = this.formBuilder.group({
+        summary: ['', Validators.required],
+        body: '',
+        rating: [0, Validators.required],
+        authorName: ['', Validators.required],
+        authorLocation: '',
+        state: '',
+        response: '',
+    });
     reviewState$: Observable<ReviewState>;
 
     constructor(
-        route: ActivatedRoute,
-        router: Router,
-        serverConfigService: ServerConfigService,
         private formBuilder: FormBuilder,
         protected dataService: DataService,
         private changeDetector: ChangeDetectorRef,
         private notificationService: NotificationService,
     ) {
-        super(route, router, serverConfigService, dataService);
-        this.detailForm = this.formBuilder.group({
-            summary: ['', Validators.required],
-            body: '',
-            rating: [0, Validators.required],
-            authorName: ['', Validators.required],
-            authorLocation: '',
-            state: '',
-            response: '',
-        });
+        super();
     }
 
     ngOnInit(): void {
@@ -60,15 +77,13 @@ export class ProductReviewDetailComponent
         this.reviewState$ = this.entity$.pipe(map(review => review.state as ReviewState));
     }
 
+    ngOnDestroy(): void {
+        this.destroy();
+    }
+
     approve() {
         this.saveChanges()
-            .pipe(
-                switchMap(() =>
-                    this.dataService.mutate<ApproveReview.Mutation, ApproveReview.Variables>(APPROVE_REVIEW, {
-                        id: this.id,
-                    }),
-                ),
-            )
+            .pipe(switchMap(() => this.dataService.mutate(ApproveReviewDocument, { id: this.id })))
             .subscribe(
                 () => {
                     this.detailForm.markAsPristine();
@@ -83,13 +98,7 @@ export class ProductReviewDetailComponent
 
     reject() {
         this.saveChanges()
-            .pipe(
-                switchMap(() =>
-                    this.dataService.mutate<RejectReview.Mutation, RejectReview.Variables>(REJECT_REVIEW, {
-                        id: this.id,
-                    }),
-                ),
-            )
+            .pipe(switchMap(() => this.dataService.mutate(RejectReviewDocument, { id: this.id })))
             .subscribe(
                 () => {
                     this.detailForm.markAsPristine();
@@ -123,24 +132,20 @@ export class ProductReviewDetailComponent
 
     private saveChanges(): Observable<boolean> {
         if (this.detailForm.dirty) {
-            const formValue = this.detailForm.value;
+            const { summary, body, response } = this.detailForm.value;
             const input: UpdateProductReviewInput = {
                 id: this.id,
-                summary: formValue.summary,
-                body: formValue.body,
-                response: formValue.response,
+                summary: summary ?? undefined,
+                body: body ?? undefined,
+                response: response ?? undefined,
             };
-            return this.dataService
-                .mutate<UpdateReview.Mutation, UpdateReview.Variables>(UPDATE_REVIEW, {
-                    input,
-                })
-                .pipe(mapTo(true));
+            return this.dataService.mutate(UpdateReviewDocument, { input }).pipe(mapTo(true));
         } else {
             return of(false);
         }
     }
 
-    protected setFormValues(entity: ProductReview.Fragment): void {
+    protected setFormValues(entity: ProductReviewFragment): void {
         this.detailForm.patchValue({
             summary: entity.summary,
             body: entity.body,

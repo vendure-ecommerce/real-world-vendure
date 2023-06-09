@@ -27,7 +27,7 @@ import { AdminUiExtension } from '@vendure/ui-devkit/compiler';
             public: true,
             nullable: true,
             type: 'float',
-            ui: { component: 'star-rating-form-input' },
+            ui: { tab: 'Reviews', component: 'star-rating-form-input' },
         });
         config.customFields.Product.push({
             name: 'reviewCount',
@@ -35,7 +35,7 @@ import { AdminUiExtension } from '@vendure/ui-devkit/compiler';
             public: true,
             defaultValue: 0,
             type: 'float',
-            ui: { component: 'review-count-link' },
+            ui: { tab: 'Reviews', component: 'review-count-link' },
         });
         config.customFields.Product.push({
             name: 'featuredReview',
@@ -43,7 +43,7 @@ import { AdminUiExtension } from '@vendure/ui-devkit/compiler';
             public: true,
             type: 'relation',
             entity: ProductReview,
-            ui: { component: 'review-selector-form-input' },
+            ui: { tab: 'Reviews', component: 'review-selector-form-input' },
         });
         return config;
     },

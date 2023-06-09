@@ -1,5 +1,3 @@
-@import "../../reviews-ui";
-
 .filter-controls {
     margin-bottom: 12px;
 }
@@ -15,4 +13,7 @@
     text-overflow: ellipsis;
     max-width: 20vw;
     margin-left: 6px;
+}
+.image-placeholder img {
+    border-radius: var(--border-radius);
 }

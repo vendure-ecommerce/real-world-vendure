@@ -1,5 +1,3 @@
-@import "../../reviews-ui";
-
 .summary {
     display: flex;
 }
@@ -8,8 +6,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    gap: 4px;
     padding: 12px;
     margin-right: 6px;
-    background-color: var(--color-grey-200);
+    background-color: var(--color-weight-100);
+    border-radius: var(--border-radius);
+    img {
+        border-radius: var(--border-radius);
+    }
 }
 

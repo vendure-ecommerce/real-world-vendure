@@ -1,21 +1,17 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { createTestEnvironment, registerInitializer, SqljsInitializer } from '@vendure/testing';
-import { describe, beforeAll, afterAll, it, expect } from 'vitest';
+import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import path from 'path';
 
 import { ReviewsPlugin } from '../reviews-plugin';
-import { RejectReview } from '../ui/generated-types';
-
-import {
-    APPROVE_REVIEW,
-    GET_PRODUCT_REVIEW_DATA,
-    REJECT_REVIEW,
-} from './graphql/admin-e2e-definitions.graphql';
-import { SUBMIT_PRODUCT_REVIEW } from './graphql/shop-e2e-definitions.graphql';
-import { ApproveReview, GetProductReviewData } from './types/generated-admin-types';
-import { SubmitProductReview } from './types/generated-shop-types';
 import { TEST_SETUP_TIMEOUT_MS, testConfig } from './config/test-config';
 import { initialData } from './config/e2e-initial-data';
+import { SubmitProductReviewDocument } from './types/generated-shop-types';
+import {
+    ApproveReviewDocument,
+    GetProductReviewDataDocument,
+    RejectReviewDocument,
+} from './types/generated-admin-types';
 
 registerInitializer('sqljs', new SqljsInitializer(path.join(__dirname, '__data__')));
 
@@ -49,10 +45,7 @@ describe('reviews plugin', () => {
     });
 
     it('submit a guest review', async () => {
-        const { submitProductReview } = await shopClient.query<
-            SubmitProductReview.Mutation,
-            SubmitProductReview.Variables
-        >(SUBMIT_PRODUCT_REVIEW, {
+        const { submitProductReview } = await shopClient.query(SubmitProductReviewDocument, {
             input: {
                 productId: 'T_1',
                 variantId: 'T_1',
@@ -77,10 +70,7 @@ describe('reviews plugin', () => {
     });
 
     it('approving a review', async () => {
-        const { approveProductReview } = await adminClient.query<
-            ApproveReview.Mutation,
-            ApproveReview.Variables
-        >(APPROVE_REVIEW, {
+        const { approveProductReview } = await adminClient.query(ApproveReviewDocument, {
             id: firstReviewId,
         });
 
@@ -96,10 +86,7 @@ describe('reviews plugin', () => {
     it('rejected review does not affect rating', async () => {
         const submitProductReview = await submitReviewWithRating(1);
 
-        const { rejectProductReview } = await adminClient.query<
-            RejectReview.Mutation,
-            RejectReview.Variables
-        >(REJECT_REVIEW, {
+        const { rejectProductReview } = await adminClient.query(RejectReviewDocument, {
             id: submitProductReview.id,
         });
 
@@ -115,7 +102,7 @@ describe('reviews plugin', () => {
     it('additional reviews update average rating', async () => {
         const submitProductReview = await submitReviewWithRating(1);
 
-        await adminClient.query<ApproveReview.Mutation, ApproveReview.Variables>(APPROVE_REVIEW, {
+        await adminClient.query(ApproveReviewDocument, {
             id: submitProductReview.id,
         });
 
@@ -127,19 +114,12 @@ describe('reviews plugin', () => {
     });
 
     async function getProductReviewData(id: string) {
-        const { product } = await adminClient.query<
-            GetProductReviewData.Query,
-            GetProductReviewData.Variables
-        >(GET_PRODUCT_REVIEW_DATA, { id });
-
+        const { product } = await adminClient.query(GetProductReviewDataDocument, { id });
         return product!.customFields;
     }
 
     async function submitReviewWithRating(rating: number) {
-        const { submitProductReview } = await shopClient.query<
-            SubmitProductReview.Mutation,
-            SubmitProductReview.Variables
-        >(SUBMIT_PRODUCT_REVIEW, {
+        const { submitProductReview } = await shopClient.query(SubmitProductReviewDocument, {
             input: {
                 productId: 'T_1',
                 authorName: 'Bobby Smith',

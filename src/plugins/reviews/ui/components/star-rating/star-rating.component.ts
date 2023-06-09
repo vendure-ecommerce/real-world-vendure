@@ -5,14 +5,14 @@ import { CustomFieldConfigType, CustomFieldControl } from '@vendure/admin-ui/cor
 type StarType = 'empty' | 'full' | 'half';
 
 @Component({
-    selector: 'kb-star-rating',
+    selector: 'star-rating',
     templateUrl: './star-rating.component.html',
     styleUrls: ['./star-rating.component.scss'],
     changeDetection: ChangeDetectionStrategy.Default,
 })
 export class StarRatingComponent implements CustomFieldControl {
     @Input() rating: number | null;
-    @Input() showLabel = true;
+    @Input() showLabel = false;
 
     readonly: boolean;
     config: CustomFieldConfigType;

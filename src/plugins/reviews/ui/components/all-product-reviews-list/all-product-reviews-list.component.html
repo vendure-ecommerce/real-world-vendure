@@ -1,58 +1,118 @@
-<vdr-action-bar>
-    <vdr-ab-left>
-        <div class="filter-controls">
-            <select clrSelect name="state" [(ngModel)]="filteredState" (change)="refresh()">
-                <option [ngValue]="null">All reviews</option>
-                <option value="new">Reviews pending approval</option>
-                <option value="approved">Approved reviews</option>
-                <option value="rejected">Rejected reviews</option>
-            </select>
-        </div>
-    </vdr-ab-left>
-    <vdr-ab-right>
-    </vdr-ab-right>
-</vdr-action-bar>
-<vdr-data-table
-    [items]="items$ | async"
-    [itemsPerPage]="itemsPerPage$ | async"
-    [totalItems]="totalItems$ | async"
-    [currentPage]="currentPage$ | async"
-    (pageChange)="setPageNumber($event)"
-    (itemsPerPageChange)="setItemsPerPage($event)"
->
-    <vdr-dt-column>Submitted</vdr-dt-column>
-    <vdr-dt-column>Author</vdr-dt-column>
-    <vdr-dt-column>Product</vdr-dt-column>
-    <vdr-dt-column>Rating</vdr-dt-column>
-    <vdr-dt-column>Summary</vdr-dt-column>
-    <vdr-dt-column>Status</vdr-dt-column>
-    <vdr-dt-column></vdr-dt-column>
-    <ng-template let-review="item">
-        <td class="left align-middle">
-            {{ review.createdAt | date:'mediumDate' }}
-        </td>
-        <td class="left align-middle">{{ review.authorName }}</td>
-        <td class="left align-middle">
-            <div class="product-info">
-                <img [src]="review.product.featuredAsset?.preview + '?preset=tiny'" width="50" height="50">
-                <span class="product-name">{{ review.product.name }}</span>
-            </div>
-        </td>
+<vdr-page-header>
+    <vdr-page-title></vdr-page-title>
+</vdr-page-header>
+<vdr-page-body>
 
-        <td class="left align-middle">
+    <!-- optional if you want some button at the top -->
+    <vdr-page-block>
+        <vdr-action-bar>
+            <vdr-ab-left></vdr-ab-left>
+            <vdr-ab-right>
+                <a
+                        class="btn btn-primary"
+                        *vdrIfPermissions="['CreateReview']"
+                        [routerLink]="['./', 'create']"
+                >
+                    <clr-icon shape="plus"></clr-icon>
+                    Create a review
+                </a>
+            </vdr-ab-right>
+        </vdr-action-bar>
+    </vdr-page-block>
 
-            <kb-star-rating [rating]="review.rating"></kb-star-rating>
-        </td>
-        <td class="left align-middle">{{ review.summary }}</td>
-        <td class="left align-middle">
-            <kb-review-state-label [state]="review.state"></kb-review-state-label>
-        </td>
-        <td class="right align-middle">
-            <vdr-table-row-action
-                iconShape="edit"
-                [label]="'common.edit' | translate"
-                [linkTo]="['/extensions', 'product-reviews', review.id]"
-            ></vdr-table-row-action>
-        </td>
-    </ng-template>
-</vdr-data-table>
+    <vdr-data-table-2
+            id="review-list"
+            [items]="items$ | async"
+            [itemsPerPage]="itemsPerPage$ | async"
+            [totalItems]="totalItems$ | async"
+            [currentPage]="currentPage$ | async"
+            [filters]="filters"
+            (pageChange)="setPageNumber($event)"
+            (itemsPerPageChange)="setItemsPerPage($event)"
+    >
+        <!-- optional if you want to support bulk actions -->
+        <vdr-bulk-action-menu
+                locationId="review-list"
+                [hostComponent]="this"
+                [selectionManager]="selectionManager"
+        />
+
+        <!-- Adds a search bar -->
+        <vdr-dt2-search
+                [searchTermControl]="searchTermControl"
+                searchTermPlaceholder="Filter by author name"
+        />
+
+        <!-- Here we define all the available columns -->
+        <vdr-dt2-column [heading]="'common.id' | translate" [hiddenByDefault]="true">
+            <ng-template let-review="item">{{ review.id }}</ng-template>
+        </vdr-dt2-column>
+        <vdr-dt2-column
+                [heading]="'common.created-at' | translate"
+                [hiddenByDefault]="true"
+                [sort]="sorts.get('createdAt')"
+        >
+            <ng-template let-review="item">
+                {{ review.createdAt | localeDate : 'short' }}
+            </ng-template>
+        </vdr-dt2-column>
+        <vdr-dt2-column
+                [heading]="'common.updated-at' | translate"
+                [hiddenByDefault]="true"
+                [sort]="sorts.get('updatedAt')"
+        >
+            <ng-template let-review="item">
+                {{ review.updatedAt | localeDate : 'short' }}
+            </ng-template>
+        </vdr-dt2-column>
+        <vdr-dt2-column
+                [heading]="'common.image' | translate"
+        >
+            <ng-template let-review="item">
+                <div class="image-placeholder">
+                    <img
+                            *ngIf="review.product?.featuredAsset as asset; else imagePlaceholder"
+                            [src]="asset | assetPreview : 'tiny'"
+                    />
+                    <ng-template #imagePlaceholder>
+                        <div class="placeholder">
+                            <clr-icon shape="image" size="48"></clr-icon>
+                        </div>
+                    </ng-template>
+                </div>
+            </ng-template>
+        </vdr-dt2-column>
+        <vdr-dt2-column heading="Product" [optional]="false">
+            <ng-template let-review="item">{{ review.product?.name }}</ng-template>
+        </vdr-dt2-column>
+        <vdr-dt2-column heading="Summary" [sort]="sorts.get('summary')">
+            <ng-template let-review="item"><a class="button-ghost" [routerLink]="['./', review.id]"
+            ><span>{{ review.summary }}</span>
+                <clr-icon shape="arrow right"></clr-icon>
+            </a></ng-template>
+        </vdr-dt2-column>
+        <vdr-dt2-column heading="State" [sort]="sorts.get('state')">
+            <ng-template let-review="item"><review-state-label [state]="review.state"></review-state-label></ng-template>
+        </vdr-dt2-column>
+        <vdr-dt2-column heading="Rating" [sort]="sorts.get('rating')">
+            <ng-template let-review="item">
+                <star-rating [rating]="review.rating"/>
+            </ng-template>
+        </vdr-dt2-column>
+        <vdr-dt2-column heading="Author" [sort]="sorts.get('authorName')">
+            <ng-template let-review="item">
+                {{ review.authorName }}
+            </ng-template>
+        </vdr-dt2-column>
+        <vdr-dt2-column heading="Location" [sort]="sorts.get('authorLocation')">
+            <ng-template let-review="item">{{ review.authorLocation }}</ng-template>
+        </vdr-dt2-column>
+        <vdr-dt2-column heading="Upvotes" [sort]="sorts.get('upvotes')" [hiddenByDefault]="true">
+            <ng-template let-review="item">{{ review.upvotes }}</ng-template>
+        </vdr-dt2-column>
+        <vdr-dt2-column heading="Downvotes" [sort]="sorts.get('downvotes')" [hiddenByDefault]="true">
+            <ng-template let-review="item">{{ review.downvotes }}</ng-template>
+        </vdr-dt2-column>
+    </vdr-data-table-2>
+
+</vdr-page-body>

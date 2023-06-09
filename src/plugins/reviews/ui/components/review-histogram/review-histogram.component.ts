@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, Input, OnChanges, Output, EventEmit
 import { ProductReviewHistogramItem } from '../../generated-types';
 
 @Component({
-    selector: 'kb-review-histogram',
+    selector: 'review-histogram',
     templateUrl: './review-histogram.component.html',
     styleUrls: ['./review-histogram.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,

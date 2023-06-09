@@ -69,6 +69,10 @@ export const config: VendureConfig = {
         AdminUiPlugin.init({
             route: 'admin',
             port: 3002,
+            adminUiConfig: {
+                apiHost: 'http://localhost',
+                apiPort: 3000,
+            },
             app: customAdminUi({ recompile: !IS_PROD, devMode: !IS_PROD }),
         }),
         ReviewsPlugin,

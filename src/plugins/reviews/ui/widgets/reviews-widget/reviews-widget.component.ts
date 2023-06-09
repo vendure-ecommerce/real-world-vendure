@@ -1,9 +1,29 @@
 import { ChangeDetectionStrategy, Component, NgModule, OnInit } from '@angular/core';
-import { DataService, SharedModule } from '@vendure/admin-ui/core';
-import { GetAllReviews } from '../../generated-types';
+import { DataService, ItemOf, SharedModule } from '@vendure/admin-ui/core';
 import { Observable } from 'rxjs';
-import { GET_ALL_REVIEWS } from '../../components/all-product-reviews-list/all-product-reviews-list.graphql';
+import gql from 'graphql-tag';
 import { ReviewsSharedModule } from '../../reviews-shared.module';
+import { GetReviewsForWidgetDocument, GetReviewsForWidgetQuery } from '../../generated-types';
+
+const GET_REVIEWS_FOR_WIDGET = gql`
+    query GetReviewsForWidget($options: ProductReviewListOptions) {
+        productReviews(options: $options) {
+            items {
+                id
+                authorName
+                summary
+                rating
+                state
+                createdAt
+                product {
+                    id
+                    name
+                }
+            }
+            totalItems
+        }
+    }
+`;
 
 @Component({
     selector: 'vdr-reviews-widget',
@@ -12,12 +32,12 @@ import { ReviewsSharedModule } from '../../reviews-shared.module';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ReviewsWidgetComponent implements OnInit {
-    pendingReviews$: Observable<GetAllReviews.Items[]>;
+    pendingReviews$: Observable<ItemOf<GetReviewsForWidgetQuery, 'productReviews'>[]>;
     constructor(private dataService: DataService) {}
 
     ngOnInit() {
         this.pendingReviews$ = this.dataService
-            .query<GetAllReviews.Query, GetAllReviews.Variables>(GET_ALL_REVIEWS, {
+            .query(GetReviewsForWidgetDocument, {
                 options: {
                     filter: {
                         state: {

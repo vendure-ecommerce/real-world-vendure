@@ -1,53 +1,131 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { BaseListComponent, DataService } from '@vendure/admin-ui/core';
+import { TypedBaseListComponent } from '@vendure/admin-ui/core';
+import gql from 'graphql-tag';
 
-import { GetAllReviews, SortOrder } from '../../generated-types';
+import { PRODUCT_REVIEW_FRAGMENT } from '../../common/fragments.graphql';
+import { GetAllReviewsDocument } from '../../generated-types';
 
-import { GET_ALL_REVIEWS } from './all-product-reviews-list.graphql';
+export const GET_ALL_REVIEWS = gql`
+    query GetAllReviews($options: ProductReviewListOptions) {
+        productReviews(options: $options) {
+            items {
+                ...ProductReview
+                product {
+                    id
+                    name
+                    featuredAsset {
+                        id
+                        preview
+                    }
+                }
+            }
+            totalItems
+        }
+    }
+    ${PRODUCT_REVIEW_FRAGMENT}
+`;
 
 @Component({
-    selector: 'kb-all-product-reviews-list',
+    selector: 'all-product-reviews-list',
     templateUrl: './all-product-reviews-list.component.html',
     styleUrls: ['./all-product-reviews-list.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AllProductReviewsListComponent extends BaseListComponent<
-    GetAllReviews.Query,
-    GetAllReviews.Items,
-    GetAllReviews.Variables
+export class AllProductReviewsListComponent extends TypedBaseListComponent<
+    typeof GetAllReviewsDocument,
+    'productReviews'
 > {
     filteredState: string | null = 'new';
 
-    constructor(private dataService: DataService, router: Router, route: ActivatedRoute) {
-        super(router, route);
-        super.setQueryFn(
-            (...args: any[]) => {
-                return this.dataService.query<GetAllReviews.Query>(GET_ALL_REVIEWS, args);
+    // Here we set up the filters that will be available
+    // to use in the data table
+    readonly filters = this.createFilterCollection()
+        .addDateFilters()
+        .addFilter({
+            name: 'summary',
+            type: { kind: 'text' },
+            label: 'Summary',
+            filterField: 'summary',
+        })
+        .addFilter({
+            name: 'rating',
+            type: { kind: 'number' },
+            label: 'Rating',
+            filterField: 'rating',
+        })
+        .addFilter({
+            name: 'state',
+            type: {
+                kind: 'select',
+                options: [
+                    { value: 'new', label: 'New' },
+                    { value: 'approved', label: 'Approved' },
+                    { value: 'rejected', label: 'Rejected' },
+                ],
             },
-            data => data.productReviews,
-            (skip, take) => {
-                return {
-                    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-                    productId: route.snapshot.paramMap.get('id')!,
-                    options: {
-                        skip,
-                        take,
-                        sort: {
-                            createdAt: SortOrder.DESC,
+            label: 'State',
+            filterField: 'state',
+        })
+        .addFilter({
+            name: 'authorName',
+            type: { kind: 'text' },
+            label: 'Author',
+            filterField: 'authorName',
+        })
+        .addFilter({
+            name: 'authorLocation',
+            type: { kind: 'text' },
+            label: 'Location',
+            filterField: 'authorLocation',
+        })
+        .addFilter({
+            name: 'upvotes',
+            type: { kind: 'number' },
+            label: 'Upvotes',
+            filterField: 'upvotes',
+        })
+        .addFilter({
+            name: 'downvotes',
+            type: { kind: 'number' },
+            label: 'Downvotes',
+            filterField: 'downvotes',
+        })
+        .connectToRoute(this.route);
+
+    // Here we set up the sorting options that will be available
+    // to use in the data table
+    readonly sorts = this.createSortCollection()
+        .defaultSort('createdAt', 'DESC')
+        .addSort({ name: 'createdAt' })
+        .addSort({ name: 'updatedAt' })
+        .addSort({ name: 'summary' })
+        .addSort({ name: 'state' })
+        .addSort({ name: 'upvotes' })
+        .addSort({ name: 'downvotes' })
+        .addSort({ name: 'rating' })
+        .addSort({ name: 'authorName' })
+        .addSort({ name: 'authorLocation' })
+        .connectToRoute(this.route);
+
+    constructor() {
+        super();
+        super.configure({
+            document: GetAllReviewsDocument,
+            getItems: data => data.productReviews,
+            setVariables: (skip, take) => ({
+                options: {
+                    skip,
+                    take,
+                    filter: {
+                        authorName: {
+                            contains: this.searchTermControl.value ?? undefined,
                         },
-                        ...(this.filteredState != null
-                            ? {
-                                  filter: {
-                                      state: {
-                                          eq: this.filteredState,
-                                      },
-                                  },
-                              }
-                            : {}),
+                        ...this.filters.createFilterInput(),
                     },
-                };
-            },
-        );
+                    sort: this.sorts.createSortInput(),
+                },
+            }),
+            refreshListOnChanges: [this.filters.valueChanges, this.sorts.valueChanges],
+        });
     }
 }

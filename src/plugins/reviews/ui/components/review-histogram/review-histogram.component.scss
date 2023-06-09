@@ -1,5 +1,3 @@
-@import "../../reviews-ui";
-
 :host {
     display: block;
     margin-bottom: 6px;
@@ -11,17 +9,17 @@
 }
 
 .bar {
-    background-color: var(--color-grey-200);
+    background-color: var(--color-weight-200);
     width: 100px;
     margin: 0 6px;
 }
 .fill {
-    background-color: var(--color-star-rating);
+    background-color: #e1a904;
     text-align: right;
     height: 12px;
 }
 .frequency {
-    color: var(--color-grey-600);
+    color: var(--color-weight-600);
     font-size: 12px;
     min-width: 16px;
     line-height: 12px;
@@ -35,7 +33,7 @@
         cursor: default;
     }
     &.active {
-        background-color: var(--color-primary-500);
+        background-color: var(--color-primary-600);
         color: white;
     }
 }
