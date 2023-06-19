@@ -8,6 +8,8 @@ export default defineConfig({
         typecheck: {
             tsconfig: path.join(__dirname, 'tsconfig.e2e.json'),
         },
+        threads: false,
+        singleThread: true,
     },
     plugins: [
         // SWC required to support decorators used in test plugins
