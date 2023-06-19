@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { createTestEnvironment, registerInitializer, SqljsInitializer } from '@vendure/testing';
+import { createTestEnvironment, PostgresInitializer, registerInitializer } from '@vendure/testing';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import path from 'path';
 
@@ -13,13 +13,13 @@ import {
     RejectReviewDocument,
 } from './types/generated-admin-types';
 
-registerInitializer('sqljs', new SqljsInitializer(path.join(__dirname, '__data__')));
+registerInitializer('postgres', new PostgresInitializer());
 
 describe('reviews plugin 2', () => {
     let firstReviewId: string;
 
     const { server, adminClient, shopClient } = createTestEnvironment({
-        ...testConfig,
+        ...testConfig(),
         plugins: [ReviewsPlugin],
     });
 

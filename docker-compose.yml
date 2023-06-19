@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+  postgresql:
+    container_name: "real-world-vendure-postgres"
+    image: postgres:15.3
+    ports:
+      - 5442:5432
+    env_file:
+      - .env
+    volumes:
+      - .data/postgresql:/var/lib/postgresql/data
