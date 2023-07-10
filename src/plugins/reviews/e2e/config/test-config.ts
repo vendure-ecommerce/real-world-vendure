@@ -47,14 +47,14 @@ export const testConfig = () => {
         importExportOptions: {
             importAssetsDir: path.join(__dirname, '..', 'fixtures/assets'),
         },
-        dbConnectionOptions: {
-            type: 'postgres',
-            logging: true,
-            database: process.env.TEST_DB_NAME || 'test-real-world-vendure-db',
-            host: process.env.DB_HOST,
-            port: process.env.DB_PORT ? parseInt(process.env.DB_PORT, 10) : 5432,
-            username: process.env.DB_USERNAME,
-            password: process.env.DB_PASSWORD,
-        },
+        // dbConnectionOptions: {
+        //     type: 'postgres',
+        //     logging: true,
+        //     database: process.env.TEST_DB_NAME || 'test-real-world-vendure-db',
+        //     host: process.env.DB_HOST,
+        //     port: process.env.DB_PORT ? parseInt(process.env.DB_PORT, 10) : 5432,
+        //     username: process.env.DB_USERNAME,
+        //     password: process.env.DB_PASSWORD,
+        // },
     });
 };
