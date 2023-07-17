@@ -22,7 +22,7 @@ if (process.env.E2E_DEBUG) {
     // jest.setTimeout(1800 * 1000);
 }
 
-export const testConfig = () => {
+export const testConfig = (port: number) => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     const portsFile = fileURLToPath(new URL('ports.json', import.meta.url));
@@ -42,7 +42,7 @@ export const testConfig = () => {
     fs.writeJSONSync(portsFile, usedPorts);
     return mergeConfig(defaultTestConfig, {
         apiOptions: {
-            port: nextPort,
+            port,
         },
         importExportOptions: {
             importAssetsDir: path.join(__dirname, '..', 'fixtures/assets'),
