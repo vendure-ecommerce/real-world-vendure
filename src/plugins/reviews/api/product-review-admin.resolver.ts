@@ -61,11 +61,11 @@ export class ProductReviewAdminResolver {
     ) {
         const review = await this.connection.getEntityOrThrow(ctx, ProductReview, input.id);
         const originalResponse = review.response;
-        const updatedShippingMethod = patchEntity(review, input);
+        const updatedProductReview = patchEntity(review, input);
         if (input.response !== originalResponse) {
-            updatedShippingMethod.responseCreatedAt = new Date();
+            updatedProductReview.responseCreatedAt = new Date();
         }
-        return this.connection.getRepository(ctx, ProductReview).save(updatedShippingMethod);
+        return this.connection.getRepository(ctx, ProductReview).save(updatedProductReview);
     }
 
     @Transaction()
