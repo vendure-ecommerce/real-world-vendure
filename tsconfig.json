@@ -17,6 +17,7 @@
     "node_modules",
     "migration.ts",
     "populate.ts",
+    "codegen.ts",
     "migrations/*.ts",
     "**/*.spec.ts",
     "src/plugins/**/ui/*",
