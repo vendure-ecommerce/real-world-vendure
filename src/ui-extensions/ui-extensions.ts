@@ -31,6 +31,7 @@ export const nonAngularUiExtensions: AdminUiExtension = {
         path.join(__dirname, 'vue-app'),
         // Or as an object, in the case that we want to rename the file or directory
         // once copied to the `assets/` dir of the built Admin UI app.
+        { path: path.join(__dirname, 'vue3-app/dist'), rename: 'vue3-app' },
         { path: path.join(__dirname, 'react-app/build'), rename: 'react-app' },
     ],
 };

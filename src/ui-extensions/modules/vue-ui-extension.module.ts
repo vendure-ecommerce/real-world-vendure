@@ -16,6 +16,12 @@ import { hostExternalFrame } from '@vendure/admin-ui/core';
                 extensionUrl: './assets/vue-app/index.html',
                 openInNewTab: false,
             }),
+            hostExternalFrame({
+                path: ':id',
+                breadcrumbLabel: 'Vue 3 App',
+                extensionUrl: './assets/vue3-app/index.html',
+                openInNewTab: false,
+            }),
         ]),
     ],
 })
