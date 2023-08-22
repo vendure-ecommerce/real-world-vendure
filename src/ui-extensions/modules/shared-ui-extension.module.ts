@@ -17,6 +17,12 @@ import { addNavMenuSection } from '@vendure/admin-ui/core';
                     icon: 'code',
                 },
                 {
+                    id: 'vue3-app',
+                    label: 'Vue 3 App - About',
+                    routerLink: ['/extensions/vue-ui/about'],
+                    icon: 'code',
+                },
+                {
                     id: 'react-app',
                     label: 'React App',
                     routerLink: ['/extensions/react-ui'],

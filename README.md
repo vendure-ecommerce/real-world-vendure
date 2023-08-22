@@ -10,9 +10,10 @@ This project demonstrates a real-world [Vendure](https://www.vendure.io/) server
 2. `yarn` to install dependencies (using [Yarn v1.x](https://classic.yarnpkg.com))
 3. `yarn populate` to populate the database with some sample data
 4. In the `/src/ui-extensions/react-app` directory, run `yarn` and then `yarn build`
-5. In the root dir, run `yarn build` to build the application 
-6. Run `yarn start` to start the Vendure server
-7. Login to [`http://localhost:3000/admin/login`](http://localhost:3000/admin/login) with the default [`@vendure/create`](https://www.vendure.io/docs/getting-started/#installation-with-@vendure/create) credentials (username `superadmin`, password `superadmin`).
+5. In the `/src/ui-extensions/vue3-app` directory, run `yarn` and then `yarn build`
+6. In the root dir, run `yarn build` to build the application 
+7. Run `yarn start` to start the Vendure server
+8. Login to [`http://localhost:3000/admin/login`](http://localhost:3000/admin/login) with the default [`@vendure/create`](https://www.vendure.io/docs/getting-started/#installation-with-@vendure/create) credentials (username `superadmin`, password `superadmin`).
 
 ## Tooling
 
