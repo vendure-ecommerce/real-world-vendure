@@ -4,10 +4,13 @@ import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
     test: {
+        setupFiles: ['dotenv-flow/config'],
         include: '**/*.e2e-spec.ts',
         typecheck: {
             tsconfig: path.join(__dirname, 'tsconfig.e2e.json'),
         },
+        threads: true,
+        isolate: true,
     },
     plugins: [
         // SWC required to support decorators used in test plugins
