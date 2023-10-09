@@ -1,12 +1,16 @@
-import { ChangeDetectionStrategy, Component, Input, OnChanges, Output, EventEmitter } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 
 import { ProductReviewHistogramItem } from '../../generated-types';
+import { SharedModule } from '@vendure/admin-ui/core';
+import { StarRatingComponent } from '../star-rating/star-rating.component';
 
 @Component({
     selector: 'review-histogram',
     templateUrl: './review-histogram.component.html',
     styleUrls: ['./review-histogram.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [SharedModule, StarRatingComponent],
 })
 export class ReviewHistogramComponent implements OnChanges {
     @Input() binData: ProductReviewHistogramItem[] | null = [];

@@ -1,6 +1,11 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { DataService, NotificationService, TypedBaseDetailComponent } from '@vendure/admin-ui/core';
+import {
+    DataService,
+    NotificationService,
+    SharedModule,
+    TypedBaseDetailComponent,
+} from '@vendure/admin-ui/core';
 import { Observable, of } from 'rxjs';
 import { filter, map, mapTo, switchMap } from 'rxjs/operators';
 
@@ -16,6 +21,8 @@ import {
 import gql from 'graphql-tag';
 
 import { PRODUCT_REVIEW_FRAGMENT } from '../../common/fragments.graphql';
+import { StarRatingComponent } from '../star-rating/star-rating.component';
+import { ReviewStateLabelComponent } from '../review-state-label/review-state-label.component';
 
 export const GET_REVIEW_DETAIL = gql`
     query GetReviewDetail($id: ID!) {
@@ -47,6 +54,8 @@ export const GET_REVIEW_DETAIL = gql`
     templateUrl: './product-review-detail.component.html',
     styleUrls: ['./product-review-detail.component.scss'],
     changeDetection: ChangeDetectionStrategy.Default,
+    standalone: true,
+    imports: [SharedModule, StarRatingComponent, ReviewStateLabelComponent],
 })
 export class ProductReviewDetailComponent
     extends TypedBaseDetailComponent<typeof GetReviewDetailDocument, 'productReview'>

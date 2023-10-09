@@ -3,9 +3,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import {
     BaseListComponent,
     DataService,
-    ItemOf,
-    DataTableSortCollection,
     DataTableFilterCollection,
+    DataTableSortCollection,
+    ItemOf,
+    SharedModule,
 } from '@vendure/admin-ui/core';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
@@ -19,12 +20,14 @@ import {
     ProductReviewFilterParameter,
     ProductReviewHistogramItem,
     ProductReviewSortParameter,
-    SortOrder,
 } from '../../generated-types';
 
 import gql from 'graphql-tag';
 
 import { PRODUCT_REVIEW_FRAGMENT } from '../../common/fragments.graphql';
+import { StarRatingComponent } from '../star-rating/star-rating.component';
+import { ReviewHistogramComponent } from '../review-histogram/review-histogram.component';
+import { ReviewStateLabelComponent } from '../review-state-label/review-state-label.component';
 
 export const GET_REVIEWS_FOR_PRODUCT = gql`
     query GetReviewForProduct($productId: ID!, $options: ProductReviewListOptions) {
@@ -67,6 +70,8 @@ export const GET_PRODUCT_PREVIEW_AND_HISTOGRAM = gql`
     templateUrl: './product-reviews-list.component.html',
     styleUrls: ['./product-reviews-list.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [SharedModule, StarRatingComponent, ReviewHistogramComponent, ReviewStateLabelComponent],
 })
 export class ProductReviewsListComponent
     extends BaseListComponent<

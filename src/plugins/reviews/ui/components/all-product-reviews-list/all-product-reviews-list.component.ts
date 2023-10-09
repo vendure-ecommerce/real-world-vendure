@@ -1,9 +1,11 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { TypedBaseListComponent } from '@vendure/admin-ui/core';
+import { SharedModule, TypedBaseListComponent } from '@vendure/admin-ui/core';
 import gql from 'graphql-tag';
 
 import { PRODUCT_REVIEW_FRAGMENT } from '../../common/fragments.graphql';
 import { GetAllReviewsDocument } from '../../generated-types';
+import { ReviewStateLabelComponent } from '../review-state-label/review-state-label.component';
+import { StarRatingComponent } from '../star-rating/star-rating.component';
 
 export const GET_ALL_REVIEWS = gql`
     query GetAllReviews($options: ProductReviewListOptions) {
@@ -30,6 +32,8 @@ export const GET_ALL_REVIEWS = gql`
     templateUrl: './all-product-reviews-list.component.html',
     styleUrls: ['./all-product-reviews-list.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [SharedModule, ReviewStateLabelComponent, StarRatingComponent],
 })
 export class AllProductReviewsListComponent extends TypedBaseListComponent<
     typeof GetAllReviewsDocument,

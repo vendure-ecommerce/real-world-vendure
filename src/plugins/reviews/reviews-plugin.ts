@@ -51,18 +51,7 @@ import { AdminUiExtension } from '@vendure/ui-devkit/compiler';
 export class ReviewsPlugin {
     static uiExtensions: AdminUiExtension = {
         extensionPath: path.join(__dirname, 'ui'),
-        ngModules: [
-            {
-                type: 'shared' as const,
-                ngModuleFileName: 'reviews-ui-extension.module.ts',
-                ngModuleName: 'ReviewsUiExtensionModule',
-            },
-            {
-                type: 'lazy' as const,
-                route: 'product-reviews',
-                ngModuleFileName: 'reviews-ui-lazy.module.ts',
-                ngModuleName: 'ReviewsUiLazyModule',
-            },
-        ],
+        providers: ['providers.ts'],
+        routes: [{ route: 'product-reviews', filePath: 'routes.ts' }],
     };
 }

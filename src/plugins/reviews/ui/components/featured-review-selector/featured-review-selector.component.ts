@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { CustomFieldControl, DataService } from '@vendure/admin-ui/core';
+import { CustomFieldControl, DataService, SharedModule } from '@vendure/admin-ui/core';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
@@ -25,6 +25,8 @@ import { GetReviewForProductDocument, ProductReviewFragment } from '../../genera
         </select>
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [SharedModule],
 })
 export class RelationReviewInputComponent implements OnInit, CustomFieldControl {
     @Input() readonly: boolean;

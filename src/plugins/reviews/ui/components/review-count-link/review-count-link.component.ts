@@ -7,6 +7,7 @@ import { CustomFieldConfigType, CustomFieldControl } from '@vendure/admin-ui/cor
     template: ` {{ formControl.value }} `,
     styles: [``],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
 })
 export class ReviewCountLinkComponent implements CustomFieldControl {
     readonly: boolean;

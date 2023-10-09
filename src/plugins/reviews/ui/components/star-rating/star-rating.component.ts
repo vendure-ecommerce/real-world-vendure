@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { CustomFieldConfigType, CustomFieldControl } from '@vendure/admin-ui/core';
+import { CustomFieldConfigType, CustomFieldControl, SharedModule } from '@vendure/admin-ui/core';
 
 type StarType = 'empty' | 'full' | 'half';
 
@@ -9,6 +9,8 @@ type StarType = 'empty' | 'full' | 'half';
     templateUrl: './star-rating.component.html',
     styleUrls: ['./star-rating.component.scss'],
     changeDetection: ChangeDetectionStrategy.Default,
+    standalone: true,
+    imports: [SharedModule],
 })
 export class StarRatingComponent implements CustomFieldControl {
     @Input() rating: number | null;

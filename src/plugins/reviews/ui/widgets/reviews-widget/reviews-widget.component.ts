@@ -1,9 +1,10 @@
-import { ChangeDetectionStrategy, Component, NgModule, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { DataService, ItemOf, SharedModule } from '@vendure/admin-ui/core';
 import { Observable } from 'rxjs';
 import gql from 'graphql-tag';
-import { ReviewsSharedModule } from '../../reviews-shared.module';
 import { GetReviewsForWidgetDocument, GetReviewsForWidgetQuery } from '../../generated-types';
+import { StarRatingComponent } from '../../components/star-rating/star-rating.component';
+import { ReviewStateLabelComponent } from '../../components/review-state-label/review-state-label.component';
 
 const GET_REVIEWS_FOR_WIDGET = gql`
     query GetReviewsForWidget($options: ProductReviewListOptions) {
@@ -30,6 +31,8 @@ const GET_REVIEWS_FOR_WIDGET = gql`
     templateUrl: './reviews-widget.component.html',
     styleUrls: ['./reviews-widget.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [SharedModule, StarRatingComponent, ReviewStateLabelComponent],
 })
 export class ReviewsWidgetComponent implements OnInit {
     pendingReviews$: Observable<ItemOf<GetReviewsForWidgetQuery, 'productReviews'>[]>;
@@ -50,9 +53,3 @@ export class ReviewsWidgetComponent implements OnInit {
             .mapStream(data => data.productReviews.items);
     }
 }
-
-@NgModule({
-    imports: [SharedModule, ReviewsSharedModule],
-    declarations: [ReviewsWidgetComponent],
-})
-export class ReviewsWidgetModule {}
