@@ -1,21 +1,11 @@
 import type { CodegenConfig } from '@graphql-codegen/cli';
 
-const typescriptPlugins = [
-    {
-        add: {
-            // Use the "add" plugin to add the eslint-disable comment to the top of the generated file.
-            content: '/* eslint-disable */',
-        },
+const clientConfig = {
+    preset: 'client',
+    presetConfig: {
+        fragmentMasking: false,
     },
-    'typescript',
-];
-const typescriptClientPlugins = ['typescript-operations', 'typed-document-node'];
-const clientScalars = {
-    scalars: {
-        ID: 'string',
-        Money: 'number',
-    },
-};
+} as const;
 
 const config: CodegenConfig = {
     overwrite: true,
@@ -26,36 +16,35 @@ const config: CodegenConfig = {
             enumValues: 'keep',
         },
         scalars: {
-            ID: 'string | number',
+            ID: 'string',
+            Money: 'number',
+            DateTime: { input: 'Date', output: 'string' },
         },
         maybeValue: 'T',
     },
     generates: {
         'src/plugins/reviews/generated-admin-types.ts': {
             schema: 'http://localhost:3000/admin-api',
-            plugins: typescriptPlugins,
+            plugins: ['typescript'],
         },
         'src/plugins/reviews/generated-shop-types.ts': {
             schema: 'http://localhost:3000/shop-api',
-            plugins: typescriptPlugins,
+            plugins: ['typescript'],
         },
-        'src/plugins/reviews/e2e/types/generated-shop-types.ts': {
+        'src/plugins/reviews/e2e/types/shop/': {
             schema: 'http://localhost:3000/shop-api',
             documents: 'src/plugins/reviews/e2e/graphql/shop-e2e-definitions.graphql.ts',
-            plugins: [...typescriptPlugins, ...typescriptClientPlugins],
-            config: clientScalars,
+            ...clientConfig,
         },
-        'src/plugins/reviews/e2e/types/generated-admin-types.ts': {
+        'src/plugins/reviews/e2e/types/admin/': {
             schema: 'http://localhost:3000/admin-api',
             documents: 'src/plugins/reviews/e2e/graphql/admin-e2e-definitions.graphql.ts',
-            plugins: [...typescriptPlugins, ...typescriptClientPlugins],
-            config: clientScalars,
+            ...clientConfig,
         },
-        'src/plugins/reviews/ui/generated-types.ts': {
+        'src/plugins/reviews/ui/gql/': {
             schema: 'http://localhost:3000/admin-api',
             documents: 'src/plugins/reviews/ui/**/*.ts',
-            plugins: [...typescriptPlugins, ...typescriptClientPlugins],
-            config: clientScalars,
+            ...clientConfig,
         },
     },
 };

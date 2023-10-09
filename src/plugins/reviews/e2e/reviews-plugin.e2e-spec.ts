@@ -6,12 +6,12 @@ import path from 'path';
 import { ReviewsPlugin } from '../reviews-plugin';
 import { TEST_SETUP_TIMEOUT_MS, testConfig } from './config/test-config';
 import { initialData } from './config/e2e-initial-data';
-import { SubmitProductReviewDocument } from './types/generated-shop-types';
+import { SUBMIT_PRODUCT_REVIEW } from './graphql/shop-e2e-definitions.graphql';
 import {
-    ApproveReviewDocument,
-    GetProductReviewDataDocument,
-    RejectReviewDocument,
-} from './types/generated-admin-types';
+    APPROVE_REVIEW,
+    GET_PRODUCT_REVIEW_DATA,
+    REJECT_REVIEW,
+} from './graphql/admin-e2e-definitions.graphql';
 
 registerInitializer('sqljs', new SqljsInitializer(path.join(__dirname, '__data__')));
 
@@ -45,7 +45,7 @@ describe('reviews plugin', () => {
     });
 
     it('submit a guest review', async () => {
-        const { submitProductReview } = await shopClient.query(SubmitProductReviewDocument, {
+        const { submitProductReview } = await shopClient.query(SUBMIT_PRODUCT_REVIEW, {
             input: {
                 productId: 'T_1',
                 variantId: 'T_1',
@@ -70,7 +70,7 @@ describe('reviews plugin', () => {
     });
 
     it('approving a review', async () => {
-        const { approveProductReview } = await adminClient.query(ApproveReviewDocument, {
+        const { approveProductReview } = await adminClient.query(APPROVE_REVIEW, {
             id: firstReviewId,
         });
 
@@ -86,7 +86,7 @@ describe('reviews plugin', () => {
     it('rejected review does not affect rating', async () => {
         const submitProductReview = await submitReviewWithRating(1);
 
-        const { rejectProductReview } = await adminClient.query(RejectReviewDocument, {
+        const { rejectProductReview } = await adminClient.query(REJECT_REVIEW, {
             id: submitProductReview.id,
         });
 
@@ -102,7 +102,7 @@ describe('reviews plugin', () => {
     it('additional reviews update average rating', async () => {
         const submitProductReview = await submitReviewWithRating(1);
 
-        await adminClient.query(ApproveReviewDocument, {
+        await adminClient.query(APPROVE_REVIEW, {
             id: submitProductReview.id,
         });
 
@@ -114,12 +114,12 @@ describe('reviews plugin', () => {
     });
 
     async function getProductReviewData(id: string) {
-        const { product } = await adminClient.query(GetProductReviewDataDocument, { id });
+        const { product } = await adminClient.query(GET_PRODUCT_REVIEW_DATA, { id });
         return product!.customFields;
     }
 
     async function submitReviewWithRating(rating: number) {
-        const { submitProductReview } = await shopClient.query(SubmitProductReviewDocument, {
+        const { submitProductReview } = await shopClient.query(SUBMIT_PRODUCT_REVIEW, {
             input: {
                 productId: 'T_1',
                 authorName: 'Bobby Smith',

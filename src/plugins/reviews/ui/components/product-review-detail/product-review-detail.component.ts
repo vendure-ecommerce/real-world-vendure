@@ -7,47 +7,15 @@ import {
     TypedBaseDetailComponent,
 } from '@vendure/admin-ui/core';
 import { Observable, of } from 'rxjs';
-import { filter, map, mapTo, switchMap } from 'rxjs/operators';
+import { filter, map, switchMap } from 'rxjs/operators';
 
 import { ReviewState } from '../../common/ui-types';
-import {
-    ApproveReviewDocument,
-    GetReviewDetailDocument,
-    ProductReviewFragment,
-    RejectReviewDocument,
-    UpdateProductReviewInput,
-    UpdateReviewDocument,
-} from '../../generated-types';
-import gql from 'graphql-tag';
-
-import { PRODUCT_REVIEW_FRAGMENT } from '../../common/fragments.graphql';
+import { UpdateProductReviewInput } from '../../generated-types';
 import { StarRatingComponent } from '../star-rating/star-rating.component';
 import { ReviewStateLabelComponent } from '../review-state-label/review-state-label.component';
-
-export const GET_REVIEW_DETAIL = gql`
-    query GetReviewDetail($id: ID!) {
-        productReview(id: $id) {
-            ...ProductReview
-            product {
-                id
-                name
-                featuredAsset {
-                    id
-                    preview
-                }
-            }
-            productVariant {
-                id
-                name
-                featuredAsset {
-                    id
-                    preview
-                }
-            }
-        }
-    }
-    ${PRODUCT_REVIEW_FRAGMENT}
-`;
+import { APPROVE_REVIEW, REJECT_REVIEW, UPDATE_REVIEW } from './product-review-detail.graphql';
+import { GetReviewDetailQuery } from '../../gql/graphql';
+import { GET_REVIEW_DETAIL } from '../../routes';
 
 @Component({
     selector: 'product-review-detail',
@@ -58,7 +26,7 @@ export const GET_REVIEW_DETAIL = gql`
     imports: [SharedModule, StarRatingComponent, ReviewStateLabelComponent],
 })
 export class ProductReviewDetailComponent
-    extends TypedBaseDetailComponent<typeof GetReviewDetailDocument, 'productReview'>
+    extends TypedBaseDetailComponent<typeof GET_REVIEW_DETAIL, 'productReview'>
     implements OnInit, OnDestroy
 {
     detailForm = this.formBuilder.group({
@@ -92,7 +60,7 @@ export class ProductReviewDetailComponent
 
     approve() {
         this.saveChanges()
-            .pipe(switchMap(() => this.dataService.mutate(ApproveReviewDocument, { id: this.id })))
+            .pipe(switchMap(() => this.dataService.mutate(APPROVE_REVIEW, { id: this.id })))
             .subscribe(
                 () => {
                     this.detailForm.markAsPristine();
@@ -107,7 +75,7 @@ export class ProductReviewDetailComponent
 
     reject() {
         this.saveChanges()
-            .pipe(switchMap(() => this.dataService.mutate(RejectReviewDocument, { id: this.id })))
+            .pipe(switchMap(() => this.dataService.mutate(REJECT_REVIEW, { id: this.id })))
             .subscribe(
                 () => {
                     this.detailForm.markAsPristine();
@@ -148,21 +116,21 @@ export class ProductReviewDetailComponent
                 body: body ?? undefined,
                 response: response ?? undefined,
             };
-            return this.dataService.mutate(UpdateReviewDocument, { input }).pipe(mapTo(true));
+            return this.dataService.mutate(UPDATE_REVIEW, { input }).pipe(map(() => true));
         } else {
             return of(false);
         }
     }
 
-    protected setFormValues(entity: ProductReviewFragment): void {
+    protected setFormValues(entity: GetReviewDetailQuery['productReview']): void {
         this.detailForm.patchValue({
-            summary: entity.summary,
-            body: entity.body,
-            rating: entity.rating,
-            authorName: entity.authorName,
-            authorLocation: entity.authorLocation,
-            state: entity.state,
-            response: entity.response,
+            summary: entity?.summary,
+            body: entity?.body,
+            rating: entity?.rating,
+            authorName: entity?.authorName,
+            authorLocation: entity?.authorLocation,
+            state: entity?.state,
+            response: entity?.response,
         });
     }
 }

@@ -1,6 +1,6 @@
-import gql from 'graphql-tag';
+import { graphql } from '../types/shop';
 
-export const SUBMIT_PRODUCT_REVIEW = gql`
+export const SUBMIT_PRODUCT_REVIEW = graphql(`
     mutation SubmitProductReview($input: SubmitProductReviewInput!) {
         submitProductReview(input: $input) {
             authorLocation
@@ -18,4 +18,4 @@ export const SUBMIT_PRODUCT_REVIEW = gql`
             upvotes
         }
     }
-`;
+`);
