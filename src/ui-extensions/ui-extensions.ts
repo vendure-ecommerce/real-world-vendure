@@ -3,7 +3,7 @@ import { AdminUiExtension } from '@vendure/ui-devkit/compiler';
 
 /**
  * This demonstrates how to configure a UI extension hosting an application built on
- * other web technologies than Angular. In this case, Vue and React.
+ * other web technologies than Angular. In this case, Vue.
  */
 export const nonAngularUiExtensions: AdminUiExtension = {
     extensionPath: path.join(__dirname, 'modules'),
@@ -14,12 +14,8 @@ export const nonAngularUiExtensions: AdminUiExtension = {
             ngModuleFileName: 'vue-ui-extension.module.ts',
             ngModuleName: 'VueUiExtensionModule',
         },
-        {
-            type: 'shared',
-            ngModuleFileName: 'shared-ui-extension.module.ts',
-            ngModuleName: 'UiSharedModule',
-        },
     ],
+    providers: ['providers.ts'],
     staticAssets: [
         // Here we are copying the static files of the Vue app to the `assets/` directory
         // of the compiled Admin UI app.
