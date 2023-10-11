@@ -10,12 +10,6 @@ export const nonAngularUiExtensions: AdminUiExtension = {
     ngModules: [
         {
             type: 'lazy',
-            route: 'react-ui',
-            ngModuleFileName: 'react-ui-extension.module.ts',
-            ngModuleName: 'ReactUiExtensionModule',
-        },
-        {
-            type: 'lazy',
             route: 'vue-ui',
             ngModuleFileName: 'vue-ui-extension.module.ts',
             ngModuleName: 'VueUiExtensionModule',
@@ -27,10 +21,8 @@ export const nonAngularUiExtensions: AdminUiExtension = {
         },
     ],
     staticAssets: [
-        // A static asset can be supplied as a string...
+        // Here we are copying the static files of the Vue app to the `assets/` directory
+        // of the compiled Admin UI app.
         path.join(__dirname, 'vue-app'),
-        // Or as an object, in the case that we want to rename the file or directory
-        // once copied to the `assets/` dir of the built Admin UI app.
-        { path: path.join(__dirname, 'react-app/build'), rename: 'react-app' },
     ],
 };

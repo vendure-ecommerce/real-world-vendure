@@ -9,10 +9,9 @@ This project demonstrates a real-world [Vendure](https://www.vendure.io/) server
 1. Clone this repo
 2. `yarn` to install dependencies (using [Yarn v1.x](https://classic.yarnpkg.com))
 3. `yarn populate` to populate the database with some sample data
-4. In the `/src/ui-extensions/react-app` directory, run `yarn` and then `yarn build`
-5. In the root dir, run `yarn build` to build the application 
-6. Run `yarn start` to start the Vendure server
-7. Login to [`http://localhost:3000/admin/login`](http://localhost:3000/admin/login) with the default [`@vendure/create`](https://www.vendure.io/docs/getting-started/#installation-with-@vendure/create) credentials (username `superadmin`, password `superadmin`).
+4. In the root dir, run `yarn build` to build the application 
+5. Run `yarn start` to start the Vendure server
+6. Login to [`http://localhost:3000/admin/login`](http://localhost:3000/admin/login) with the default [`@vendure/create`](https://www.vendure.io/docs/getting-started/#installation-with-@vendure/create) credentials (username `superadmin`, password `superadmin`).
 
 ## Tooling
 
@@ -39,10 +38,9 @@ The plugin showcases several advanced capabilities of the Vendure plugin system.
 
 ## UI Extensions
 
-This repo also demonstrates several approaches to extending the Admin UI:
+This repo also demonstrates approaches to extending the Admin UI:
 
 * Angular-based ui extensions in the [reviews plugin](./src/plugins/reviews/ui)
-* A React-based, [compiled ui extension](./src/ui-extensions/react-app) build with Create React App
 * A Vue-based, [uncompiled ui extension](./src/ui-extensions/vue-app)
 
 ## Directory structure
