@@ -72,20 +72,8 @@ Then to run in production, the files `/dist/index.js` & `/dist/index-worker.js` 
 
 [Migrations](https://www.vendure.io/docs/developer-guide/migrations/) allow safe updates to the database schema.
 
-The following npm scripts can be used to generate migrations:
+To create a new migration, run:
 
 ```
-npm run migration:generate [name]
-```
-
-run any pending migrations that have been generated:
-
-```
-npm run migration:run
-```
-
-and revert the most recently-applied migration:
-
-```
-npm run migration:revert
+npx vendure migrate
 ```

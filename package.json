@@ -10,9 +10,6 @@
     "start": "concurrently yarn:run:*",
     "build": "rimraf dist && rimraf admin-ui && tsc && tsc -p tsconfig.migrations.json && yarn compile-admin-ui",
     "codegen": "graphql-codegen --config ./codegen.ts",
-    "migration:generate": "ts-node migration generate",
-    "migration:run": "ts-node migration run",
-    "migration:revert": "ts-node migration revert",
     "lint:fix": "eslint ./src/ --ext .ts --fix",
     "e2e:reviews": "vitest --config src/plugins/reviews/e2e/config/vitest.config.js"
   },
@@ -30,6 +27,7 @@
     "@swc/core": "^1.4.14",
     "@typescript-eslint/eslint-plugin": "^7.7.0",
     "@typescript-eslint/parser": "^7.7.0",
+    "@vendure/cli": "^2.2.0",
     "@vendure/create": "^2.2.0",
     "@vendure/testing": "^2.2.0",
     "@vendure/ui-devkit": "^2.2.0",
